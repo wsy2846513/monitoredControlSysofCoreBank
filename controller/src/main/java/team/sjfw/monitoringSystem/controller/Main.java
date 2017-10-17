@@ -15,7 +15,7 @@ public class Main {
 
     @Test
     public void test() {
-        System.out.println("test");
+        System.out.println("test9527");
         System.out.println(duplicator);
 //        System.out.println(this.getClass().getResource("classpath:/team/sjfw/monitoringSystem/controller/config/environment.properties").getPath());
 //        System.out.println(this.getClass().getResource("").getPath());
