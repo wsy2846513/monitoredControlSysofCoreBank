@@ -18,6 +18,14 @@ public class Duplicator {
     private String briefingSrcPath;
     private String briefingDestPath;
 
+    private String cmdHead = "cmd xcopy";
+    private String cmdEnd = "/F";
+    private String fullTwspSrc;
+    private String fullBriefingSrc;
+    private String handleCalendarString;
+    private String fullCmdCommand;
+    private Process processCmd;
+
     private Calendar startDate;
     private Calendar endDate;
     private Calendar latestDate;
@@ -29,8 +37,10 @@ public class Duplicator {
         this.startDate = CalendarAndString.StringToCalendar(environment.getProperty("start.date"));
         this.endDate = CalendarAndString.StringToCalendar(environment.getProperty("end.date"));
         this.latestDate = CalendarAndString.StringToCalendar(environment.getProperty("latest.date"));
-        test1();
+//        test1();
+        copyFilesSuccessfully();
     }
+
 
     public void test1(){
         int i = 0;
@@ -44,14 +54,19 @@ public class Duplicator {
     }
 
     private boolean copyFilesSuccessfully(){
-        String cmdHead = "cmd cp ";
-        String fullTwspSrc;
-        String fullBriefingSrc;
-        String handleCalendarString;
+
         while (!startDate.after(endDate)){
-            handleCalendarString = CalendarAndString.calendarToString(startDate);
-            fullTwspSrc = twspSrcPath + handleCalendarString;
-            fullBriefingSrc = briefingSrcPath + handleCalendarString;
+//            handleCalendarString = CalendarAndString.calendarToString(startDate);
+            fullTwspSrc = twspSrcPath + handleCalendarString + "\\";
+            fullBriefingSrc = briefingSrcPath + handleCalendarString + "\\";
+            fullCmdCommand = cmdHead + " " + fullTwspSrc + "*.txt" + " " + twspDestPath + " " + cmdEnd;
+            System.out.println(fullCmdCommand);
+//            try{
+//                processCmd = Runtime.getRuntime().exec(fullCmdCommand);
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+            startDate.add(Calendar.DATE,1);
         }
         return true;
     }
