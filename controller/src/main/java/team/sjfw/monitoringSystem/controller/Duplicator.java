@@ -15,8 +15,10 @@ import java.util.Calendar;
 public class Duplicator {
     private String twspSrcPath;
     private String twspDestPath;
+    private String twspFileName;
     private String briefingSrcPath;
     private String briefingDestPath;
+    private String briefingFileName;
 
     private String cmdHead = "cmd xcopy";
     private String cmdEnd = "/F";
@@ -32,8 +34,13 @@ public class Duplicator {
 
     @Autowired
     public Duplicator(Environment environment) {
-        this.twspSrcPath = environment.getProperty("twsp.input");
-        this.twspDestPath = environment.getProperty("twsp.output");
+        this.twspSrcPath = environment.getProperty("twsp.srcPath");
+        this.twspDestPath = environment.getProperty("twsp.destPath");
+        this.twspFileName = environment.getProperty("twsp.fileName");
+        this.briefingSrcPath = environment.getProperty("briefing.srcPath");
+        this.briefingDestPath = environment.getProperty("briefing.destPath");
+        this.briefingFileName = environment.getProperty("briefing.fileName");
+
         this.startDate = CalendarAndString.StringToCalendar(environment.getProperty("start.date"));
         this.endDate = CalendarAndString.StringToCalendar(environment.getProperty("end.date"));
         this.latestDate = CalendarAndString.StringToCalendar(environment.getProperty("latest.date"));
@@ -56,16 +63,21 @@ public class Duplicator {
     private boolean copyFilesSuccessfully(){
 
         while (!startDate.after(endDate)){
-//            handleCalendarString = CalendarAndString.calendarToString(startDate);
-            fullTwspSrc = twspSrcPath + handleCalendarString + "\\";
-            fullBriefingSrc = briefingSrcPath + handleCalendarString + "\\";
-            fullCmdCommand = cmdHead + " " + fullTwspSrc + "*.txt" + " " + twspDestPath + " " + cmdEnd;
-            System.out.println(fullCmdCommand);
-//            try{
+            try{
+                handleCalendarString = CalendarAndString.calendarToString(startDate);
+//                复制TWSP
+                fullTwspSrc = twspSrcPath + handleCalendarString + "\\";
+                fullCmdCommand = cmdHead + " " + fullTwspSrc + twspFileName + " " + twspDestPath + " " + cmdEnd;
+                System.out.println(fullCmdCommand);
 //                processCmd = Runtime.getRuntime().exec(fullCmdCommand);
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
+
+//                复制简报
+                fullBriefingSrc = briefingSrcPath + handleCalendarString + "\\";
+                fullCmdCommand = cmdHead + " " + fullBriefingSrc + briefingFileName + " " + twspDestPath + " " + cmdEnd;
+                System.out.println(fullCmdCommand);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             startDate.add(Calendar.DATE,1);
         }
         return true;
