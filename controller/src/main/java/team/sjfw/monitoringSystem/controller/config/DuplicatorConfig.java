@@ -9,6 +9,6 @@ import org.springframework.context.annotation.PropertySource;
 //@PropertySource("classpath:/team/sjfw/monitoringSystem/controller/config/environment.properties")
 //@PropertySource(value = "classpath:environment.properties",ignoreResourceNotFound = true)
 //@PropertySource("/config/environment.properties")
-@PropertySource("environment.properties")
+@PropertySource(value = "environment.properties",encoding = "UTF-8")
 public class DuplicatorConfig {
 }

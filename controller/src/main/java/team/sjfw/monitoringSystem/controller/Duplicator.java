@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.wsy.tools.interconversion.CalendarAndString;
 
+import java.io.BufferedReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -20,7 +21,7 @@ public class Duplicator {
     private String briefingDestPath;
     private String briefingFileName;
 
-    private String cmdHead = "cmd xcopy";
+    private String cmdHead = "cmd.exe /k xcopy";
     private String cmdEnd = "/F";
     private String fullTwspSrc;
     private String fullBriefingSrc;
@@ -49,39 +50,45 @@ public class Duplicator {
     }
 
 
-    public void test1(){
+    public void test1() {
         int i = 0;
-        while (!startDate.after(endDate)){
+        while (!startDate.after(endDate)) {
             i++;
             System.out.println("startDate=" + (new SimpleDateFormat("yyyy-MM-dd")).format(startDate.getTime()));
 //            System.out.println("test1 : i = " + i);
-            startDate.add(Calendar.DATE,1);
+            startDate.add(Calendar.DATE, 1);
         }
         System.out.println("test1 : i = " + i);
     }
 
-    private boolean copyFilesSuccessfully(){
+    private boolean copyFilesSuccessfully() {
 
-        while (!startDate.after(endDate)){
-            try{
-                handleCalendarString = CalendarAndString.calendarToString(startDate);
-//                复制TWSP
-                fullTwspSrc = twspSrcPath + handleCalendarString + "\\";
-                fullCmdCommand = cmdHead + " " + fullTwspSrc + twspFileName + " " + twspDestPath + " " + cmdEnd;
-                System.out.println(fullCmdCommand);
-//                processCmd = Runtime.getRuntime().exec(fullCmdCommand);
+        while (!startDate.after(endDate)) {
+            handleCalendarString = CalendarAndString.calendarToString(startDate);
+//            复制TWSP
+            fullTwspSrc = twspSrcPath + handleCalendarString + "\\";
+            fullCmdCommand = cmdHead + " " + fullTwspSrc + twspFileName + " " + twspDestPath + " " + cmdEnd;
+            executeCmd(processCmd, fullCmdCommand);
 
-//                复制简报
-                fullBriefingSrc = briefingSrcPath + handleCalendarString + "\\";
-                fullCmdCommand = cmdHead + " " + fullBriefingSrc + briefingFileName + " " + twspDestPath + " " + cmdEnd;
-                System.out.println(fullCmdCommand);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            startDate.add(Calendar.DATE,1);
+//            复制简报
+            fullBriefingSrc = briefingSrcPath + handleCalendarString + "\\";
+            fullCmdCommand = cmdHead + " " + fullBriefingSrc + briefingFileName + " " + briefingDestPath + " " + cmdEnd;
+            executeCmd(processCmd, fullCmdCommand);
+            startDate.add(Calendar.DATE, 1);
         }
         return true;
     }
+
+    private boolean executeCmd(Process process, String parameter) {
+        try {
+            System.out.println(parameter);
+            process = Runtime.getRuntime().exec(parameter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Duplicator{" +
