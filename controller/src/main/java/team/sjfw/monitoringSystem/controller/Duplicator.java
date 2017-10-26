@@ -4,15 +4,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.wsy.tools.interconversion.CalendarAndString;
 
-import java.io.BufferedReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@Component
+//@Component
+@Controller
 public class Duplicator {
     private String twspSrcPath;
     private String twspDestPath;
@@ -46,7 +47,7 @@ public class Duplicator {
         this.endDate = CalendarAndString.StringToCalendar(environment.getProperty("end.date"));
         this.latestDate = CalendarAndString.StringToCalendar(environment.getProperty("latest.date"));
 //        test1();
-        copyFilesSuccessfully();
+        prepareCopyFiles();
     }
 
 
@@ -61,7 +62,7 @@ public class Duplicator {
         System.out.println("test1 : i = " + i);
     }
 
-    private boolean copyFilesSuccessfully() {
+    private void prepareCopyFiles() {
 
         while (!startDate.after(endDate)) {
             handleCalendarString = CalendarAndString.calendarToString(startDate);
@@ -76,7 +77,6 @@ public class Duplicator {
             executeCmd(processCmd, fullCmdCommand);
             startDate.add(Calendar.DATE, 1);
         }
-        return true;
     }
 
     private boolean executeCmd(Process process, String parameter) {
