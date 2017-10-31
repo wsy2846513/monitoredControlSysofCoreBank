@@ -15,7 +15,6 @@ public class CalendarAndString {
     public static Calendar StringToCalendar(String string) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try{
-            System.out.println(string);
             Date date = sdf.parse(string);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);

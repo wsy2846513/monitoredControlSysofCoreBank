@@ -3,7 +3,6 @@ package team.sjfw.monitoringSystem.controller;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.wsy.tools.interconversion.CalendarAndString;
@@ -12,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@Component
 @Controller
 public class Duplicator {
     private String twspSrcPath;
@@ -48,19 +46,20 @@ public class Duplicator {
         this.latestDate = CalendarAndString.StringToCalendar(environment.getProperty("latest.date"));
 //        test1();
         prepareCopyFiles();
+        System.out.println();
     }
 
 
-    public void test1() {
-        int i = 0;
-        while (!startDate.after(endDate)) {
-            i++;
-            System.out.println("startDate=" + (new SimpleDateFormat("yyyy-MM-dd")).format(startDate.getTime()));
-//            System.out.println("test1 : i = " + i);
-            startDate.add(Calendar.DATE, 1);
-        }
-        System.out.println("test1 : i = " + i);
-    }
+//    public void test1() {
+//        int i = 0;
+//        while (!startDate.after(endDate)) {
+//            i++;
+//            System.out.println("startDate=" + (new SimpleDateFormat("yyyy-MM-dd")).format(startDate.getTime()));
+////            System.out.println("test1 : i = " + i);
+//            startDate.add(Calendar.DATE, 1);
+//        }
+//        System.out.println("test1 : i = " + i);
+//    }
 
     private void prepareCopyFiles() {
 
@@ -81,8 +80,8 @@ public class Duplicator {
 
     private boolean executeCmd(Process process, String parameter) {
         try {
-            System.out.println(parameter);
-            process = Runtime.getRuntime().exec(parameter);
+            System.out.println(this.getClass().getSimpleName() + "\texecuteCmd: " + parameter);
+//            process = Runtime.getRuntime().exec(parameter);
         } catch (Exception e) {
             e.printStackTrace();
         }
