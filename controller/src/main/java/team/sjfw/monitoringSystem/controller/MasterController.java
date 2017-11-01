@@ -16,13 +16,14 @@ public class MasterController {
     private Duplicator duplicator;
 
     @Test
-    public void test(){
-        System.out.println(this.getClass().getSimpleName() + "\ttest()");
+    public void start(){
+        System.out.println(this.getClass().getSimpleName() + "\tstart()");
+//        duplicator.copyFiles();
     }
 
 //    启动失败
     public static void main(String[] args){
         MasterController masterController = new MasterController();
-        masterController.test();
+        masterController.start();
     }
 }

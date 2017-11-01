@@ -10,7 +10,7 @@ import pers.wsy.tools.interconversion.CalendarAndString;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @Controller
 public class Duplicator {
     private String twspSrcPath;
@@ -34,34 +34,20 @@ public class Duplicator {
 
     @Autowired
     public Duplicator(Environment environment) {
-        this.twspSrcPath = environment.getProperty("twsp.srcPath");
-        this.twspDestPath = environment.getProperty("twsp.destPath");
-        this.twspFileName = environment.getProperty("twsp.fileName");
-        this.briefingSrcPath = environment.getProperty("briefing.srcPath");
-        this.briefingDestPath = environment.getProperty("briefing.destPath");
-        this.briefingFileName = environment.getProperty("briefing.fileName");
+        this.twspSrcPath = environment.getProperty("copy.twsp.srcPath");
+        this.twspDestPath = environment.getProperty("copy.twsp.destPath");
+        this.twspFileName = environment.getProperty("copy.twsp.fileName");
+        this.briefingSrcPath = environment.getProperty("copy.briefing.srcPath");
+        this.briefingDestPath = environment.getProperty("copy.briefing.destPath");
+        this.briefingFileName = environment.getProperty("copy.briefing.fileName");
 
         this.startDate = CalendarAndString.StringToCalendar(environment.getProperty("start.date"));
         this.endDate = CalendarAndString.StringToCalendar(environment.getProperty("end.date"));
         this.latestDate = CalendarAndString.StringToCalendar(environment.getProperty("latest.date"));
-//        test1();
-        prepareCopyFiles();
-        System.out.println();
+        copyFiles();
     }
 
-
-//    public void test1() {
-//        int i = 0;
-//        while (!startDate.after(endDate)) {
-//            i++;
-//            System.out.println("startDate=" + (new SimpleDateFormat("yyyy-MM-dd")).format(startDate.getTime()));
-////            System.out.println("test1 : i = " + i);
-//            startDate.add(Calendar.DATE, 1);
-//        }
-//        System.out.println("test1 : i = " + i);
-//    }
-
-    private void prepareCopyFiles() {
+    public void copyFiles() {
 
         while (!startDate.after(endDate)) {
             handleCalendarString = CalendarAndString.calendarToString(startDate);
@@ -78,15 +64,15 @@ public class Duplicator {
         }
     }
 
-    private boolean executeCmd(Process process, String parameter) {
-        try {
-            System.out.println(this.getClass().getSimpleName() + "\texecuteCmd: " + parameter);
-//            process = Runtime.getRuntime().exec(parameter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
+//    public void executeCmd(Process process, String parameter) {
+//        try {
+//            System.out.println(this.getClass().getSimpleName() + "\texecuteCmd: " + parameter);
+////            process = Runtime.getRuntime().exec(parameter);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+////        return true;
+//    }
 
     @Override
     public String toString() {
