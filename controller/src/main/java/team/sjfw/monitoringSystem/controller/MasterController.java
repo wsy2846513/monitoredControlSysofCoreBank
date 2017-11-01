@@ -18,7 +18,8 @@ public class MasterController {
     @Test
     public void start(){
         System.out.println(this.getClass().getSimpleName() + "\tstart()");
-//        duplicator.copyFiles();
+        System.out.println("\t\\t");
+        duplicator.copyFiles();
     }
 
 //    启动失败

@@ -2,6 +2,7 @@ package team.sjfw.monitoringSystem.controller.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
@@ -10,5 +11,6 @@ import org.springframework.context.annotation.PropertySource;
 //@PropertySource(value = "classpath:environment.properties",ignoreResourceNotFound = true)
 //@PropertySource("/config/environment.properties")
 @PropertySource(value = "environment.properties",encoding = "UTF-8")
+@Import(CallCMDConfig.class)
 public class DuplicatorConfig {
 }

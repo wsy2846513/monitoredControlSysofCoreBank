@@ -4,13 +4,17 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.wsy.tools.interconversion.CalendarAndString;
+import team.sjfw.monitoringSystem.controller.config.CallCMDConfig;
+import team.sjfw.monitoringSystem.controller.config.DuplicatorConfig;
+import team.sjfw.monitoringSystem.controller.config.MasterControllerConfig;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
 @Controller
 public class Duplicator {
     private String twspSrcPath;
@@ -21,16 +25,19 @@ public class Duplicator {
     private String briefingFileName;
 
     private String cmdHead = "cmd.exe /k xcopy";
-    private String cmdEnd = "/F";
+    private String cmdEnd = "/f /y";
     private String fullTwspSrc;
     private String fullBriefingSrc;
     private String handleCalendarString;
     private String fullCmdCommand;
-    private Process processCmd;
+    private ArrayList<String> cmdCommandArr;
 
     private Calendar startDate;
     private Calendar endDate;
     private Calendar latestDate;
+
+    @Autowired
+    private CallCMD callCMD;
 
     @Autowired
     public Duplicator(Environment environment) {
@@ -40,39 +47,33 @@ public class Duplicator {
         this.briefingSrcPath = environment.getProperty("copy.briefing.srcPath");
         this.briefingDestPath = environment.getProperty("copy.briefing.destPath");
         this.briefingFileName = environment.getProperty("copy.briefing.fileName");
-
         this.startDate = CalendarAndString.StringToCalendar(environment.getProperty("start.date"));
         this.endDate = CalendarAndString.StringToCalendar(environment.getProperty("end.date"));
         this.latestDate = CalendarAndString.StringToCalendar(environment.getProperty("latest.date"));
-        copyFiles();
+        cmdCommandArr = new ArrayList<String>();
     }
 
     public void copyFiles() {
 
         while (!startDate.after(endDate)) {
             handleCalendarString = CalendarAndString.calendarToString(startDate);
+
 //            复制TWSP
             fullTwspSrc = twspSrcPath + handleCalendarString + "\\";
             fullCmdCommand = cmdHead + " " + fullTwspSrc + twspFileName + " " + twspDestPath + " " + cmdEnd;
-            executeCmd(processCmd, fullCmdCommand);
+            cmdCommandArr.add(fullCmdCommand);
+//            callCMD.executeCmd(fullCmdCommand);
 
 //            复制简报
             fullBriefingSrc = briefingSrcPath + handleCalendarString + "\\";
             fullCmdCommand = cmdHead + " " + fullBriefingSrc + briefingFileName + " " + briefingDestPath + " " + cmdEnd;
-            executeCmd(processCmd, fullCmdCommand);
+            cmdCommandArr.add(fullCmdCommand);
+//            callCMD.executeCmd(fullCmdCommand);
+
             startDate.add(Calendar.DATE, 1);
         }
+        callCMD.executeCmdArr(cmdCommandArr);
     }
-
-//    public void executeCmd(Process process, String parameter) {
-//        try {
-//            System.out.println(this.getClass().getSimpleName() + "\texecuteCmd: " + parameter);
-////            process = Runtime.getRuntime().exec(parameter);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-////        return true;
-//    }
 
     @Override
     public String toString() {
