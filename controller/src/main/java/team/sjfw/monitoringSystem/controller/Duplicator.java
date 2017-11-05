@@ -78,13 +78,32 @@ public class Duplicator {
         callCMD.executeCmdArr(cmdCommandArr);
     }
 
-    public void testCMD(){
+    public void testCMD() {
 
-        cmdCommandArr = new ArrayList<String>();
+//        cmdCommandArr = new ArrayList<String>(){{add("cmd.exe /k ipconfig");add("cmd.exe /k java -version");}};
+//        cmdCommandArr = new ArrayList<String>() {{
+//            add("ipconfig");
+//            add("java -version");
+//        }};
+        cmdCommandArr = new ArrayList<String>() {{
+            add("cmd.exe /k ipconfig");
+            add("cmd.exe /k java -version");
+        }};
+
+//        cmdCommandArr = new ArrayList<String>(){{
+//            add("cmd.exe /k xcopy E:\\Z\\2016-10-13\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
+//            add("cmd.exe /k xcopy E:\\Z\\2016-10-14\\*twsp*.txt E:\\X\\twsp\\ /f /y");
+//            add("cmd.exe /k xcopy E:\\Z\\2016-10-14\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
+//        }};
+//        cmdCommandArr = new ArrayList<String>(){{
+//            add("xcopy E:\\Z\\2016-10-13\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
+//            add("xcopy E:\\Z\\2016-10-14\\*twsp*.txt E:\\X\\twsp\\ /f /y");
+//            add("xcopy E:\\Z\\2016-10-14\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
+//        }};
 //        cmdCommandArr.add("cp /home/wsy/A/AAA /home/wsy/B/");
-        cmdCommandArr.add("ls");
-        cmdCommandArr.add("ls");
-        cmdCommandArr.add("ls");
+//        cmdCommandArr.add("ls");
+//        cmdCommandArr.add("ls");
+//        cmdCommandArr.add("ls");
 //        cmdCommandArr.add("ipconfig");
         callCMD.executeCmdArr(cmdCommandArr);
     }

@@ -67,8 +67,8 @@ public class Caller {
         cmdCommandArr = new ArrayList<String>();
         Calendar processDate = startDate;
         while (!processDate.after(endDate)){
-            fullCMDCommand = "mysql.exe" + " --host=" + mysqlHost + " --force --user=" + mysqlUser +
-                    " --port" + mysqlPort
+//            fullCMDCommand = "mysql.exe" + " --host=" + mysqlHost + " --force --user=" + mysqlUser +
+//                    " --port" + mysqlPort
             processDate.add(Calendar.DATE,1);
         }
     }
