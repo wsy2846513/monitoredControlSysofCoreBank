@@ -31,21 +31,13 @@ public class CallCMD {
         String lineData;
         try {
             for (String parameter : cmdCommandArr) {
-                System.out.println("CallCMD -- executeCmd:\texecuteCmd: " + parameter);
-                process = Runtime.getRuntime().exec(parameter);
-//                process = Runtime.getRuntime().exec("ipconfig");
-//                process = Runtime.getRuntime().exec("cmd.exe /k xcopy E:\\Z\\2016-10-13\\*twsp*.txt E:\\X\\twsp\\ /F");
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
-//                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//                BufferedReader reader = new BufferedReader(new FileReader("E:/123.txt"));
-//                System.out.println(reader.readLine());
-                while ((lineData = reader.readLine()) != null){
-                    System.out.println("cmdarr: \t" + lineData);
-                    cmdLog.add(lineData);
-                }
-//                System.out.println("while over");
-//                return cmdLog;
-//            return  new BufferedReader(new FileReader("E:/123.txt"));
+                System.out.println("CallCMD -- executeCmdArr:\t" + parameter);
+//                process = Runtime.getRuntime().exec(parameter);
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
+//                while ((lineData = reader.readLine()) != null){
+//                    System.out.println("cmdarr: \t" + lineData);
+//                    cmdLog.add(lineData);
+//                }
             }
             return cmdLog;
         } catch (Exception e) {

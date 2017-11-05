@@ -34,6 +34,7 @@ public class Duplicator {
 
     private Calendar startDate;
     private Calendar endDate;
+    private Calendar processDate;
     private Calendar latestDate;
 
     @Autowired
@@ -49,14 +50,16 @@ public class Duplicator {
         this.briefingFileName = environment.getProperty("copy.briefing.fileName");
         this.startDate = CalendarAndString.StringToCalendar(environment.getProperty("start.date"));
         this.endDate = CalendarAndString.StringToCalendar(environment.getProperty("end.date"));
+        this.processDate = startDate;
         this.latestDate = CalendarAndString.StringToCalendar(environment.getProperty("latest.date"));
-        cmdCommandArr = new ArrayList<String>();
     }
 
     public void copyFiles() {
 
-        while (!startDate.after(endDate)) {
-            handleCalendarString = CalendarAndString.calendarToString(startDate);
+        cmdCommandArr = new ArrayList<String>();
+
+        while (!processDate.after(endDate)) {
+            handleCalendarString = CalendarAndString.calendarToString(processDate);
 
 //            复制TWSP
             fullTwspSrc = twspSrcPath + handleCalendarString + "\\";
@@ -70,8 +73,19 @@ public class Duplicator {
             cmdCommandArr.add(fullCmdCommand);
 //            callCMD.executeCmd(fullCmdCommand);
 
-            startDate.add(Calendar.DATE, 1);
+            processDate.add(Calendar.DATE, 1);
         }
+        callCMD.executeCmdArr(cmdCommandArr);
+    }
+
+    public void testCMD(){
+
+        cmdCommandArr = new ArrayList<String>();
+//        cmdCommandArr.add("cp /home/wsy/A/AAA /home/wsy/B/");
+        cmdCommandArr.add("ls");
+        cmdCommandArr.add("ls");
+        cmdCommandArr.add("ls");
+//        cmdCommandArr.add("ipconfig");
         callCMD.executeCmdArr(cmdCommandArr);
     }
 

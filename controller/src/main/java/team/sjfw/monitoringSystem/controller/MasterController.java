@@ -15,11 +15,15 @@ public class MasterController {
     @Autowired
     private Duplicator duplicator;
 
+    @Autowired
+    private Caller caller;
+
     @Test
     public void start(){
         System.out.println(this.getClass().getSimpleName() + "\tstart()");
-        System.out.println("\t\\t");
-        duplicator.copyFiles();
+//        duplicator.copyFiles();
+//        duplicator.testCMD();
+        caller.analysis();
     }
 
 //    启动失败

@@ -41,17 +41,18 @@ public class DuplicatorLog {
 //        }
 //    }
 
-    @Around("execution(* team.sjfw.monitoringSystem.controller.CallCMD.executeCmd(..))")
+    @Around("execution(* team.sjfw.monitoringSystem.controller.CallCMD.executeCmdArr(..))")
     public void cmdLog(ProceedingJoinPoint pjp){
         try{
             ArrayList<String> data = (ArrayList<String>) pjp.proceed();
             for(Iterator<String> it = data.iterator(); it.hasNext();){
-                logger.info("cmdLogs:\t{}",it);
+                logger.info("cmdLogs:\t{}",it.next());
             }
         }catch (Throwable t){
             t.printStackTrace();
         }
     }
+
 
 
 //    @Around("execution(* team.sjfw.monitoringSystem.controller.CallCMD.executeCmd(String)) && args(parameter")
