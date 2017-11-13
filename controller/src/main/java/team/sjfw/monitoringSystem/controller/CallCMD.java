@@ -12,6 +12,14 @@ public class CallCMD {
     private Process process;
 
     public BufferedReader executeCmd(String parameter) {
+        /**
+        * @Author: wsy
+        * @MethodName: executeCmd
+        * @Return: java.io.BufferedReader
+        * @Param: [parameter]
+        * @Description:
+        * @Date: 2017/11/13 21:32
+        **/
         try {
             System.out.println("CallCMD -- executeCmd:\texecuteCmd: " + parameter);
             process = Runtime.getRuntime().exec(parameter);
