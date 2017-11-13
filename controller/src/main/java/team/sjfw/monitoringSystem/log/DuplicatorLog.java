@@ -22,6 +22,7 @@ public class DuplicatorLog {
     private static int n = 1;
 
 //    @Before("execution(* team.sjfw.monitoringSystem.controller.Duplicator.copyFiles(..))")
+//    @Before("execution(* team.sjfw.monitoringSystem.controller.Duplicator.copyFiles(..))")
 //    public void testlog() {
 //        logger.info("testlog\t" + n++);
 //    }

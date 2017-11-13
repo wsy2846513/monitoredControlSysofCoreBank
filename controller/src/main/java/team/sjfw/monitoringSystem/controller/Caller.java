@@ -15,6 +15,7 @@ public class Caller {
     private String twspSrcPath;
     private String twspAnalysisProgram;
     private String twspSqlPath;
+    private String briefingSrcPath;
     private String briefingAnalysisPath;
     private String briefingSqlPath;
     private String mysqlHost;
@@ -40,35 +41,54 @@ public class Caller {
         this.twspSrcPath = environment.getProperty("copy.twsp.destPath");
         this.twspAnalysisProgram = environment.getProperty("program.twsp.analysisPath");
         this.twspSqlPath = environment.getProperty("program.twsp.sqlPath");
+        this.briefingSrcPath = environment.getProperty("copy.briefing.destPath");
         this.briefingAnalysisPath = environment.getProperty("program.briefing.analysisPath");
         this.briefingSqlPath = environment.getProperty("program.briefing.sqlPath");
         this.startDate = CalendarAndString.StringToCalendar(environment.getProperty("start.date"));
         this.endDate = CalendarAndString.StringToCalendar(environment.getProperty("end.date"));
+        this.mysqlHost = environment.getProperty("mysql.host");
+        this.mysqlUser = environment.getProperty("mysql.user");
+        this.mysqlPassword = environment.getProperty("mysql.password");
+        this.mysqlPort = environment.getProperty("mysql.port");
+        this.mysqlDatabase = environment.getProperty("mysql.database");
     }
 
-    public void analysis(){
+    public void analyseTwsp(){
         cmdCommandArr = new ArrayList<String>();
         Calendar processDate = startDate;
         int lastYear = endDate.get(Calendar.YEAR);
         int targetYear = processDate.get(Calendar.YEAR);
-
+        long startTime = System.nanoTime();
         while (targetYear <= lastYear){
-//          解析简报
-            fullCMDCommand = "PYTHON " + twspSrcPath + " -d \"" + twspSrcPath + "\" -y " + targetYear;
+//            解析twsp
+            fullCMDCommand = "PYTHON " + twspAnalysisProgram + " -s \"" + twspSrcPath
+                    + "\" -d \"" + twspSqlPath + "\" -y " + targetYear;
             cmdCommandArr.add(fullCMDCommand);
-//            System.out.println(targetYear);
             processDate.add(Calendar.YEAR, 1);
             targetYear = processDate.get(Calendar.YEAR);
         }
+        long endTime = System.nanoTime();
+        System.out.println("String\t'+'\tcost:" + (endTime - startTime));
+//        callCMD.executeCmdArr(cmdCommandArr);
+    }
+
+    public void analyseBriefing(){
+        cmdCommandArr = new ArrayList<String>();
+        //            解析简报
+        fullCMDCommand = "PYTHON " + briefingAnalysisPath + " -s \"" + briefingSrcPath
+                + "\" -d \"" + briefingSqlPath + "\"";
+        cmdCommandArr.add(fullCMDCommand);
         callCMD.executeCmdArr(cmdCommandArr);
     }
 
     public void importSql(){
         cmdCommandArr = new ArrayList<String>();
         Calendar processDate = startDate;
+        String sqlFilePath = "123";
         while (!processDate.after(endDate)){
-//            fullCMDCommand = "mysql.exe" + " --host=" + mysqlHost + " --force --user=" + mysqlUser +
-//                    " --port" + mysqlPort
+            fullCMDCommand = "mysql.exe --force --comments --default-character-set=utf8"
+                    + " --host=" + mysqlHost + " --port" + mysqlPort + "--database=" + mysqlDatabase
+                    + " --user=" + mysqlUser+ "--password=" + mysqlPassword + sqlFilePath;
             processDate.add(Calendar.DATE,1);
         }
     }

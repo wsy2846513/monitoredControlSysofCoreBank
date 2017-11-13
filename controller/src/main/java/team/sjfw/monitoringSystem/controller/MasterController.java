@@ -22,8 +22,9 @@ public class MasterController {
     public void start(){
         System.out.println(this.getClass().getSimpleName() + "\tstart()");
 //        duplicator.copyFiles();
-        duplicator.testCMD();
-//        caller.analysis();
+//        duplicator.testCMD();
+        caller.analyseTwsp();
+//        caller.analyseBriefing();
     }
 
 //    启动失败

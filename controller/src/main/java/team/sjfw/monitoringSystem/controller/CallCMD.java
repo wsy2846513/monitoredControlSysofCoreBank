@@ -32,13 +32,13 @@ public class CallCMD {
         try {
             for (String parameter : cmdCommandArr) {
                 System.out.println("CallCMD -- executeCmdArr:\t" + parameter);
-                process = Runtime.getRuntime().exec(parameter);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
+//                process = Runtime.getRuntime().exec(parameter);
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
 
-                while ((lineData = reader.readLine()) != null){
-                    System.out.println("cmdarr: \t" + lineData);
-                    cmdLog.add(lineData);
-                }
+//                while ((lineData = reader.readLine()) != null){
+//                    System.out.println("cmdarr: \t" + lineData);
+//                    cmdLog.add(lineData);
+//                }
             }
             return cmdLog;
         } catch (Exception e) {
