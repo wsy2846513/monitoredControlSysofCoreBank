@@ -1,22 +1,22 @@
 cn
 /**
-* @Tittle: $file_name$
-* @Author: wsy
-* @Class_name: $CLASS_NAME$
-* @Package: $PACKAGE_NAME$
-* @Description:
-* @Version: V1.0
-* @Date: $CREAT_DATE$ $CREAT_TIME$
-**/
+ * @Tittle: $file_name$
+ * @Author: wsy
+ * @Class_name: $CLASS_NAME$
+ * @Package: $PACKAGE_NAME$
+ * @Description:
+ * @Version: V1.0
+ * @Date: $CREAT_DATE$ $CREAT_TIME$
+ */
 
 
 
 mn
 /**
-* @Author: wsy
-* @MethodName: $METHOD_NAME$
-* @Return: $RETURN_TYPE$
-* @Param: $PARAMETER$
-* @Description:
-* @Date: $CREAT_DATE$ $CREAT_TIME$
-**/
+ * @Author: wsy
+ * @MethodName: $METHOD_NAME$
+ * @Return: $RETURN_TYPE$
+ * @Param: $PARAMETER$
+ * @Description:
+ * @Date: $CREAT_DATE$ $CREAT_TIME$
+ */

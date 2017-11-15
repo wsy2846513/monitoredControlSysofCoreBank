@@ -1,4 +1,4 @@
-package pers.wsy.tools.EfficiencyTest;
+package pers.wsy.test.EfficiencyTest;
 
 import java.util.ArrayList;
 
@@ -6,14 +6,14 @@ import java.util.ArrayList;
  * @Tittle: StringBufferEfficiency.java
  * @Author: wsy
  * @Class_name: StringBufferEfficiency
- * @Package: pers.wsy.tools.interconversion
+ * @Package: pers.wsy.tools.tools
  * @Description: 测试StringBuffer等效率问题
  * @Version: V1.0
  * @Date: 2017/11/13 22:13
  **/
 
 public class StringBufferEfficiency {
-    private long endLine = 3999999;
+    private long endLine = 999999;
     private StringBuffer stringBuffer = new StringBuffer();
 
     private void testNew(){
@@ -54,8 +54,6 @@ public class StringBufferEfficiency {
         long endTime = System.nanoTime();
         System.out.println("StringBuffer\t'delete'\tcost:" + (endTime - startTime) + "\t\tarrSize = " + arr.size());
     }
-
-
 
     public static void main(String[] args){
         StringBufferEfficiency t = new StringBufferEfficiency();

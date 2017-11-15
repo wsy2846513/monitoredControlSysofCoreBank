@@ -1,20 +1,24 @@
 package team.sjfw.monitoringSystem.controller;
 
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pers.wsy.tools.interconversion.CalendarAndString;
-import team.sjfw.monitoringSystem.controller.config.CallCMDConfig;
-import team.sjfw.monitoringSystem.controller.config.DuplicatorConfig;
-import team.sjfw.monitoringSystem.controller.config.MasterControllerConfig;
+import pers.wsy.tools.CalendarTools;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 
+/**
+ * @Tittle: Duplicator.java
+ * @Author: wsy
+ * @Class_name: Duplicator
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: copy twsp files and briefing files to specified destination
+ * @Version: V1.0
+ * @Date: 17-11-14 下午7:13
+ */
 @Controller
 public class Duplicator {
     private String twspSrcPath;
@@ -26,15 +30,10 @@ public class Duplicator {
 
     private String cmdHead = "cmd.exe /k xcopy";
     private String cmdEnd = "/f /y";
-    private String fullTwspSrc;
-    private String fullBriefingSrc;
     private String handleCalendarString;
-    private String fullCmdCommand;
-    private ArrayList<String> cmdCommandArr;
 
     private Calendar startDate;
     private Calendar endDate;
-    private Calendar processDate;
     private Calendar latestDate;
 
     @Autowired
@@ -48,34 +47,62 @@ public class Duplicator {
         this.briefingSrcPath = environment.getProperty("copy.briefing.srcPath");
         this.briefingDestPath = environment.getProperty("copy.briefing.destPath");
         this.briefingFileName = environment.getProperty("copy.briefing.fileName");
-        this.startDate = CalendarAndString.StringToCalendar(environment.getProperty("start.date"));
-        this.endDate = CalendarAndString.StringToCalendar(environment.getProperty("end.date"));
-        this.processDate = startDate;
-        this.latestDate = CalendarAndString.StringToCalendar(environment.getProperty("latest.date"));
+        this.startDate = CalendarTools.StringToCalendar(environment.getProperty("start.date"), "yyyy-MM-dd");
+        this.endDate = CalendarTools.StringToCalendar(environment.getProperty("end.date"), "yyyy-MM-dd");
+        this.latestDate = CalendarTools.StringToCalendar(environment.getProperty("latest.date"), "yyyy-MM-dd");
     }
 
     public void copyFiles() {
+        /**
+         * @Author: wsy
+         * @MethodName: copyFiles
+         * @Return: void
+         * @Param: []
+         * @Description: copy twsp files and briefing files to specified destination
+         * @Date: 17-11-14 下午7:12
+         */
+        StringBuffer fullCmdCommand = new StringBuffer();
+        ArrayList<String> cmdCommandArr = new ArrayList<String>();
+        Calendar processCalendar = (Calendar) startDate.clone();;
 
-        cmdCommandArr = new ArrayList<String>();
+        while (!processCalendar.after(endDate)) {
+            handleCalendarString = CalendarTools.calendarToString(processCalendar, "yyyy-MM-dd");
 
-        while (!processDate.after(endDate)) {
-            handleCalendarString = CalendarAndString.calendarToString(processDate);
+//            copy twsp files
+            fullCmdCommand.setLength(0);
+            fullCmdCommand.append(cmdHead);
+            fullCmdCommand.append(" ");
+            fullCmdCommand.append(twspSrcPath);
+            fullCmdCommand.append("\\");
+            fullCmdCommand.append(handleCalendarString);
+            fullCmdCommand.append("\\");
+            fullCmdCommand.append(twspFileName);
+            fullCmdCommand.append(" ");
+            fullCmdCommand.append(twspDestPath);
+            fullCmdCommand.append(" ");
+            fullCmdCommand.append(cmdEnd);
+            cmdCommandArr.add(fullCmdCommand.toString());
 
-//            复制TWSP
-            fullTwspSrc = twspSrcPath + handleCalendarString + "\\";
-            fullCmdCommand = cmdHead + " " + fullTwspSrc + twspFileName + " " + twspDestPath + " " + cmdEnd;
-            cmdCommandArr.add(fullCmdCommand);
-//            callCMD.executeCmd(fullCmdCommand);
+//            copy briefing files
+            fullCmdCommand.setLength(0);
+            fullCmdCommand.append(cmdHead);
+            fullCmdCommand.append(" ");
+            fullCmdCommand.append(briefingSrcPath);
+            fullCmdCommand.append("\\");
+            fullCmdCommand.append(handleCalendarString);
+            fullCmdCommand.append("\\");
+            fullCmdCommand.append(briefingFileName);
+            fullCmdCommand.append(" ");
+            fullCmdCommand.append(briefingDestPath);
+            fullCmdCommand.append(" ");
+            fullCmdCommand.append(cmdEnd);
+            cmdCommandArr.add(fullCmdCommand.toString());
 
-//            复制简报
-            fullBriefingSrc = briefingSrcPath + handleCalendarString + "\\";
-            fullCmdCommand = cmdHead + " " + fullBriefingSrc + briefingFileName + " " + briefingDestPath + " " + cmdEnd;
-            cmdCommandArr.add(fullCmdCommand);
-//            callCMD.executeCmd(fullCmdCommand);
-
-            processDate.add(Calendar.DATE, 1);
+            processCalendar.add(Calendar.DATE, 1);
         }
-        callCMD.executeCmdArr(cmdCommandArr);
+        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
+            callCMD.executeCmd(it.next());
+        }
     }
 
     public void testCMD() {
@@ -85,10 +112,10 @@ public class Duplicator {
 //            add("ipconfig");
 //            add("java -version");
 //        }};
-        cmdCommandArr = new ArrayList<String>() {{
-            add("cmd.exe /k ipconfig");
-            add("cmd.exe /k java -version");
-        }};
+//        cmdCommandArr = new ArrayList<String>() {{
+//            add("cmd.exe /k ipconfig");
+//            add("cmd.exe /k java -version");
+//        }};
 
 //        cmdCommandArr = new ArrayList<String>(){{
 //            add("cmd.exe /k xcopy E:\\Z\\2016-10-13\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
@@ -105,17 +132,6 @@ public class Duplicator {
 //        cmdCommandArr.add("ls");
 //        cmdCommandArr.add("ls");
 //        cmdCommandArr.add("ipconfig");
-        callCMD.executeCmdArr(cmdCommandArr);
-    }
-
-    @Override
-    public String toString() {
-        return "Duplicator{" +
-                "twspSrcPath='" + twspSrcPath + '\'' +
-                ", twspDestPath='" + twspDestPath + '\'' +
-                ", startDate=" + (new SimpleDateFormat("yyyy-MM-dd")).format(startDate.getTime()) +
-                ", endDate=" + (new SimpleDateFormat("yyyy-MM-dd")).format(endDate.getTime()) +
-                ", latestDate=" + (new SimpleDateFormat("yyyy-MM-dd")).format(latestDate.getTime()) +
-                '}';
+//        callCMD.executeCmdArr(cmdCommandArr);
     }
 }

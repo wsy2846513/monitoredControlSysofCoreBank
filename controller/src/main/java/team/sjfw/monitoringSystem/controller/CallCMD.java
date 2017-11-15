@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class CallCMD {
     private Process process;
 
-    public BufferedReader executeCmd(String parameter) {
+    public ArrayList<String> executeCmd(String parameter) {
         /**
         * @Author: wsy
         * @MethodName: executeCmd
@@ -20,29 +20,40 @@ public class CallCMD {
         * @Description:
         * @Date: 2017/11/13 21:32
         **/
+
+        ArrayList<String> cmdLog = new ArrayList<String>();
+        String lineData;
         try {
-            System.out.println("CallCMD -- executeCmd:\texecuteCmd: " + parameter);
-            process = Runtime.getRuntime().exec(parameter);
-            System.out.println("after process");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            System.out.println("after reader");
-            return reader;
-//            return  new BufferedReader(new FileReader("E:/123.txt"));
+                process = Runtime.getRuntime().exec(parameter);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
+
+                while ((lineData = reader.readLine()) != null){
+                    System.out.println("cmdarr: \t" + lineData);
+                    cmdLog.add(lineData);
+                }
+            return cmdLog;
         } catch (Exception e) {
-            e.printStackTrace();
+            //异常处理的信息部分，由日志负责，此处只处理逻辑部分、
             return null;
         }
     }
 
     public ArrayList<String> executeCmdArr(ArrayList<String> cmdCommandArr) {
+        /**
+         * @Author: wsy
+         * @MethodName: executeCmdArr
+         * @Return: java.util.ArrayList<java.lang.String>
+         * @Param: [cmdCommandArr]
+         * @Description: Execute all commands in [cmdCommandArr].
+         * @Date: 17-11-14 下午12:11
+         */
         ArrayList<String> cmdLog = new ArrayList<String>();
         String lineData;
         try {
             for (String parameter : cmdCommandArr) {
-                System.out.println("CallCMD -- executeCmdArr:\t" + parameter);
 //                process = Runtime.getRuntime().exec(parameter);
 //                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
-
+//
 //                while ((lineData = reader.readLine()) != null){
 //                    System.out.println("cmdarr: \t" + lineData);
 //                    cmdLog.add(lineData);
@@ -50,7 +61,7 @@ public class CallCMD {
             }
             return cmdLog;
         } catch (Exception e) {
-            e.printStackTrace();
+            //异常处理的信息部分，由日志负责，此处只处理逻辑部分、
             return null;
         }
     }
