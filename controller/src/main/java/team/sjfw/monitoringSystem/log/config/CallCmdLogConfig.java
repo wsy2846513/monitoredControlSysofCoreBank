@@ -7,5 +7,5 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = "team.sjfw.monitoringSystem.log")
-public class DuplicatorLogConfig {
+public class CallCmdLogConfig {
 }

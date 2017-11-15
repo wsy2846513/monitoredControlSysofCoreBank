@@ -28,7 +28,7 @@ public class Duplicator {
     private String briefingDestPath;
     private String briefingFileName;
 
-    private String cmdHead = "cmd.exe /k xcopy";
+    private String cmdHead = "xcopy";
     private String cmdEnd = "/f /y";
     private String handleCalendarString;
 
@@ -38,6 +38,9 @@ public class Duplicator {
 
     @Autowired
     private CallCMD callCMD;
+
+    @Autowired
+    private Deleter deleter;
 
     @Autowired
     public Duplicator(Environment environment) {
@@ -51,6 +54,16 @@ public class Duplicator {
         this.endDate = CalendarTools.StringToCalendar(environment.getProperty("end.date"), "yyyy-MM-dd");
         this.latestDate = CalendarTools.StringToCalendar(environment.getProperty("latest.date"), "yyyy-MM-dd");
     }
+
+    public void deleteFiles(){
+        try{
+            deleter.deleteFilesInFolder(twspDestPath);
+            deleter.deleteFilesInFolder(briefingDestPath);
+        }catch (Exception e){
+//            提示信息由日志处理，此处继续执行
+        }
+    }
+
 
     public void copyFiles() {
         /**
@@ -79,7 +92,7 @@ public class Duplicator {
             fullCmdCommand.append(twspFileName);
             fullCmdCommand.append(" ");
             fullCmdCommand.append(twspDestPath);
-            fullCmdCommand.append(" ");
+            fullCmdCommand.append("\\ ");
             fullCmdCommand.append(cmdEnd);
             cmdCommandArr.add(fullCmdCommand.toString());
 
@@ -94,7 +107,7 @@ public class Duplicator {
             fullCmdCommand.append(briefingFileName);
             fullCmdCommand.append(" ");
             fullCmdCommand.append(briefingDestPath);
-            fullCmdCommand.append(" ");
+            fullCmdCommand.append("\\ ");
             fullCmdCommand.append(cmdEnd);
             cmdCommandArr.add(fullCmdCommand.toString());
 
@@ -105,33 +118,26 @@ public class Duplicator {
         }
     }
 
+    public void startCopy(){
+        this.deleteFiles();
+        this.copyFiles();
+    }
     public void testCMD() {
 
-//        cmdCommandArr = new ArrayList<String>(){{add("cmd.exe /k ipconfig");add("cmd.exe /k java -version");}};
-//        cmdCommandArr = new ArrayList<String>() {{
-//            add("ipconfig");
-//            add("java -version");
-//        }};
-//        cmdCommandArr = new ArrayList<String>() {{
-//            add("cmd.exe /k ipconfig");
-//            add("cmd.exe /k java -version");
-//        }};
 
-//        cmdCommandArr = new ArrayList<String>(){{
-//            add("cmd.exe /k xcopy E:\\Z\\2016-10-13\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
-//            add("cmd.exe /k xcopy E:\\Z\\2016-10-14\\*twsp*.txt E:\\X\\twsp\\ /f /y");
-//            add("cmd.exe /k xcopy E:\\Z\\2016-10-14\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
-//        }};
-//        cmdCommandArr = new ArrayList<String>(){{
-//            add("xcopy E:\\Z\\2016-10-13\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
-//            add("xcopy E:\\Z\\2016-10-14\\*twsp*.txt E:\\X\\twsp\\ /f /y");
-//            add("xcopy E:\\Z\\2016-10-14\\*国内及全球*简报.xlsx E:\\X\\JB\\ /f /y");
-//        }};
-//        cmdCommandArr.add("cp /home/wsy/A/AAA /home/wsy/B/");
+//        ArrayList<String> cmdCommandArr.add("cp /home/wsy/A/AAA /home/wsy/B/");
 //        cmdCommandArr.add("ls");
 //        cmdCommandArr.add("ls");
 //        cmdCommandArr.add("ls");
 //        cmdCommandArr.add("ipconfig");
 //        callCMD.executeCmdArr(cmdCommandArr);
+        ArrayList<String> cmdCommandArr = new ArrayList<String>(){{
+            add("xcopy E:\\Z\\2016-10-13\\*国内及全球*简报.xlsx E:\\X\\JB\\copyout\\ /f /y");
+            add("xcopy E:\\Z\\2016-10-14\\*twsp*.txt E:\\X\\twsp\\copyout\\ /f /y");
+            add("xcopy E:\\Z\\2016-10-14\\*国内及全球*简报.xlsx E:\\X\\JB\\copyout\\ /f /y");
+        }};
+        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
+            callCMD.executeCmd(it.next());
+        }
     }
 }

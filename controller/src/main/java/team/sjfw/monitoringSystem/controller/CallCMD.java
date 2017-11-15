@@ -28,7 +28,7 @@ public class CallCMD {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
 
                 while ((lineData = reader.readLine()) != null){
-                    System.out.println("cmdarr: \t" + lineData);
+//                    System.out.println("cmdarr: \t" + lineData);
                     cmdLog.add(lineData);
                 }
             return cmdLog;
@@ -51,13 +51,13 @@ public class CallCMD {
         String lineData;
         try {
             for (String parameter : cmdCommandArr) {
-//                process = Runtime.getRuntime().exec(parameter);
-//                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
-//
-//                while ((lineData = reader.readLine()) != null){
-//                    System.out.println("cmdarr: \t" + lineData);
-//                    cmdLog.add(lineData);
-//                }
+                process = Runtime.getRuntime().exec(parameter);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
+
+                while ((lineData = reader.readLine()) != null){
+                    System.out.println("cmdarr: \t" + lineData);
+                    cmdLog.add(lineData);
+                }
             }
             return cmdLog;
         } catch (Exception e) {

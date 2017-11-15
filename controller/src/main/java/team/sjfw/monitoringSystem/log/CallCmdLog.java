@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 @Aspect
 @Component
-public class DuplicatorLog {
+public class CallCmdLog {
     private Logger logger = LoggerFactory.getLogger(getClass());
     private static int n = 1;
 
@@ -51,7 +51,7 @@ public class DuplicatorLog {
     }
 
     public static void main(String args[]) {
-        DuplicatorLog dup = new DuplicatorLog();
+        CallCmdLog dup = new CallCmdLog();
         dup.test();
     }
 
