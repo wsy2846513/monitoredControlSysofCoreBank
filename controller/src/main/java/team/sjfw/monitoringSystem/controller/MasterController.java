@@ -29,7 +29,7 @@ public class MasterController {
     private JFrame frame;
     public void initializeFrame(){
         mainForm = new MainForm();
-        mainForm.showFrame();
+        mainForm.initialize();
 //        frame = new JFrame("MainForm");
 //        frame.setContentPane(new MainForm().mainPanel);
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,8 +43,8 @@ public class MasterController {
         Logger logger = LoggerFactory.getLogger(getClass());
         logger.info("logger start! 中文测试");
 
-        duplicator.startCopy();
-        caller.analyseTwsp();
+//        duplicator.startCopy();
+//        caller.analyseTwsp();
 //        caller.analyseBriefing();
 //        caller.importSql();
     }
