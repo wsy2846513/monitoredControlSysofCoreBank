@@ -93,7 +93,7 @@
             </constraints>
             <properties>
               <font name="YouYuan" style="1"/>
-              <text value="设置"/>
+              <text value="配置"/>
             </properties>
           </component>
         </children>
@@ -123,6 +123,7 @@
               </grid>
             </constraints>
             <properties>
+              <enabled value="true"/>
               <font name="YouYuan" size="26" style="3"/>
               <foreground color="-13343045"/>
               <text value="XXXX-XX-XX"/>

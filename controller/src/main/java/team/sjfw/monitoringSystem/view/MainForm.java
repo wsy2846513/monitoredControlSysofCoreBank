@@ -1,5 +1,8 @@
 package team.sjfw.monitoringSystem.view;
 
+
+import org.springframework.core.env.Environment;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,12 +16,16 @@ public class MainForm {
     private JButton buttonSet;
     private JTextField textFieldEndDate;
     private JTextField textFieldStartDate;
+    private Environment environment;
 
-    public MainForm() {
+    public MainForm(Environment e) {
+
+        this.environment = e;
+        System.out.println("mainform : " + environment.getProperty("MySQL.host"));
 
         buttonSet.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SettingForm settingForm = new SettingForm();
+                SettingForm settingForm = new SettingForm(environment);
                 settingForm.initialize();
             }
         });
@@ -38,9 +45,11 @@ public class MainForm {
         menuBar.add(menu);
 
         JFrame frame = new JFrame("MainForm");
-        MainForm mainForm = new MainForm();
+        MainForm mainForm = new MainForm(environment);
 //        mainForm.latestDate.set
-        frame.setContentPane(new MainForm().mainPanel);
+//        frame.setContentPane(mainForm.mainPanel);
+        frame.setContentPane(this.mainPanel);
+//        frame.setContentPane(new MainForm().mainPanel);
 //        frame.setBounds(0,0,500,500);
 
         Dimension frameSize = frame.getSize();

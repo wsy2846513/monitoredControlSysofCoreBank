@@ -53,11 +53,11 @@ public class Caller {
         this.briefingSqlPath = environment.getProperty("program.briefing.sqlPath");
         this.startDate = CalendarTools.StringToCalendar(environment.getProperty("start.date"), "yyyy-MM-dd");
         this.endDate = CalendarTools.StringToCalendar(environment.getProperty("end.date"), "yyyy-MM-dd");
-        this.mysqlHost = environment.getProperty("mysql.host");
-        this.mysqlUser = environment.getProperty("mysql.user");
-        this.mysqlPassword = environment.getProperty("mysql.password");
-        this.mysqlPort = environment.getProperty("mysql.port");
-        this.mysqlDatabase = environment.getProperty("mysql.database");
+        this.mysqlHost = environment.getProperty("MySQL.host");
+        this.mysqlUser = environment.getProperty("MySQL.user");
+        this.mysqlPassword = environment.getProperty("MySQL.password");
+        this.mysqlPort = environment.getProperty("MySQL.port");
+        this.mysqlDatabase = environment.getProperty("MySQL.database");
     }
 
     public void analyseTwsp() {

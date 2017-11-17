@@ -7,11 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import team.sjfw.monitoringSystem.controller.config.MasterControllerConfig;
 import team.sjfw.monitoringSystem.view.MainForm;
+import team.sjfw.monitoringSystem.view.SettingForm;
 
 import javax.swing.*;
 
@@ -27,9 +29,14 @@ public class MasterController {
 
     private MainForm mainForm;
     private JFrame frame;
+    @Autowired
+    private Environment environment;
     public void initializeFrame(){
-        mainForm = new MainForm();
-        mainForm.initialize();
+//        mainForm = new MainForm(environment);
+//        mainForm.initialize();
+
+        SettingForm settingForm = new SettingForm(environment);
+        settingForm.initialize();
 //        frame = new JFrame("MainForm");
 //        frame.setContentPane(new MainForm().mainPanel);
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
