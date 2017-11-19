@@ -46,10 +46,10 @@ public class Caller {
     @Autowired
     public Caller(Environment environment) {
         this.twspSrcPath = environment.getProperty("copy.twsp.destPath");
-        this.twspAnalysisProgram = environment.getProperty("program.twsp.analysisPath");
+        this.twspAnalysisProgram = environment.getProperty("program.twsp.analysePath");
         this.twspSqlPath = environment.getProperty("program.twsp.sqlPath");
         this.briefingSrcPath = environment.getProperty("copy.briefing.destPath");
-        this.briefingAnalysisPath = environment.getProperty("program.briefing.analysisPath");
+        this.briefingAnalysisPath = environment.getProperty("program.briefing.analysePath");
         this.briefingSqlPath = environment.getProperty("program.briefing.sqlPath");
         this.startDate = CalendarTools.StringToCalendar(environment.getProperty("start.date"), "yyyy-MM-dd");
         this.endDate = CalendarTools.StringToCalendar(environment.getProperty("end.date"), "yyyy-MM-dd");

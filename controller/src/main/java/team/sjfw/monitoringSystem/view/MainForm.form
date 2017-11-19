@@ -230,6 +230,7 @@
               </grid>
             </constraints>
             <properties>
+              <font name="YouYuan" style="3"/>
               <text value="1900-00-00"/>
             </properties>
           </component>
@@ -240,6 +241,7 @@
               </grid>
             </constraints>
             <properties>
+              <font name="YouYuan" style="3"/>
               <text value="1900-00-00"/>
             </properties>
           </component>
