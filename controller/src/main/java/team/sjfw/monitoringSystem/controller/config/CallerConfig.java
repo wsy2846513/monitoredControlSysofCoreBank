@@ -8,6 +8,6 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @ComponentScan(basePackages = "team.sjfw.monitoringSystem.controller")
 @PropertySource(value = "environment.properties",encoding = "UTF-8")
-@Import(CallCMDConfig.class)
+@Import({GlobalPropertiesConfig.class,CallCMDConfig.class})
 public class CallerConfig {
 }

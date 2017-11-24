@@ -5,10 +5,15 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.Properties;
 
 /**
  * @Tittle: Duplicator.java
@@ -32,6 +37,8 @@ public class Duplicator {
     private String cmdEnd = "/f /y";
     private String handleCalendarString;
 
+    private String propertiesFilePath;
+
     private Calendar startDate;
     private Calendar endDate;
     private Calendar latestDate;
@@ -43,17 +50,27 @@ public class Duplicator {
     private Deleter deleter;
 
     @Autowired
-    public Duplicator(Environment environment) {
-        this.twspSrcPath = environment.getProperty("copy.twsp.srcPath");
-        this.twspDestPath = environment.getProperty("copy.twsp.destPath");
-        this.twspFileName = environment.getProperty("copy.twsp.fileName");
-        this.briefingSrcPath = environment.getProperty("copy.briefing.srcPath");
-        this.briefingDestPath = environment.getProperty("copy.briefing.destPath");
-        this.briefingFileName = environment.getProperty("copy.briefing.fileName");
-        this.startDate = CalendarTools.StringToCalendar(environment.getProperty("start.date"), "yyyy-MM-dd");
-        this.endDate = CalendarTools.StringToCalendar(environment.getProperty("end.date"), "yyyy-MM-dd");
-        this.latestDate = CalendarTools.StringToCalendar(environment.getProperty("latest.date"), "yyyy-MM-dd");
-    }
+    public Duplicator(GlobalProperties GlobalProperties) {
+        try{
+            this.propertiesFilePath = GlobalProperties.getPropertiesFilePath();
+            Properties properties = new Properties();
+            InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
+            properties.load(new InputStreamReader(inputStream, "utf-8"));
+            inputStream.close();
+            this.twspSrcPath = properties.getProperty("copy.twsp.srcPath");
+            this.twspDestPath = properties.getProperty("copy.twsp.destPath");
+            this.twspFileName = properties.getProperty("copy.twsp.fileName");
+            this.briefingSrcPath = properties.getProperty("copy.briefing.srcPath");
+            this.briefingDestPath = properties.getProperty("copy.briefing.destPath");
+            this.briefingFileName = properties.getProperty("copy.briefing.fileName");
+            this.startDate = CalendarTools.StringToCalendar(properties.getProperty("start.date"), "yyyy-MM-dd");
+            this.endDate = CalendarTools.StringToCalendar(properties.getProperty("end.date"), "yyyy-MM-dd");
+            this.latestDate = CalendarTools.StringToCalendar(properties.getProperty("latest.date"), "yyyy-MM-dd");
+
+        }catch (Exception exception){
+//            尚未决定等待日志处理或本处处理
+        }
+           }
 
     public void deleteFiles(){
         try{

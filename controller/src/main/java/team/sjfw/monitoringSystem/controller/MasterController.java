@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,28 +26,24 @@ public class MasterController {
     @Autowired
     private Caller caller;
 
-    private MainForm mainForm;
-    private JFrame frame;
     @Autowired
-    private Environment environment;
-    public void initializeFrame(){
-//        mainForm = new MainForm(environment);
-//        mainForm.initialize();
+    private MainForm mainForm;
 
-        SettingForm settingForm = new SettingForm(environment);
-        settingForm.initialize();
-//        frame = new JFrame("MainForm");
-//        frame.setContentPane(new MainForm().mainPanel);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.pack();
-//        frame.setVisible(true);
+    @Autowired
+    private SettingForm settingForm;
+
+//    private String propertiesFilePath;
+
+    public void initializeFrame() {
+        mainForm.initializeAll();
+
+//        settingForm.initialize();
     }
+
     @Test
-    public void start(){
+    public void start() {
         System.out.println(this.getClass().getSimpleName() + "\tstart()");
         this.initializeFrame();
-        Logger logger = LoggerFactory.getLogger(getClass());
-        logger.info("logger start! 中文测试");
 
 //        duplicator.startCopy();
 //        caller.analyseTwsp();
@@ -56,8 +51,8 @@ public class MasterController {
 //        caller.importSql();
     }
 
-//    启动失败
-    public static void main(String[] args){
+    //    启动失败
+    public static void main(String[] args) {
         System.out.println("main start");
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MasterControllerConfig.class);
         MasterController masterController = applicationContext.getBean(MasterController.class);

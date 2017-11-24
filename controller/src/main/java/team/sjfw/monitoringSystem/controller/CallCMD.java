@@ -13,24 +13,25 @@ public class CallCMD {
 
     public ArrayList<String> executeCmd(String parameter) {
         /**
-        * @Author: wsy
-        * @MethodName: executeCmd
-        * @Return: java.io.BufferedReader
-        * @Param: [parameter]
-        * @Description:
-        * @Date: 2017/11/13 21:32
-        **/
+         * @Author: wsy
+         * @MethodName: executeCmd
+         * @Return: java.io.BufferedReader
+         * @Param: [parameter]
+         * @Description:
+         * @Date: 2017/11/13 21:32
+         **/
 
         ArrayList<String> cmdLog = new ArrayList<String>();
         String lineData;
         try {
-                process = Runtime.getRuntime().exec(parameter);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
+//            System.out.println("CallCMD:\t" + parameter);
 
-                while ((lineData = reader.readLine()) != null){
-//                    System.out.println("cmdarr: \t" + lineData);
-                    cmdLog.add(lineData);
-                }
+            process = Runtime.getRuntime().exec(parameter);
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "GBK"));
+//
+//            while ((lineData = reader.readLine()) != null) {
+//                cmdLog.add(lineData);
+//            }
             return cmdLog;
         } catch (Exception e) {
             //异常处理的信息部分，由日志负责，此处只处理逻辑部分、
@@ -52,9 +53,9 @@ public class CallCMD {
         try {
             for (String parameter : cmdCommandArr) {
                 process = Runtime.getRuntime().exec(parameter);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "GBK"));
 
-                while ((lineData = reader.readLine()) != null){
+                while ((lineData = reader.readLine()) != null) {
                     System.out.println("cmdarr: \t" + lineData);
                     cmdLog.add(lineData);
                 }

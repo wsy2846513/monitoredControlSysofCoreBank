@@ -15,9 +15,15 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.Properties;
+
 
 
 @Controller
@@ -35,7 +41,7 @@ public class Caller {
     private String mysqlPort;
     private String mysqlDatabase;
     private String cmdHead = "PYTHON ";
-
+    private String propertiesFilePath;
 
     private Calendar startDate;
     private Calendar endDate;
@@ -44,20 +50,30 @@ public class Caller {
     CallCMD callCMD;
 
     @Autowired
-    public Caller(Environment environment) {
-        this.twspSrcPath = environment.getProperty("copy.twsp.destPath");
-        this.twspAnalysisProgram = environment.getProperty("program.twsp.analysePath");
-        this.twspSqlPath = environment.getProperty("program.twsp.sqlPath");
-        this.briefingSrcPath = environment.getProperty("copy.briefing.destPath");
-        this.briefingAnalysisPath = environment.getProperty("program.briefing.analysePath");
-        this.briefingSqlPath = environment.getProperty("program.briefing.sqlPath");
-        this.startDate = CalendarTools.StringToCalendar(environment.getProperty("start.date"), "yyyy-MM-dd");
-        this.endDate = CalendarTools.StringToCalendar(environment.getProperty("end.date"), "yyyy-MM-dd");
-        this.mysqlHost = environment.getProperty("MySQL.host");
-        this.mysqlUser = environment.getProperty("MySQL.user");
-        this.mysqlPassword = environment.getProperty("MySQL.password");
-        this.mysqlPort = environment.getProperty("MySQL.port");
-        this.mysqlDatabase = environment.getProperty("MySQL.database");
+    public Caller(GlobalProperties globalProperties) {
+        try{
+            this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+            Properties properties = new Properties();
+            InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
+            properties.load(new InputStreamReader(inputStream, "utf-8"));
+            inputStream.close();
+            this.twspSrcPath = properties.getProperty("copy.twsp.destPath");
+            this.twspAnalysisProgram = properties.getProperty("program.twsp.analysePath");
+            this.twspSqlPath = properties.getProperty("program.twsp.sqlPath");
+            this.briefingSrcPath = properties.getProperty("copy.briefing.destPath");
+            this.briefingAnalysisPath = properties.getProperty("program.briefing.analysePath");
+            this.briefingSqlPath = properties.getProperty("program.briefing.sqlPath");
+            this.startDate = CalendarTools.StringToCalendar(properties.getProperty("start.date"), "yyyy-MM-dd");
+            this.endDate = CalendarTools.StringToCalendar(properties.getProperty("end.date"), "yyyy-MM-dd");
+            this.mysqlHost = properties.getProperty("MySQL.host");
+            this.mysqlUser = properties.getProperty("MySQL.user");
+            this.mysqlPassword = properties.getProperty("MySQL.password");
+            this.mysqlPort = properties.getProperty("MySQL.port");
+            this.mysqlDatabase = properties.getProperty("MySQL.database");
+        }catch (Exception exception){
+//            尚未决定等待日志处理或本处处理
+        }
+
     }
 
     public void analyseTwsp() {

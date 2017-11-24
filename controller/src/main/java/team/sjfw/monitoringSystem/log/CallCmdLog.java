@@ -20,30 +20,33 @@ public class CallCmdLog {
     @Around("execution(* team.sjfw.monitoringSystem.controller.CallCMD.executeCmd(..))")
     public void cmdLog(ProceedingJoinPoint pjp) {
         try {
-            logger.info("call method [{}],parameters = {}", pjp.getSignature().getName(),pjp.getArgs());
+            logger.info("call method [{}], parameters = {}", pjp.getSignature().getName(),pjp.getArgs());
             ArrayList<String> data = (ArrayList<String>) pjp.proceed();
-            for (Iterator<String> it = data.iterator(); it.hasNext(); ) {
-                logger.info("cmdLogs:\t{}", it.next());
+            if (data != null){
+                for (Iterator<String> it = data.iterator(); it.hasNext(); ) {
+                    logger.info("cmdLogs:\t{}", it.next());
+                }
+            }else {
+                logger.info("the method [{}] return null",pjp.getSignature().getName());
             }
         } catch (Throwable t) {
             logger.error("Catch exception in method:{},parameters:{}",pjp.getSignature(),pjp.getArgs(),t);
-//            t.printStackTrace();
         }
     }
 
-    @Around("execution(* team.sjfw.monitoringSystem.controller.CallCMD.executeCmdArr(..))")
-    public void cmdArrLog(ProceedingJoinPoint pjp){
-        try{
-            logger.info("cmdArrLogs:\t{}",pjp.getArgs());
-            ArrayList<String> data = (ArrayList<String>) pjp.proceed();
-            for(Iterator<String> it = data.iterator(); it.hasNext();){
-                logger.info("cmdArrLogs:\t{}",it.next());
-            }
-        }catch (Throwable t){
-            logger.error("Catch exception in method:{},parameters:{}",pjp.getSignature(),pjp.getArgs(),t);
-
-        }
-    }
+//    @Around("execution(* team.sjfw.monitoringSystem.controller.CallCMD.executeCmdArr(..))")
+//    public void cmdArrLog(ProceedingJoinPoint pjp){
+//        try{
+//            logger.info("cmdArrLogs:\t{}",pjp.getArgs());
+//            ArrayList<String> data = (ArrayList<String>) pjp.proceed();
+//            for(Iterator<String> it = data.iterator(); it.hasNext();){
+//                logger.info("cmdArrLogs:\t{}",it.next());
+//            }
+//        }catch (Throwable t){
+//            logger.error("Catch exception in method:{},parameters:{}",pjp.getSignature(),pjp.getArgs(),t);
+//
+//        }
+//    }
 
     public void test() {
 //        beforeCmdLog();

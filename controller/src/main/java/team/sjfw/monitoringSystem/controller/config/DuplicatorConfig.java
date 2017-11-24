@@ -8,7 +8,7 @@ import team.sjfw.monitoringSystem.controller.Deleter;
 
 @Configuration
 @ComponentScan(basePackages = "team.sjfw.monitoringSystem.controller")
-@PropertySource(value = "environment.properties",encoding = "UTF-8")
-@Import({CallCMDConfig.class, DeleterConfig.class})
+//@PropertySource(value = "environment.properties",encoding = "UTF-8")
+@Import({GlobalPropertiesConfig.class,CallCMDConfig.class, DeleterConfig.class})
 public class DuplicatorConfig {
 }

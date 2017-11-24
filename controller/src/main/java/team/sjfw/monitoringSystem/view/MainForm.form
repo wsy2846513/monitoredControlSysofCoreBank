@@ -25,7 +25,7 @@
               <text value="每日自动导入开关"/>
             </properties>
           </component>
-          <component id="980b5" class="javax.swing.JLabel">
+          <component id="980b5" class="javax.swing.JLabel" binding="labelAutoSwitch">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -44,7 +44,7 @@
               <text value="自动导入时间"/>
             </properties>
           </component>
-          <component id="dc21d" class="javax.swing.JLabel">
+          <component id="dc21d" class="javax.swing.JLabel" binding="labelAutoImportTime">
             <constraints>
               <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -116,7 +116,7 @@
               <text value="截止到"/>
             </properties>
           </component>
-          <component id="7d99d" class="javax.swing.JLabel" binding="latestDate">
+          <component id="7d99d" class="javax.swing.JLabel" binding="labelLatestDate">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="30"/>
