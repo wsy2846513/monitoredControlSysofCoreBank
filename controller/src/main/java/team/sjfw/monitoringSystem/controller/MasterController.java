@@ -16,8 +16,8 @@ import team.sjfw.monitoringSystem.view.SettingForm;
 
 import javax.swing.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MasterControllerConfig.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = MasterControllerConfig.class)
 @Controller
 public class MasterController {
     @Autowired
@@ -26,36 +26,15 @@ public class MasterController {
     @Autowired
     private Caller caller;
 
-    @Autowired
-    private MainForm mainForm;
 
-    @Autowired
-    private SettingForm settingForm;
+    //    @Test
+    public void startImport() {
+        System.out.println(this.getClass().getSimpleName() + "\tstartImport()");
 
-//    private String propertiesFilePath;
-
-    public void initializeFrame() {
-        mainForm.initializeAll();
-
-//        settingForm.initialize();
-    }
-
-    @Test
-    public void start() {
-        System.out.println(this.getClass().getSimpleName() + "\tstart()");
-        this.initializeFrame();
-
-//        duplicator.startCopy();
+        duplicator.startCopy();
 //        caller.analyseTwsp();
 //        caller.analyseBriefing();
 //        caller.importSql();
     }
 
-    //    启动失败
-    public static void main(String[] args) {
-        System.out.println("main start");
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MasterControllerConfig.class);
-        MasterController masterController = applicationContext.getBean(MasterController.class);
-        masterController.start();
-    }
 }

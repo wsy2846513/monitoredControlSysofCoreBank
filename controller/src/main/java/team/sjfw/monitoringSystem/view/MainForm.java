@@ -10,10 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.concurrent.Semaphore;
 
 @Component
 public class MainForm {
@@ -30,6 +28,8 @@ public class MainForm {
     private String propertiesFilePath;
     private MainForm thisObject;
 
+    private Semaphore startManualImport;
+
     @Autowired
     private SettingForm settingForm;
 
@@ -39,6 +39,7 @@ public class MainForm {
 //        this.environment = e;
         frame = new JFrame("MainForm");
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+        this.startManualImport = globalProperties.getStartManualImport();
 
         this.refresh();
 
@@ -51,7 +52,27 @@ public class MainForm {
         });
         buttonStartImport.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("start import !");
+                System.out.println("startImport manual import !");
+                try{
+//                    Load the properties
+                    SafeProperties properties = new SafeProperties();
+                    InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
+                    properties.load(inputStream);
+                    inputStream.close();
+
+//                    Set new properties values
+                    properties.setProperty("start.date",textFieldStartDate.getText());
+                    properties.setProperty("end.date",textFieldEndDate.getText());
+
+//                    Write the properties
+                    FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);
+                    properties.store(fileOutputStream,null);
+                    fileOutputStream.close();
+                    startManualImport.release();
+                }catch (Exception exception) {
+//            是否需要日志处理？
+                    exception.printStackTrace();
+                }
             }
         });
     }
@@ -93,18 +114,19 @@ public class MainForm {
         Dimension frameSize = frame.getSize();
 //        Dimension frameSize = mainForm.mainPanel.getSize();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
+//
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        int frameWidth = (int) frameSize.getWidth();
-        int frameHeight = (int) frameSize.getHeight();
-
-        System.out.println("SW=" + screenWidth);
-        System.out.println("SH=" + screenHeight);
-        System.out.println("FW=" + frameWidth);
-        System.out.println("FH=" + frameHeight);
-        frame.setLocation((screenWidth - frameWidth) / 3,
-                (screenHeight - frameHeight) / 3);
+//        int frameWidth = (int) frameSize.getWidth();
+//        int frameHeight = (int) frameSize.getHeight();
+//
+//        System.out.println("SW=" + screenWidth);
+//        System.out.println("SH=" + screenHeight);
+//        System.out.println("FW=" + frameWidth);
+//        System.out.println("FH=" + frameHeight);
+//        frame.setLocation((screenWidth - frameWidth) / 3,
+//                (screenHeight - frameHeight) / 3);
+        frame.setLocation(screenWidth / 3, screenHeight / 3);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.concurrent.Semaphore;
 
 @Component
 public class SettingForm {
@@ -38,13 +39,14 @@ public class SettingForm {
     private JTextField textFieldProgramCritical;
 
     private String propertiesFilePath;
-
+    private Semaphore refreshProperties;
     private MainForm mainForm;
 
     @Autowired
     public SettingForm(GlobalProperties globalProperties) {
         frame = new JFrame("SettingForm");
         propertiesFilePath = globalProperties.getPropertiesFilePath();
+        refreshProperties = globalProperties.getRefreshProperties();
         refresh();
 
         buttonRecover.addActionListener(new ActionListener() {
@@ -60,6 +62,7 @@ public class SettingForm {
                 if (checkInput()) {
                     if (saveSettings()) {
                         JOptionPane.showMessageDialog(null, "保存成功！");
+                        refreshProperties.release();
                     }
                 }
             }
@@ -75,17 +78,14 @@ public class SettingForm {
     }
 
     private boolean saveSettings() {
-
-        SafeProperties properties = new SafeProperties();
-
         try {
-//            加载配置文件
+//            Load the properties.
+            SafeProperties properties = new SafeProperties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(inputStream);
             inputStream.close();
 
-//            保存新配置到文件中
-            FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);
+//            Set new properties values.
             if (radioButtonAutoImportOn.isSelected()) {
                 properties.setProperty("autoImport.swtich", "on");
             } else {
@@ -110,7 +110,9 @@ public class SettingForm {
             properties.setProperty("program.critical.path", textFieldProgramCritical.getText());
             properties.setProperty("program.reportImportAssistant.path", textFieldProgramReportImportAssistant.getText());
 
-            properties.store(fileOutputStream, "");
+//            Write the properties.
+            FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);
+            properties.store(fileOutputStream, null);
             fileOutputStream.close();
 //            throw new Exception();
             return true;
@@ -131,6 +133,7 @@ public class SettingForm {
          * @Date: 2017/11/19 14:38
          */
         try {
+//            Load the properties.
             SafeProperties properties = new SafeProperties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
@@ -172,7 +175,8 @@ public class SettingForm {
         this.refresh();
         this.initializeFrame();
     }
-    private void initializeFrame(){
+
+    private void initializeFrame() {
         frame.setContentPane(this.mainPanel);
 
         Dimension frameSize = frame.getSize();
@@ -181,15 +185,16 @@ public class SettingForm {
 
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        int frameWidth = (int) frameSize.getWidth();
-        int frameHeight = (int) frameSize.getHeight();
+//        int frameWidth = (int) frameSize.getWidth();
+//        int frameHeight = (int) frameSize.getHeight();
 
-        System.out.println("SW=" + screenWidth);
-        System.out.println("SH=" + screenHeight);
-        System.out.println("FW=" + frameWidth);
-        System.out.println("FH=" + frameHeight);
-        frame.setLocation((screenWidth - frameWidth) / 3,
-                (screenHeight - frameHeight) / 4);
+//        System.out.println("SW=" + screenWidth);
+//        System.out.println("SH=" + screenHeight);
+//        System.out.println("FW=" + frameWidth);
+//        System.out.println("FH=" + frameHeight);
+//        frame.setLocation((screenWidth - frameWidth) / 3,
+//                (screenHeight - frameHeight) / 4);
+        frame.setLocation(screenWidth / 3, screenHeight / 4);
         frame.setResizable(false);
 //        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //        编写替代setDefaultCloseOperation的方法,从而实现关闭配置窗口时显示主窗口

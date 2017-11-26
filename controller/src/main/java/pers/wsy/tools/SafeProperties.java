@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * @Tittle: SafeProperties.java
@@ -54,7 +55,7 @@ public class SafeProperties extends Properties {
 
             if (line.length() > 0) {
 
-                // Find start of key
+                // Find startImport of key
                 int len = line.length();
                 int keyStart;
                 for (keyStart = 0; keyStart < len; keyStart++)
@@ -213,16 +214,30 @@ public class SafeProperties extends Properties {
     }
 
     public synchronized void store(OutputStream out, String header) throws IOException {
+        /**
+         * @Author: wsy
+         * @MethodName: store
+         * @Return: void
+         * @Param: [out, header]
+         * @Description:  Skip the last modification time that already in properties, and add the
+         *                  new time into properties as the last modification time.
+         * @Date: 2017/11/25 13:39
+         */
+
         BufferedWriter awriter;
         awriter = new BufferedWriter(new OutputStreamWriter(out, "8859_1"));
+
+//        add the new time as the last modification time
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        writeln(awriter,"#time of last modification : " + simpleDateFormat.format(new Date()));
+        writeln(awriter,"#Last modification time : " + simpleDateFormat.format(new Date()));
+
         if (header != null)
             writeln(awriter, "#" + header);
         List entrys = context.getCommentOrEntrys();
         for (Iterator iter = entrys.iterator(); iter.hasNext(); ) {
             Object obj = iter.next();
-            if (obj.toString() != null) {
+//            the "Pattern.matches" skip the last modification time that already in properties
+            if (obj.toString() != null && !Pattern.matches("^#.*Last\\s*modification\\s*time.*",obj.toString())) {
                 writeln(awriter, obj.toString());
             }
         }

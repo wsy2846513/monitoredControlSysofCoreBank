@@ -28,7 +28,7 @@ public class SettingFormLog {
     @Around("execution(* team.sjfw.monitoringSystem.view.SettingForm.initialize(..))")
     public void initialize(ProceedingJoinPoint pjp) {
         try {
-            logger.info("start initializing ...");
+            logger.info("startImport initializing ...");
             pjp.proceed();
             logger.info("initialize complete!");
         } catch (Throwable t) {
@@ -40,7 +40,7 @@ public class SettingFormLog {
     @Around("execution(* team.sjfw.monitoringSystem.view.SettingForm.saveSettings(..))")
     public void saveSettings(ProceedingJoinPoint pjp) {
         try {
-            logger.info("start saving settings ...");
+            logger.info("startImport saving settings ...");
             pjp.proceed();
             logger.info("save complete!");
         } catch (Throwable t) {

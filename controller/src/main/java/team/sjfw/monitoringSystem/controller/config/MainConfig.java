@@ -9,10 +9,10 @@ import team.sjfw.monitoringSystem.view.config.MainFormConfig;
 import team.sjfw.monitoringSystem.view.config.SettingFormConfig;
 
 @Configuration
-//@Import({DuplicatorConfig.class, CallerConfig.class,
-//        CallCmdLogConfig.class, SettingFormLogConfig.class,
-//        MainFormConfig.class,SettingFormConfig.class})
-@Import({DuplicatorConfig.class, CallerConfig.class})
+@Import({DuplicatorConfig.class, CallerConfig.class,
+        CallCmdLogConfig.class, SettingFormLogConfig.class,
+        MainFormConfig.class,SettingFormConfig.class,
+        AutoControllerConfig.class})
 @ComponentScan(basePackages = {"team.sjfw.monitoringSystem.controller"})
-public class MasterControllerConfig {
+public class MainConfig {
 }

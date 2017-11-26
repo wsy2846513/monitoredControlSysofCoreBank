@@ -3,6 +3,7 @@ package team.sjfw.monitoringSystem.view.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import team.sjfw.monitoringSystem.controller.GlobalProperties;
 
 /**
  * @Tittle: MainFormConfig.java
@@ -14,7 +15,7 @@ import org.springframework.context.annotation.Import;
  * @Date: 17-11-20 下午8:20
  */
 @Configuration
-@Import({SettingFormConfig.class})
+@Import({SettingFormConfig.class,GlobalProperties.class})
 @ComponentScan(basePackages = {"team.sjfw.monitoringSystem.view"})
 public class MainFormConfig {
 }
