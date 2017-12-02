@@ -11,7 +11,6 @@
 package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
 
@@ -19,11 +18,9 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.Properties;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @Controller
@@ -47,12 +44,14 @@ public class Caller {
     private Calendar endDate;
 
     @Autowired
-    CallCMD callCMD;
+    private CallCMD callCMD;
 
+    GlobalProperties globalProperties;
     @Autowired
-    public Caller(GlobalProperties globalProperties) {
+    public Caller(GlobalProperties tempProperties) {
         try{
-            this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+            this.propertiesFilePath = tempProperties.getPropertiesFilePath();
+            this.globalProperties = tempProperties;
             Properties properties = new Properties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
@@ -76,10 +75,10 @@ public class Caller {
 
     }
 
-    public void analyseTwsp() {
+    public void startAnalyseTwsp() {
         /**
          * @Author: wsy
-         * @MethodName: analyseTwsp
+         * @MethodName: startAnalyseTwsp
          * @Return: void
          * @Param: []
          * @Description: Convert twsp files into sql files.
@@ -106,16 +105,17 @@ public class Caller {
         }
         for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
             callCMD.executeCmd(it.next());
+            globalProperties.addCurrentCount(globalProperties.CALLER_ANALYSE_TWSP);
         }
     }
 
-    public void analyseBriefing() {
+    public void startAnalyseBriefing() {
         /**
          * @Author: wsy
-         * @MethodName: analyseBriefing
+         * @MethodName: startAnalyseBriefing
          * @Return: void
          * @Param: []
-         * @Description: 解析简报
+         * @Description: Convert briefing files into sql files.
          * @Date: 2017/11/13 21:33
          **/
 
@@ -130,12 +130,23 @@ public class Caller {
         fullCMDCommand.append(briefingSqlPath);
         fullCMDCommand.append("\"");
         cmdCommandArr.add(fullCMDCommand.toString());
-        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
-            callCMD.executeCmd(it.next());
-        }
+//        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
+//            callCMD.executeCmd(it.next());
+//        }
+        callCMD.executeCmd(fullCMDCommand.toString());
+        globalProperties.addCurrentCount(globalProperties.CALLER_ANALYSE_BRIEFING);
     }
 
-    public void importSql() {
+    public void startImportSql() {
+        /**
+         * @Author: wsy
+         * @MethodName: startImportSql
+         * @Return: void
+         * @Param: []
+         * @Description: Import TWSP and briefing sql files to database.
+         * @Date: 17-11-29 上午12:12
+         */
+
         Calendar processCalendar = (Calendar) startDate.clone();
         ArrayList<String> cmdCommandArr = new ArrayList<String>();
         StringBuffer fullCMDCommand = new StringBuffer();
@@ -152,6 +163,7 @@ public class Caller {
         cmdHead.append(" --password=");
         cmdHead.append(mysqlPassword);
         cmdHead.append(" < \"");
+//        import TWSP sql files to database
         while (!processCalendar.after(endDate)) {
             fullCMDCommand.setLength(0);
             fullCMDCommand.append(cmdHead);
@@ -164,6 +176,30 @@ public class Caller {
         }
         for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
             callCMD.executeCmd(it.next());
+            globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
         }
+//        import briefing sql files to database
+        cmdCommandArr.clear();
+        fullCMDCommand.setLength(0);
+        fullCMDCommand.append(cmdHead);
+        fullCMDCommand.append(briefingSqlPath);
+        fullCMDCommand.append("\\summary_");
+        DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
+        fullCMDCommand.append(dateFormat.format(new Date()));
+        fullCMDCommand.append(cmdTail);
+        callCMD.executeCmd(fullCMDCommand.toString());
+        globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
+    }
+
+    public void startReportImportAssistant() {
+        System.out.println("还未开发");
+        globalProperties.addCurrentCount(globalProperties.getNumofDaystoProcessed()
+                * globalProperties.CALLER_REPORT_IMPORT_ASSISTANT);
+    }
+
+    public void startAnalyseCriticalPath() {
+        System.out.println("还未开发");
+        globalProperties.addCurrentCount(globalProperties.getNumofDaystoProcessed()
+                * globalProperties.CALLER_ANALYSE_CRITICAL_PATHT);
     }
 }

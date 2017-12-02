@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import team.sjfw.monitoringSystem.view.MainForm;
+import team.sjfw.monitoringSystem.view.ProgressForm;
 
 @Controller
 public class Main {
@@ -18,15 +19,25 @@ public class Main {
     @Autowired
     private ManualController manualController;
 
+    @Autowired
+    private ProgressMonitor progressMonitor;
+
     private Thread autoThread;
     private Thread manualThread;
+    private Thread progressThread;
+
 
     public void start(){
+//        progressForm.initializeAll();
+
         mainForm.initializeAll();
         autoThread = new Thread(autoController);
         autoThread.start();
         manualThread = new Thread(manualController);
         manualThread.start();
+        progressThread = new Thread(progressMonitor);
+        progressThread.start();
+
 //        System.out.println("main.startImport");
 //        try {
 //            Thread.sleep(2000);
@@ -41,9 +52,6 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("main startImport");
-//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MasterControllerConfig.class);
-//        MasterController masterController = applicationContext.getBean(MasterController.class);
-//        masterController.startImport();
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MainConfig.class);
         Main main = applicationContext.getBean(Main.class);
         main.start();

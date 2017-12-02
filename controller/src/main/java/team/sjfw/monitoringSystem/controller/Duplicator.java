@@ -1,7 +1,6 @@
 package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
 
@@ -9,7 +8,6 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -48,11 +46,12 @@ public class Duplicator {
 
     @Autowired
     private Deleter deleter;
-
+    private GlobalProperties globalProperties;
     @Autowired
-    public Duplicator(GlobalProperties GlobalProperties) {
-        try{
-            this.propertiesFilePath = GlobalProperties.getPropertiesFilePath();
+    public Duplicator(GlobalProperties tempProperties1) {
+        try {
+            this.propertiesFilePath = tempProperties1.getPropertiesFilePath();
+            this.globalProperties = tempProperties1;
             Properties properties = new Properties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
@@ -67,17 +66,19 @@ public class Duplicator {
             this.endDate = CalendarTools.StringToCalendar(properties.getProperty("end.date"), "yyyy-MM-dd");
             this.latestDate = CalendarTools.StringToCalendar(properties.getProperty("latest.date"), "yyyy-MM-dd");
 
-        }catch (Exception exception){
+        } catch (Exception exception) {
 //            尚未决定等待日志处理或本处处理
         }
-           }
+    }
 
     public void deleteFiles(){
         try{
             deleter.deleteFilesInFolder(twspDestPath);
             deleter.deleteFilesInFolder(briefingDestPath);
+            globalProperties.addCurrentCount(globalProperties.DUPLICATOR_DELETE_POINT);
         }catch (Exception e){
 //            提示信息由日志处理，此处继续执行
+            e.printStackTrace();
         }
     }
 
@@ -93,7 +94,7 @@ public class Duplicator {
          */
         StringBuffer fullCmdCommand = new StringBuffer();
         ArrayList<String> cmdCommandArr = new ArrayList<String>();
-        Calendar processCalendar = (Calendar) startDate.clone();;
+        Calendar processCalendar = (Calendar) startDate.clone();
 
         while (!processCalendar.after(endDate)) {
             handleCalendarString = CalendarTools.calendarToString(processCalendar, "yyyy-MM-dd");
@@ -131,30 +132,18 @@ public class Duplicator {
             processCalendar.add(Calendar.DATE, 1);
         }
         for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
+            try {
+                Thread.sleep(1100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             callCMD.executeCmd(it.next());
+            globalProperties.addCurrentCount(globalProperties.DUPLICATOR_COPY_POINT);
         }
     }
 
-    public void startCopy(){
-        this.deleteFiles();
-        this.copyFiles();
-    }
-    public void testCMD() {
-
-
-//        ArrayList<String> cmdCommandArr.add("cp /home/wsy/A/AAA /home/wsy/B/");
-//        cmdCommandArr.add("ls");
-//        cmdCommandArr.add("ls");
-//        cmdCommandArr.add("ls");
-//        cmdCommandArr.add("ipconfig");
-//        callCMD.executeCmdArr(cmdCommandArr);
-        ArrayList<String> cmdCommandArr = new ArrayList<String>(){{
-            add("xcopy E:\\Z\\2016-10-13\\*国内及全球*简报.xlsx E:\\X\\JB\\copyout\\ /f /y");
-            add("xcopy E:\\Z\\2016-10-14\\*twsp*.txt E:\\X\\twsp\\copyout\\ /f /y");
-            add("xcopy E:\\Z\\2016-10-14\\*国内及全球*简报.xlsx E:\\X\\JB\\copyout\\ /f /y");
-        }};
-        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
-            callCMD.executeCmd(it.next());
-        }
-    }
+//    public void startCopy(){
+//        this.deleteFiles();
+//        this.copyFiles();
+//    }
 }

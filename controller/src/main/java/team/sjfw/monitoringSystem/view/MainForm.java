@@ -29,6 +29,8 @@ public class MainForm {
     private MainForm thisObject;
 
     private Semaphore startManualImport;
+    private Semaphore openProgressForm;
+    private Semaphore closeProgressForm;
 
     @Autowired
     private SettingForm settingForm;
@@ -40,19 +42,22 @@ public class MainForm {
         frame = new JFrame("MainForm");
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.startManualImport = globalProperties.getStartManualImport();
+        this.openProgressForm = globalProperties.getOpenProgressForm();
+        this.closeProgressForm = globalProperties.getCloseProgressForm();
 
         this.refresh();
 
         buttonSet.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
+                setFrameVisible(false);
+//                frame.setVisible(false);
                 settingForm.setMainForm(thisObject);
                 settingForm.initializeAll();
             }
         });
         buttonStartImport.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("startImport manual import !");
+                System.out.println("push button startImport!");
                 try{
 //                    Load the properties
                     SafeProperties properties = new SafeProperties();
@@ -68,7 +73,10 @@ public class MainForm {
                     FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);
                     properties.store(fileOutputStream,null);
                     fileOutputStream.close();
+                    frame.setVisible(false);
                     startManualImport.release();
+//                    closeProgressForm.acquire();
+                    frame.setVisible(true);
                 }catch (Exception exception) {
 //            是否需要日志处理？
                     exception.printStackTrace();
@@ -130,13 +138,14 @@ public class MainForm {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible(true);
+        setFrameVisible(true);
+//        frame.setVisible(true);
     }
 
-    public void setVisible(boolean flag){
+    public void setFrameVisible(boolean flag){
         /**
          * @Author: wsy
-         * @MethodName: setVisible
+         * @MethodName: setFrameVisible
          * @Return: void
          * @Param: [flag]
          * @Description: Show the frame.

@@ -10,7 +10,7 @@ import java.util.concurrent.Semaphore;
 @Controller
 public class ImportKit implements Runnable {
 //    Do not use autowired here, because the masterController need to get the newest properties all the time.
-//    When autowired here, the masterController will get bean and properties when the ImportKit object established.
+//    When autowired here, the ImportKit object will be established and the masterController will get bean and properties.
 //    Then if any values changed in property files, the masterController would still use the old properties rather than
 //    the newest prpperties.
 
@@ -67,7 +67,7 @@ public class ImportKit implements Runnable {
 //                Thread.sleep(3000);
 //                globalProperties.setImportKitStarted(false);
 //                System.out.println("Thread id = " + Thread.currentThread().getId() + "\tget out????????????????");
-            Thread.sleep(20000);
+//            Thread.sleep(20000);
                 allowImport.release();
         } catch (Exception exception) {
             exception.printStackTrace();

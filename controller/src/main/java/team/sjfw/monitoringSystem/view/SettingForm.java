@@ -203,7 +203,7 @@ public class SettingForm {
             public void windowClosing(WindowEvent e) {
                 frame.dispose();
                 mainForm.refresh();
-                mainForm.setVisible(true);
+                mainForm.setFrameVisible(true);
             }
         });
         frame.pack();
