@@ -2,14 +2,14 @@ package team.sjfw.monitoringSystem.controller.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import team.sjfw.monitoringSystem.controller.GlobalProperties;
+import team.sjfw.monitoringSystem.view.MainForm;
+import team.sjfw.monitoringSystem.view.config.MainFormConfig;
+import team.sjfw.monitoringSystem.view.config.ProgressFormConfig;
 
 @Configuration
-@Import({GlobalProperties.class,ImportKitConfig.class})
+@Import({GlobalProperties.class, MainFormConfig.class})
 @ComponentScan(basePackages = {"team.sjfw.monitoringSystem.controller"})
-//@EnableAspectJAutoProxy(exposeProxy=true,proxyTargetClass=true)
-
-public class AutoControllerConfig {
+public class MainFormMonitorConfig {
 }

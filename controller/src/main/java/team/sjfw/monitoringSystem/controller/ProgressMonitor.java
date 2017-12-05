@@ -11,7 +11,7 @@ import java.util.concurrent.Semaphore;
 public class ProgressMonitor implements Runnable {
 
     private Semaphore openProgressForm;
-    private Semaphore closeProgressForm;
+    private Semaphore openMainForm;
     @Autowired
     private ProgressForm progressForm;
 
@@ -20,7 +20,7 @@ public class ProgressMonitor implements Runnable {
 
     public void initializeAll(){
         openProgressForm = globalProperties.getOpenProgressForm();
-        closeProgressForm = globalProperties.getCloseProgressForm();
+        openMainForm = globalProperties.getOpenMainForm();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ProgressMonitor implements Runnable {
                     }
                 }
                 globalProperties.setCurrentCount(0);
-                closeProgressForm.release();
+                openMainForm.release();
             }
         }catch (Exception e){
             e.printStackTrace();

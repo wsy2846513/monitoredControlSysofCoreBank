@@ -21,10 +21,6 @@ public class SettingFormLog {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-//    @Before("execution(* team.sjfw.monitoringSystem.view.SettingForm.initialize(..))")
-//    public void initialize(){
-//        logger.info("before\tSettingForm\tinitializeLog:\t");
-//    }
     @Around("execution(* team.sjfw.monitoringSystem.view.SettingForm.initialize(..))")
     public void initialize(ProceedingJoinPoint pjp) {
         try {

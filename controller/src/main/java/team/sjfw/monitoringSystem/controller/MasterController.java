@@ -34,13 +34,11 @@ public class MasterController {
     private Caller caller;
 
     @Autowired
-    GlobalProperties globalProperties;
-//    @Autowired
-//    private void setTargetCount(GlobalProperties globalProperties){
-    private void setTargetCount(){
-        try{
-            String propertiesFilePath;
-            propertiesFilePath = globalProperties.getPropertiesFilePath();
+    private GlobalProperties globalProperties;
+
+    private void setTargetCount() {
+        try {
+            String propertiesFilePath = globalProperties.getPropertiesFilePath();
             Properties properties = new Properties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
@@ -50,17 +48,16 @@ public class MasterController {
             Calendar endDate;
             startDate = CalendarTools.StringToCalendar(properties.getProperty("start.date"), "yyyy-MM-dd");
             endDate = CalendarTools.StringToCalendar(properties.getProperty("end.date"), "yyyy-MM-dd");
-            Long targetDays = (endDate.getTimeInMillis() - startDate.getTimeInMillis()) / ( 24 * 60 * 60 * 1000);
+            Long targetDays = (endDate.getTimeInMillis() - startDate.getTimeInMillis()) / (24 * 60 * 60 * 1000);
 //            When there is n days data to be imported:
-//              delete files counts 1 point, copy files counts 2n points, analyse twsp files counts 1 point,
-//              analyse briefing files counts 1 point, import sql files to database counts n+1 points,
-//              use ReportImportAssistant counts 3n points, and analyse critical path counts 3n points.
-//            So the total points are 9n+4.
+//          delete files counts 1 point, copy files counts 2 n points, analyse twsp files counts 1 point,
+//          analyse briefing files counts 1 point, import sql files to database counts n +1 points,
+//          use ReportImportAssistant counts 3 n points, and analyse critical path counts 3 n points.
+//          So the total points are 9 n + 4.
             globalProperties.setNumofDaystoProcessed(targetDays.intValue() + 1);
             globalProperties.setTargetCount(globalProperties.getNumofDaystoProcessed() * 9 + 4);
             globalProperties.setCurrentCount(0);
-
-        }catch (Exception exception){
+        } catch (Exception exception) {
 //            尚未决定等待日志处理或本处处理
         }
     }
@@ -69,6 +66,8 @@ public class MasterController {
     public void startImport() {
         System.out.println(this.getClass().getSimpleName() + "\tstartImport()");
         this.setTargetCount();
+        duplicator.initializeAll();
+        caller.initializeAll();
         duplicator.deleteFiles();
         duplicator.copyFiles();
         caller.startAnalyseTwsp();

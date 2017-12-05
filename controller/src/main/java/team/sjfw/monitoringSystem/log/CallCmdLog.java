@@ -15,7 +15,6 @@ import java.util.Iterator;
 @Component
 public class CallCmdLog {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private static int n = 1;
 
     @Around("execution(* team.sjfw.monitoringSystem.controller.CallCMD.executeCmd(..))")
     public void cmdLog(ProceedingJoinPoint pjp) {
@@ -33,29 +32,4 @@ public class CallCmdLog {
             logger.error("Catch exception in method:{},parameters:{}",pjp.getSignature(),pjp.getArgs(),t);
         }
     }
-
-//    @Around("execution(* team.sjfw.monitoringSystem.controller.CallCMD.executeCmdArr(..))")
-//    public void cmdArrLog(ProceedingJoinPoint pjp){
-//        try{
-//            logger.info("cmdArrLogs:\t{}",pjp.getArgs());
-//            ArrayList<String> data = (ArrayList<String>) pjp.proceed();
-//            for(Iterator<String> it = data.iterator(); it.hasNext();){
-//                logger.info("cmdArrLogs:\t{}",it.next());
-//            }
-//        }catch (Throwable t){
-//            logger.error("Catch exception in method:{},parameters:{}",pjp.getSignature(),pjp.getArgs(),t);
-//
-//        }
-//    }
-
-    public void test() {
-//        beforeCmdLog();
-        logger.info("Class {} -- test()", getClass());
-    }
-
-    public static void main(String args[]) {
-        CallCmdLog dup = new CallCmdLog();
-        dup.test();
-    }
-
 }

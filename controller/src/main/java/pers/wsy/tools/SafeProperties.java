@@ -11,16 +11,17 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
+
 /**
  * @Tittle: SafeProperties.java
  * @Author: wsy
  * @Class_name: SafeProperties
  * @Package: pers.wsy.tools
- * @Description:    The original class version V1.0 was published at http://www.iteye.com/topic/156474 by jianrc.
+ * @Description:The original class version V1.0 was published at http://www.iteye.com/topic/156474 by jianrc.
  *                  In version V1.1, I add a time stamp stand for the time of last modification in the front of the
- *                  properties file in method "store".
- * @Version: V1.1
- * @Date: 2017/11/19 16:07
+ *                  properties file in method "store". Change code system from '8859_1' to 'utf-8'
+ * @Version: V1.0
+ * @Date: 2017/12/5 21:31
  */
 
 public class SafeProperties extends Properties {
@@ -43,8 +44,9 @@ public class SafeProperties extends Properties {
     public synchronized void load(InputStream inStream) throws IOException {
 
         BufferedReader in;
-
-        in = new BufferedReader(new InputStreamReader(inStream, "8859_1"));
+//        Use code system 'utf-8' instead of '8859_1'
+//        in = new BufferedReader(new InputStreamReader(inStream, "8859_1"));
+        in = new BufferedReader(new InputStreamReader(inStream, "utf-8"));
         while (true) {
             // Get next line
             String line = in.readLine();
@@ -220,16 +222,19 @@ public class SafeProperties extends Properties {
          * @Return: void
          * @Param: [out, header]
          * @Description:  Skip the last modification time that already in properties, and add the
-         *                  new time into properties as the last modification time.
+         *                  new time into properties as the last modification time. Change code system
+         *                  '8859_1' to 'utf-8'
          * @Date: 2017/11/25 13:39
          */
 
         BufferedWriter awriter;
-        awriter = new BufferedWriter(new OutputStreamWriter(out, "8859_1"));
+//        Use code system 'utf-8' instead of '8859_1'
+//        awriter = new BufferedWriter(new OutputStreamWriter(out, "8859_1"));
+        awriter = new BufferedWriter(new OutputStreamWriter(out, "utf-8"));
 
 //        add the new time as the last modification time
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        writeln(awriter,"#Last modification time : " + simpleDateFormat.format(new Date()));
+        writeln(awriter,"#Latest modification time : " + simpleDateFormat.format(new Date()));
 
         if (header != null)
             writeln(awriter, "#" + header);
@@ -237,7 +242,7 @@ public class SafeProperties extends Properties {
         for (Iterator iter = entrys.iterator(); iter.hasNext(); ) {
             Object obj = iter.next();
 //            the "Pattern.matches" skip the last modification time that already in properties
-            if (obj.toString() != null && !Pattern.matches("^#.*Last\\s*modification\\s*time.*",obj.toString())) {
+            if (obj.toString() != null && !Pattern.matches("^#.*Latest\\s*modification\\s*time.*",obj.toString())) {
                 writeln(awriter, obj.toString());
             }
         }

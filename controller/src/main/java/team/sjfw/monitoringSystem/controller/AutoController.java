@@ -1,9 +1,9 @@
 package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pers.wsy.tools.SafeProperties;
 
 import java.io.BufferedInputStream;
@@ -18,40 +18,57 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 @Controller
-public class AutoController implements Runnable{
+public class AutoController implements Runnable {
 
     private ScheduledExecutorService scheduledExecutorService;
     private String propertiesFilePath;
     private Semaphore refreshProperties;
     private static final long ONEDAY_MILLISECONDS = 24 * 60 * 60 * 1000;
-    private String auto_time;
+    public String autoTime;
+
+    @Autowired
+    private ImportKit importKit;
 
     @Autowired
     public AutoController(GlobalProperties globalProperties) {
-        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.refreshProperties = globalProperties.getRefreshProperties();
     }
 
+    public void startScheduledThread() {
+        try {
+            getThis().setAutoTime();
+            long initDelay = getMillisecond(new Date(), autoTime) - System.currentTimeMillis();
+            if (initDelay <= 0) {
+                initDelay += ONEDAY_MILLISECONDS;
+            }
+            scheduledExecutorService.scheduleAtFixedRate(importKit, initDelay, ONEDAY_MILLISECONDS, TimeUnit.MILLISECONDS);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public String setAutoTime() {
+        try {
+            SafeProperties properties = new SafeProperties();
+            InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
+            properties.load(inputStream);
+            inputStream.close();
+            String s = properties.getProperty("autoImport.time");
+            autoTime = s;
+            return s;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public void run() {
-        while (true){
+        while (true) {
             try {
-                SafeProperties properties = new SafeProperties();
-                InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
-                properties.load(inputStream);
-                inputStream.close();
-
-                auto_time = properties.getProperty("autoImport.time");
-                long initDelay = getMillisecond(new Date(),auto_time) - System.currentTimeMillis();
-                if (initDelay <= 0 ){
-                    initDelay += ONEDAY_MILLISECONDS;
-                }
-
-                ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MasterControllerConfig.class);
-                scheduledExecutorService.scheduleAtFixedRate(applicationContext.getBean(ImportKit.class),
-                        initDelay,ONEDAY_MILLISECONDS, TimeUnit.MILLISECONDS);
-
+                getThis().startScheduledThread();
                 refreshProperties.acquire();
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -59,13 +76,13 @@ public class AutoController implements Runnable{
         }
     }
 
-    private long getMillisecond(Date date,String time){
+    private long getMillisecond(Date date, String time) {
         /**
          * @Author: wsy
          * @MethodName: getMillisecond
          * @Return: long
          * @Param: [date, time]
-         * @Description:  Convert the time to millisecond
+         * @Description: Convert the time to millisecond
          * @Date: 2017/11/26 16:05
          */
 
@@ -74,9 +91,12 @@ public class AutoController implements Runnable{
         try {
             Date result = timeFormat.parse(dateFormat.format(date) + " " + time);
             return result.getTime();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
+    }
+    private AutoController getThis(){
+        return Main.applicationContext.getBean(this.getClass());
     }
 }

@@ -14,7 +14,7 @@ import java.io.*;
 import java.util.concurrent.Semaphore;
 
 @Component
-public class MainForm {
+public class MainForm{
     private JFrame frame;
 
     private JPanel mainPanel;
@@ -29,8 +29,9 @@ public class MainForm {
     private MainForm thisObject;
 
     private Semaphore startManualImport;
-    private Semaphore openProgressForm;
-    private Semaphore closeProgressForm;
+    private Semaphore closeMainForm;
+//    private Semaphore openProgressForm;
+//    private Semaphore closeProgressForm;
 
     @Autowired
     private SettingForm settingForm;
@@ -42,8 +43,9 @@ public class MainForm {
         frame = new JFrame("MainForm");
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.startManualImport = globalProperties.getStartManualImport();
-        this.openProgressForm = globalProperties.getOpenProgressForm();
-        this.closeProgressForm = globalProperties.getCloseProgressForm();
+        this.closeMainForm = globalProperties.getCloseMainForm();
+//        this.openProgressForm = globalProperties.getOpenProgressForm();
+//        this.closeProgressForm = globalProperties.getOpenMainForm();
 
         this.refresh();
 
@@ -58,7 +60,7 @@ public class MainForm {
         buttonStartImport.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("push button startImport!");
-                try{
+                try {
 //                    Load the properties
                     SafeProperties properties = new SafeProperties();
                     InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
@@ -66,18 +68,18 @@ public class MainForm {
                     inputStream.close();
 
 //                    Set new properties values
-                    properties.setProperty("start.date",textFieldStartDate.getText());
-                    properties.setProperty("end.date",textFieldEndDate.getText());
+                    properties.setProperty("start.date", textFieldStartDate.getText());
+                    properties.setProperty("end.date", textFieldEndDate.getText());
+                    properties.setProperty("copy.briefing.fileName", textFieldEndDate.getText());
 
 //                    Write the properties
                     FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);
-                    properties.store(fileOutputStream,null);
+                    properties.store(fileOutputStream, null);
                     fileOutputStream.close();
-                    frame.setVisible(false);
+//                    Close frame and start manual import
+//                    closeMainForm.release();
                     startManualImport.release();
-//                    closeProgressForm.acquire();
-                    frame.setVisible(true);
-                }catch (Exception exception) {
+                } catch (Exception exception) {
 //            是否需要日志处理？
                     exception.printStackTrace();
                 }
@@ -92,10 +94,10 @@ public class MainForm {
             properties.load(new InputStreamReader(inputStream, "utf-8"));
             inputStream.close();
             this.labelLatestDate.setText(properties.getProperty("latest.date"));
-            if (properties.getProperty("autoImport.swtich").equals("on")){
+            if (properties.getProperty("autoImport.swtich").equals("on")) {
                 this.labelAutoSwitch.setForeground(Color.green);
                 this.labelAutoSwitch.setText("已开启");
-            }else if (properties.getProperty("autoImport.swtich").equals("off")){
+            } else if (properties.getProperty("autoImport.swtich").equals("off")) {
                 this.labelAutoSwitch.setForeground(Color.red);
                 this.labelAutoSwitch.setText("已关闭");
             }
@@ -116,11 +118,10 @@ public class MainForm {
         this.initializeFrame();
     }
 
-    private void initializeFrame(){
+    private void initializeFrame() {
         frame.setContentPane(this.mainPanel);
 
-        Dimension frameSize = frame.getSize();
-//        Dimension frameSize = mainForm.mainPanel.getSize();
+//        Dimension frameSize = frame.getSize();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //
         int screenWidth = (int) screenSize.getWidth();
@@ -138,11 +139,11 @@ public class MainForm {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        setFrameVisible(true);
-//        frame.setVisible(true);
+        this.setFrameVisible(true);
+//        System.out.println("main form initialise");
     }
 
-    public void setFrameVisible(boolean flag){
+    public void setFrameVisible(boolean flag) {
         /**
          * @Author: wsy
          * @MethodName: setFrameVisible

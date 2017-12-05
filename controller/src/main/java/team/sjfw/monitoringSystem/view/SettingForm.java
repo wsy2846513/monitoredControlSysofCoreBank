@@ -137,6 +137,7 @@ public class SettingForm {
             SafeProperties properties = new SafeProperties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
+//            properties.load(new InputStreamReader(inputStream, "8859_1"));
             inputStream.close();
             if (properties.getProperty("autoImport.swtich").equals("on")) {
                 radioButtonAutoImportOn.setSelected(true);

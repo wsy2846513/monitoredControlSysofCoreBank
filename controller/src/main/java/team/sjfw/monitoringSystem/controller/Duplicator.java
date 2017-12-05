@@ -46,12 +46,21 @@ public class Duplicator {
 
     @Autowired
     private Deleter deleter;
-    private GlobalProperties globalProperties;
     @Autowired
-    public Duplicator(GlobalProperties tempProperties1) {
+    private GlobalProperties globalProperties;
+//    @Autowired
+//    public Duplicator(GlobalProperties tempProperties1) {
+//
+//    }
+    public Duplicator() {
+        initializeAll();
+    }
+
+    public void initializeAll() {
         try {
-            this.propertiesFilePath = tempProperties1.getPropertiesFilePath();
-            this.globalProperties = tempProperties1;
+            this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+//            this.propertiesFilePath = tempProperties1.getPropertiesFilePath();
+//            this.globalProperties = tempProperties1;
             Properties properties = new Properties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));

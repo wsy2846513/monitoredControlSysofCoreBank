@@ -65,7 +65,7 @@ public class ProgressForm implements Runnable {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                JOptionPane.showMessageDialog(null, "请等待数据梳理结束！");
+                JOptionPane.showMessageDialog(null, "请等待数据处理结束！");
             }
         });
 

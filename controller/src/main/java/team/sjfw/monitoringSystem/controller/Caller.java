@@ -46,12 +46,22 @@ public class Caller {
     @Autowired
     private CallCMD callCMD;
 
-    GlobalProperties globalProperties;
     @Autowired
-    public Caller(GlobalProperties tempProperties) {
-        try{
-            this.propertiesFilePath = tempProperties.getPropertiesFilePath();
-            this.globalProperties = tempProperties;
+    private GlobalProperties globalProperties;
+
+    //    @Autowired
+//    public Caller(GlobalProperties tempProperties) {
+//
+//    }
+    public Caller() {
+        this.initializeAll();
+    }
+
+    public void initializeAll() {
+        try {
+            this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+//            this.propertiesFilePath = tempProperties.getPropertiesFilePath();
+//            this.globalProperties = tempProperties;
             Properties properties = new Properties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
@@ -69,10 +79,9 @@ public class Caller {
             this.mysqlPassword = properties.getProperty("MySQL.password");
             this.mysqlPort = properties.getProperty("MySQL.port");
             this.mysqlDatabase = properties.getProperty("MySQL.database");
-        }catch (Exception exception){
+        } catch (Exception exception) {
 //            尚未决定等待日志处理或本处处理
         }
-
     }
 
     public void startAnalyseTwsp() {
@@ -103,7 +112,7 @@ public class Caller {
             processCalendar.add(Calendar.YEAR, 1);
             targetYear = processCalendar.get(Calendar.YEAR);
         }
-        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
+        for (Iterator<String> it = cmdCommandArr.iterator(); it.hasNext(); ) {
             callCMD.executeCmd(it.next());
             globalProperties.addCurrentCount(globalProperties.CALLER_ANALYSE_TWSP);
         }
@@ -169,12 +178,12 @@ public class Caller {
             fullCMDCommand.append(cmdHead);
             fullCMDCommand.append(twspSqlPath);
             fullCMDCommand.append("\\report_");
-            fullCMDCommand.append(CalendarTools.calendarToString(processCalendar,"yyyyMMdd"));
+            fullCMDCommand.append(CalendarTools.calendarToString(processCalendar, "yyyyMMdd"));
             fullCMDCommand.append(cmdTail);
             cmdCommandArr.add(fullCMDCommand.toString());
             processCalendar.add(Calendar.DATE, 1);
         }
-        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
+        for (Iterator<String> it = cmdCommandArr.iterator(); it.hasNext(); ) {
             callCMD.executeCmd(it.next());
             globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
         }

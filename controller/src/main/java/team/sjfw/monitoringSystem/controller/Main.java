@@ -9,10 +9,12 @@ import team.sjfw.monitoringSystem.view.ProgressForm;
 
 @Controller
 public class Main {
+//    Global variable
+    public static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MainConfig.class);
+
     @Autowired
-    private MainForm mainForm;
-//    @Autowired
-//    private ImportKit importKit;
+    private MainFormMonitor mainFormMonitor;
+
     @Autowired
     private AutoController autoController;
 
@@ -22,37 +24,27 @@ public class Main {
     @Autowired
     private ProgressMonitor progressMonitor;
 
+    private Thread mainFormThread;
     private Thread autoThread;
     private Thread manualThread;
     private Thread progressThread;
 
 
     public void start(){
-//        progressForm.initializeAll();
-
-        mainForm.initializeAll();
+//        autoController.setAutoTime();
+        mainFormThread = new Thread(mainFormMonitor);
+        mainFormThread.start();
         autoThread = new Thread(autoController);
         autoThread.start();
         manualThread = new Thread(manualController);
         manualThread.start();
         progressThread = new Thread(progressMonitor);
         progressThread.start();
-
-//        System.out.println("main.startImport");
-//        try {
-//            Thread.sleep(2000);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("main.finish");
-//        for (int i = 0; i < 2; ++i){
-//            new Thread(importKit).startImport();
-//        }
     }
 
     public static void main(String[] args) {
-        System.out.println("main startImport");
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MainConfig.class);
+//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MainConfig.class);
+//        System.out.println(Main.class);
         Main main = applicationContext.getBean(Main.class);
         main.start();
     }

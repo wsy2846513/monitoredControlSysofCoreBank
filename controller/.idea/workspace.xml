@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ce42444-ea0d-4765-9300-1a72ebb9556d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ProgressMonitor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ProgressMonitorConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/ProgressForm.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/ProgressForm.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/config/ProgressFormConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/team/sjfw/monitoringSystem/controller/Duplicator.class" afterPath="$PROJECT_DIR$/target/classes/team/sjfw/monitoringSystem/controller/Duplicator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Caller.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Caller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Duplicator.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Duplicator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/GlobalProperties.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/GlobalProperties.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ImportKit.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ImportKit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Main.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ManualController.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ManualController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/MasterController.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/MasterController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MainConfig.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MainConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MasterControllerConfig.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MasterControllerConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.java" afterPath="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/environment.properties" afterPath="$PROJECT_DIR$/src/main/resources/environment.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/environment_bk.properties" afterPath="$PROJECT_DIR$/src/main/resources/environment_bk.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/environment.properties" afterPath="$PROJECT_DIR$/target/classes/environment.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/environment_bk.properties" afterPath="$PROJECT_DIR$/target/classes/environment_bk.properties" />
-    </list>
+    <list default="true" id="0ce42444-ea0d-4765-9300-1a72ebb9556d" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,113 +10,120 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/controller$Main.coverage" NAME="Main Coverage Results" MODIFIED="1512399195869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>team.sjfw.monitoringSystem.controller.*</FILTER>
+    </SUITE>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="AutoController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/AutoController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-147">
+              <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3384#3385#0" expanded="true" />
+                <element signature="e#3455#3456#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SettingForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="146" column="87" lean-forward="true" selection-start-line="146" selection-start-column="87" selection-end-line="146" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutoControllerLogConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/AutoControllerLogConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutoControllerLog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/AutoControllerLog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#490#491#0" expanded="true" />
+                <element signature="e#568#569#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CallCmdLog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/CallCmdLog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="environment.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/environment.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="570">
+              <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProgressForm.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/ProgressForm.java">
+      <file leaf-file-name="SafeProperties.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pers/wsy/tools/SafeProperties.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="33" column="37" lean-forward="false" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+            <state relative-caret-position="377">
+              <caret line="248" column="24" lean-forward="true" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1312#1313#0" expanded="true" />
+                <element signature="e#1342#1343#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProgressMonitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ProgressMonitor.java">
+      <file leaf-file-name="environment_bk.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/environment_bk.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainForm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="228">
+              <caret line="12" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GlobalProperties.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/GlobalProperties.java">
+      <file leaf-file-name="MethodInvocationProceedingJoinPoint.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/aspectj/MethodInvocationProceedingJoinPoint.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-              <folding>
-                <element signature="e#3147#3148#0" expanded="true" />
-                <element signature="e#3211#3212#0" expanded="true" />
-                <element signature="e#3860#3861#0" expanded="true" />
-                <element signature="e#3895#3896#0" expanded="true" />
-                <element signature="e#3959#3960#0" expanded="true" />
-                <element signature="e#4019#4020#0" expanded="true" />
-                <element signature="e#4065#4066#0" expanded="true" />
-                <element signature="e#4100#4101#0" expanded="true" />
-                <element signature="e#4163#4164#0" expanded="true" />
-                <element signature="e#4223#4224#0" expanded="true" />
-                <element signature="e#4284#4285#0" expanded="true" />
-                <element signature="e#4340#4341#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MasterControllerConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MasterControllerConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+            <state relative-caret-position="399">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManualControllerConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ManualControllerConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImportKitConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ImportKitConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MasterController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/MasterController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
-              <caret line="77" column="40" lean-forward="false" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -161,7 +145,6 @@
       <find>astYear \= endDate\.get\(Calendar\.YEAR\)\;\n        int targetYear \= processDate\.get\(Calendar\.YEAR\)\;\n          long startTime \= System\.nanoTime\(\)\;\n        while \(targetYear \&lt;\= lastYear\)\{\n\/\/            解析twsp</find>
       <find>TRY</find>
       <find>logback</find>
-      <find>store</find>
       <find>reportImportAssistant</find>
       <find>frame</find>
       <find>getRefreshProperties</find>
@@ -169,6 +152,9 @@
       <find>environment</find>
       <find>setTarget</find>
       <find>setTargetCount</find>
+      <find>refresh</find>
+      <find>store</find>
+      <find>out</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -188,15 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/pers/wsy/test/EfficiencyTest/StringBufferEfficiency.java" />
-        <option value="$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/wsy/tools/CalendarTools.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/wsy/tools/DeleteTools.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/DeleterConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Deleter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/DuplicatorLog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/DuplicatorLogConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/CallCmdLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/Settings.form" />
         <option value="$PROJECT_DIR$/src/main/resources/en001.properties" />
@@ -206,46 +183,56 @@
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/config/SettingFormConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/DuplicatorConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.form" />
-        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/CallCmdLog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/SettingFormLog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/SettingFormLogConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.form" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/wsy/tools/SafeProperties.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/config/MainFormConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/AutoImportConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/AutoControllerConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ManualImport.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ManualImportConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/AutoImport.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ManualControllerConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/AutoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/CallCMD.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/config/ProcessFormConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/ProgressForm.form" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MasterControllerConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ImportKit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ManualController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Duplicator.java" />
         <option value="$PROJECT_DIR$/src/main/resources/environment_bk.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/environment.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/MasterController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Caller.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ProgressMonitorConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Duplicator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Caller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/MasterController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/ProgressForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MainFormMonitorConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ProgressMonitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/MainFormMonitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ImportKit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/MainLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/CallCmdLogConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/SettingFormLogConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/CallCmdLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/SettingFormLog.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ManualController.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MainConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/GlobalProperties.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ProgressMonitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/AutoControllerLogConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/AutoControllerConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/ProgressForm.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/a.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/te.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/t.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/GlobalProperties.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/AutoController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/AutoControllerLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/wsy/tools/SafeProperties.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/environment.properties" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="24" />
-    <option name="width" value="1280" />
-    <option name="height" value="776" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -263,10 +250,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,6 +285,23 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wsy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wsy" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="monitoringSystem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -308,6 +312,35 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="monitoringSystem" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="monitoringSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="monitoringSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="log" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="monitoringSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="log" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="controller" type="b2602c69:ProjectViewProjectNode" />
@@ -317,6 +350,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="monitoringSystem" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="monitoringSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="SettingForm" type="e9f4de52:FormNode" />
             </path>
             <path>
               <item name="controller" type="b2602c69:ProjectViewProjectNode" />
@@ -339,6 +382,11 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="controller" type="b2602c69:ProjectViewProjectNode" />
@@ -368,6 +416,10 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE" value="right" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="team.sjfw.monitoringSystem.log.config" />
+      <recent name="team.sjfw.monitoringSystem.controller.config" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="F:\IdeaProjects-Java\monitoredControlSysofCoreBank\controller\src\main\resources" />
@@ -549,34 +601,35 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1280" height="776" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="650" y="207" width="619" height="625" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3125926" sideWeight="0.48454157" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31161782" sideWeight="0.48454157" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42518517" sideWeight="0.5267423" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42453855" sideWeight="0.52878463" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42518517" sideWeight="0.4732577" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42453855" sideWeight="0.47121534" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32592592" sideWeight="0.490625" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22366288" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22547974" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3257329" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959481" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39555556" sideWeight="0.48560768" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39522257" sideWeight="0.48560768" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32592592" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -586,16 +639,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.java</url>
-          <line>74</line>
+          <url>file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Main.java</url>
+          <line>33</line>
           <properties />
-          <option name="timeStamp" value="85" />
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ProgressMonitor.java</url>
-          <line>30</line>
+          <url>file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/AutoController.java</url>
+          <line>40</line>
           <properties />
-          <option name="timeStamp" value="86" />
+          <option name="timeStamp" value="100" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>
@@ -604,7 +657,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="87" />
+      <option name="time" value="101" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -614,175 +667,11 @@
         <watch expression="fullCMDCommand" language="JAVA" />
       </configuration>
       <configuration name="Application">
-        <watch expression="((Duplicator)this).globalProperties" custom="team.sjfw.monitoringSystem.controller.Duplicator" />
+        <watch expression="closeProgressForm" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback_bk1.xml" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.12.RELEASE/spring-beans-4.3.12.RELEASE.jar!/org/springframework/beans/factory/support/DefaultListableBeanFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="1196" column="33" lean-forward="false" selection-start-line="1196" selection-start-column="33" selection-end-line="1196" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/en001.properties" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/CallCmdLogConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="61" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="87" column="43" lean-forward="false" selection-start-line="87" selection-start-column="43" selection-end-line="89" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="515" column="0" lean-forward="false" selection-start-line="515" selection-start-column="0" selection-end-line="515" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/SettingFormLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="39" column="81" lean-forward="false" selection-start-line="39" selection-start-column="69" selection-end-line="39" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/SettingFormLogConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/wsy/tools/SafeProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="96" column="21" lean-forward="true" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/main/config/Mainconfig.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/DeleterConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/CallCMDConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/CallCmdLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="22" column="42" lean-forward="false" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ManualImport.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ManualImportConfig.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/AutoControllerConfig.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/config/SettingFormConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/CallerConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Deleter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/CallCMD.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/wsy/tools/CalendarTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="24" column="37" lean-forward="false" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/config/MainFormConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/AutoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/config/ProgressFormConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/GlobalPropertiesConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/DuplicatorConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.12.RELEASE/spring-beans-4.3.12.RELEASE.jar!/org/springframework/beans/factory/support/SimpleInstantiationStrategy.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -797,183 +686,411 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/environment_bk.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/environment.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="31" column="34" lean-forward="false" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ManualController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-74">
-          <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Duplicator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3474#3482#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Caller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="196" column="0" lean-forward="false" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3275#3283#0" expanded="true" />
-            <element signature="e#4656#4664#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/ProgressForm.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ImportKit.java">
+    <entry file="jar:///opt/jdk1.8.0_144/src.zip!/java/lang/Thread.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Deleter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-454">
-          <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="29" />
+        <state relative-caret-position="361">
+          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MasterControllerConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Caller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ManualControllerConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ImportKitConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="72" />
-          <folding />
+        <state relative-caret-position="382">
+          <caret line="59" column="33" lean-forward="true" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1369#1370#0" expanded="false" />
+            <element signature="e#1405#1406#0" expanded="false" />
+            <element signature="e#3497#3505#0" expanded="false" />
+            <element signature="e#4881#4889#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/MasterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="77" column="40" lean-forward="false" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MainConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ProgressMonitorConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="133">
           <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/GlobalProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-          <folding>
-            <element signature="e#3147#3148#0" expanded="true" />
-            <element signature="e#3211#3212#0" expanded="true" />
-            <element signature="e#3860#3861#0" expanded="true" />
-            <element signature="e#3895#3896#0" expanded="true" />
-            <element signature="e#3959#3960#0" expanded="true" />
-            <element signature="e#4019#4020#0" expanded="true" />
-            <element signature="e#4065#4066#0" expanded="true" />
-            <element signature="e#4100#4101#0" expanded="true" />
-            <element signature="e#4163#4164#0" expanded="true" />
-            <element signature="e#4223#4224#0" expanded="true" />
-            <element signature="e#4284#4285#0" expanded="true" />
-            <element signature="e#4340#4341#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-432">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///opt/jdk1.8.0_144/src.zip!/java/lang/Thread.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/config/SettingFormConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="752" column="31" lean-forward="false" selection-start-line="752" selection-start-column="31" selection-end-line="752" selection-end-column="31" />
+        <state relative-caret-position="304">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ImportKit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="32" column="36" lean-forward="true" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ProgressMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="499">
+          <caret line="42" column="39" lean-forward="true" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/MainFormMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="176">
+          <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/MainLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#453#454#0" expanded="false" />
+            <element signature="e#503#504#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ImportKitConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/CallCMDConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.12.RELEASE/spring-beans-4.3.12.RELEASE.jar!/org/springframework/beans/factory/annotation/AutowiredAnnotationBeanPostProcessor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="530" column="0" lean-forward="false" selection-start-line="530" selection-start-column="0" selection-end-line="530" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/SettingFormLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="28" column="48" lean-forward="true" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/ProgressForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="33" column="37" lean-forward="false" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+        <state relative-caret-position="347">
+          <caret line="78" column="23" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/CallCMD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/ManualController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="22" />
+          <folding>
+            <element signature="e#673#674#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/SettingFormLogConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MainFormMonitorConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/DuplicatorConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Duplicator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="58" column="29" lean-forward="false" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3680#3688#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/ManualControllerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/CallCmdLogConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MasterControllerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="14" column="82" lean-forward="false" selection-start-line="14" selection-start-column="82" selection-end-line="14" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/aspectj/AbstractAspectJAdvice.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="409" column="0" lean-forward="false" selection-start-line="409" selection-start-column="0" selection-end-line="409" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/aspectj/AspectJAroundAdvice.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/AutoControllerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/a.properties" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/MainForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1235">
+          <caret line="75" column="95" lean-forward="false" selection-start-line="75" selection-start-column="95" selection-end-line="75" selection-end-column="95" />
+          <folding>
+            <marker date="1512396090053" expanded="true" signature="5840:6024" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/te.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="86" column="20" lean-forward="true" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/GlobalProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/t.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="39" column="42" lean-forward="false" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/interceptor/ExposeInvocationInterceptor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.12.RELEASE/spring-core-4.3.12.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/aspectj/MethodInvocationProceedingJoinPoint.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.12.RELEASE/spring-aop-4.3.12.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="476" column="0" lean-forward="false" selection-start-line="476" selection-start-column="0" selection-end-line="476" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/config/MainConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="17" column="53" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/controller/AutoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-147">
+          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3384#3385#0" expanded="true" />
+            <element signature="e#3455#3456#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/AutoControllerLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#568#569#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/config/AutoControllerLogConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/log/CallCmdLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/team/sjfw/monitoringSystem/view/SettingForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="146" column="87" lean-forward="true" selection-start-line="146" selection-start-column="87" selection-end-line="146" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/environment_bk.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/wsy/tools/SafeProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="248" column="24" lean-forward="true" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
+          <folding>
+            <element signature="e#1312#1313#0" expanded="true" />
+            <element signature="e#1342#1343#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/environment.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -9,24 +9,17 @@ import java.util.concurrent.Semaphore;
 
 @Controller
 public class ManualController implements Runnable{
-    private String propertiesFilePath;
     private Semaphore startManualImport;
-//    private Semaphore allowImport;
-//    private Semaphore openProgressForm;
-//
-////    Do not use autowired here, because the masterController need to get the newest properties all the time.
-////    When autowired here, the ImportKit object will be established and the masterController will get bean and properties.
-////    Then if any values changed in property files, the masterController would still use the old properties rather than
-////    the newest prpperties.
-//    //    @Autowired
-//    private MasterController masterController;
+    @Autowired
+    private ImportKit importKit;
 
     @Autowired
     public ManualController(GlobalProperties globalProperties) {
-//        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         startManualImport = globalProperties.getStartManualImport();
-//        allowImport = globalProperties.getAllowImport();
-//        openProgressForm = globalProperties.getOpenProgressForm();
+    }
+
+    public String test() {
+        return "awegasd";
     }
 
     @Override
@@ -35,8 +28,9 @@ public class ManualController implements Runnable{
             try {
                 System.out.println("ManualController waiting ...");
                 startManualImport.acquire();
-                ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MasterControllerConfig.class);
-                Thread importKitThread = new Thread(applicationContext.getBean(ImportKit.class));
+//                ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MasterControllerConfig.class);
+//                Thread importKitThread = new Thread(applicationContext.getBean(ImportKit.class));
+                Thread importKitThread = new Thread(importKit);
                 importKitThread.start();
                 importKitThread.join();
                 System.out.println("ManualController finished");
