@@ -18,40 +18,42 @@ import java.util.concurrent.Semaphore;
 @Controller
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class GlobalProperties {
-//    Properties file path in linux.
+    //    Properties file path in linux.
 //    private String propertiesFilePath = "./src/main/resources/environment.properties";
 //    Properties file path in windows.
     private static String propertiesFilePath = "./src/main/resources/environment.properties";
-//    private static String propertiesFilePath = "./src/main/resources/t.properties";
 
-//    Only one ImportKit thread can run at a time.
+    //    Only one ImportKit thread can run at a time.
     private static Semaphore allowImport = new Semaphore(1);
 
-//    When properties file was changed, such as auto.time, the SettingForm will release
+    //    When properties file was changed, such as auto.time, the SettingForm will release
 // one and the AutoController will require one.
     private static Semaphore refreshProperties = new Semaphore(0);
 
-//    When the ImportKit was started, it will release one and the ProgressForm will require one.
+    //    When the ImportKit was started, it will release one and the ProgressForm will require one.
     private static Semaphore openProgressForm = new Semaphore(0);
 
-//    When the ImportKit was finished, it will release one and the MainformMonitor will require one.
+    //    When the ImportKit was finished, it will release one and the MainformMonitor will require one.
     private static Semaphore openMainForm = new Semaphore(1);
 
-//    When the ImportKit was started, it will release one and the MainformMonitor will require one.
+    //    When the ImportKit was started, it will release one and the MainformMonitor will require one.
     private static Semaphore closeMainForm = new Semaphore(0);
 
-//    When StartImport button was clicked, the MainForm will release one and
+    //    When StartImport button was clicked, the MainForm will release one and
 // the ManualController will require one.
     private static Semaphore startManualImport = new Semaphore(0);
 
-//    The targetCount and currentCount are used to get completion percent of one ImportKit task.
+    //    When any error occurs, the semaphore will be released.
+//    private static Semaphore errorOccured = new Semaphore(0);
+
+    //    The targetCount and currentCount are used to get completion percent of one ImportKit task.
 // There is no need to use "synchronized" because only one thread will write and only another
 // one thread will read it.
     private static int targetCount;
     private static int currentCount;
 
     private static int numofDaystoProcessed;
-    private static boolean errorOccured;
+        private static boolean errorOccured;
     private static String errorMessage;
     public static final int DUPLICATOR_DELETE_POINT = 1;
     public static final int DUPLICATOR_COPY_POINT = 1;
@@ -61,7 +63,6 @@ public class GlobalProperties {
     public static final int CALLER_IMPORT_SQL = 1;
     public static final int CALLER_REPORT_IMPORT_ASSISTANT = 3;
     public static final int PROGRESS_FORM_REFRESH_MILLISECOND = 1000;
-
 
 
     public static String getPropertiesFilePath() {
@@ -88,11 +89,19 @@ public class GlobalProperties {
         return openMainForm;
     }
 
-    public static int getPercentage() {
-        return (int)(currentCount * 100.0 / targetCount);
+    public static Semaphore getCloseMainForm() {
+        return closeMainForm;
     }
 
-    public static void setTargetCount(int targetCount) {
+//    public static Semaphore getErrorOccured() {
+//        return errorOccured;
+//    }
+
+    public static int getPercentage() {
+        return (int) (currentCount * 100.0 / targetCount);
+    }
+
+    public void setTargetCount(int targetCount) {
         GlobalProperties.targetCount = targetCount;
     }
 
@@ -124,7 +133,7 @@ public class GlobalProperties {
         return errorMessage;
     }
 
-    public static void setErrorMessage(String errorMessage) {
+    public void setErrorMessage(String errorMessage) {
         GlobalProperties.errorMessage = errorMessage;
     }
 
@@ -132,7 +141,5 @@ public class GlobalProperties {
         return PROGRESS_FORM_REFRESH_MILLISECOND;
     }
 
-    public static Semaphore getCloseMainForm() {
-        return closeMainForm;
-    }
+
 }

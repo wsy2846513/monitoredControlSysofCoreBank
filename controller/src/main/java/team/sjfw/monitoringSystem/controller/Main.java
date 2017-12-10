@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
-import team.sjfw.monitoringSystem.view.MainForm;
-import team.sjfw.monitoringSystem.view.ProgressForm;
 
 @Controller
 public class Main {
@@ -31,7 +29,6 @@ public class Main {
 
 
     public void start(){
-//        autoController.setAutoTime();
         mainFormThread = new Thread(mainFormMonitor);
         mainFormThread.start();
         autoThread = new Thread(autoController);

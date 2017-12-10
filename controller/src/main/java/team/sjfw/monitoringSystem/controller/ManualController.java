@@ -1,14 +1,12 @@
 package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 
 import java.util.concurrent.Semaphore;
 
 @Controller
-public class ManualController implements Runnable{
+public class ManualController implements Runnable {
     private Semaphore startManualImport;
     @Autowired
     private ImportKit importKit;
@@ -18,25 +16,38 @@ public class ManualController implements Runnable{
         startManualImport = globalProperties.getStartManualImport();
     }
 
-    public String test() {
-        return "awegasd";
-    }
-
     @Override
     public void run() {
-        while (true){
+        while (true) {
             try {
+//                ManualController t = getThis();
                 System.out.println("ManualController waiting ...");
                 startManualImport.acquire();
-//                ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MasterControllerConfig.class);
-//                Thread importKitThread = new Thread(applicationContext.getBean(ImportKit.class));
                 Thread importKitThread = new Thread(importKit);
                 importKitThread.start();
                 importKitThread.join();
                 System.out.println("ManualController finished");
+//                getThis().waitForImport();
+//                getThis().startImport();
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
         }
+    }
+
+    private ManualController getThis() {
+        return Main.applicationContext.getBean(this.getClass());
+    }
+
+    private void waitForImport() throws Exception {
+        System.out.println("ManualController waiting ...");
+        startManualImport.acquire();
+    }
+
+    private void startImport() throws Exception {
+        Thread importKitThread = new Thread(importKit);
+        importKitThread.start();
+        importKitThread.join();
+        System.out.println("ManualController finished");
     }
 }

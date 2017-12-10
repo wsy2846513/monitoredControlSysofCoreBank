@@ -5,9 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import team.sjfw.monitoringSystem.controller.GlobalProperties;
+import team.sjfw.monitoringSystem.log.config.AutoControllerLogConfig;
+import team.sjfw.monitoringSystem.log.config.GlobalPropertiesLogConfig;
+import team.sjfw.monitoringSystem.log.config.ImportKitLogConfig;
 
 @Configuration
-@Import({GlobalProperties.class,ImportKitConfig.class})
+@Import({GlobalProperties.class, ImportKitConfig.class, AutoControllerLogConfig.class})
 @ComponentScan(basePackages = {"team.sjfw.monitoringSystem.controller"})
 //@EnableAspectJAutoProxy(exposeProxy=true,proxyTargetClass=true)
 

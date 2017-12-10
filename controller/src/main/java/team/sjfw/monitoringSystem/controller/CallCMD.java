@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class CallCMD {
     private Process process;
 
-    public ArrayList<String> executeCmd(String parameter) {
+    public ArrayList<String> executeCmd(String parameter) throws Exception{
         /**
          * @Author: wsy
          * @MethodName: executeCmd
@@ -23,22 +23,44 @@ public class CallCMD {
 
         ArrayList<String> cmdLog = new ArrayList<String>();
         String lineData;
-        try {
+
 //            System.out.println("CallCMD:\t" + parameter);
 
             process = Runtime.getRuntime().exec(parameter);
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "GBK"));
-//
-//            while ((lineData = reader.readLine()) != null) {
-//                cmdLog.add(lineData);
-//            }
-            return cmdLog;
-        } catch (Exception e) {
-            //异常处理的信息部分，由日志负责，此处只处理逻辑部分、
-            return null;
-        }
-    }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "GBK"));
 
+            while ((lineData = reader.readLine()) != null) {
+                cmdLog.add(lineData);
+            }
+            return cmdLog;
+    }
+//    public ArrayList<String> executeCmd(String parameter) {
+//        /**
+//         * @Author: wsy
+//         * @MethodName: executeCmd
+//         * @Return: java.io.BufferedReader
+//         * @Param: [parameter]
+//         * @Description:
+//         * @Date: 2017/11/13 21:32
+//         **/
+//
+//        ArrayList<String> cmdLog = new ArrayList<String>();
+//        String lineData;
+//        try {
+////            System.out.println("CallCMD:\t" + parameter);
+//
+////            process = Runtime.getRuntime().exec(parameter);
+////            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "GBK"));
+////
+////            while ((lineData = reader.readLine()) != null) {
+////                cmdLog.add(lineData);
+////            }
+//            return cmdLog;
+//        } catch (Exception e) {
+//            //异常处理的信息部分，由日志负责，此处只处理逻辑部分、
+//            return null;
+//        }
+//    }
     public ArrayList<String> executeCmdArr(ArrayList<String> cmdCommandArr) {
         /**
          * @Author: wsy

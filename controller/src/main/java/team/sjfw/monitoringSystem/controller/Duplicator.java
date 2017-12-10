@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.concurrent.Semaphore;
 
 /**
  * @Tittle: Duplicator.java
@@ -46,21 +47,16 @@ public class Duplicator {
 
     @Autowired
     private Deleter deleter;
+
     @Autowired
     private GlobalProperties globalProperties;
-//    @Autowired
-//    public Duplicator(GlobalProperties tempProperties1) {
-//
-//    }
-    public Duplicator() {
-        initializeAll();
-    }
 
-    public void initializeAll() {
-        try {
+//    public Duplicator() {
+//        initializeAll();
+//    }
+
+    public void initializeAll() throws Exception{
             this.propertiesFilePath = globalProperties.getPropertiesFilePath();
-//            this.propertiesFilePath = tempProperties1.getPropertiesFilePath();
-//            this.globalProperties = tempProperties1;
             Properties properties = new Properties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
@@ -74,25 +70,16 @@ public class Duplicator {
             this.startDate = CalendarTools.StringToCalendar(properties.getProperty("start.date"), "yyyy-MM-dd");
             this.endDate = CalendarTools.StringToCalendar(properties.getProperty("end.date"), "yyyy-MM-dd");
             this.latestDate = CalendarTools.StringToCalendar(properties.getProperty("latest.date"), "yyyy-MM-dd");
-
-        } catch (Exception exception) {
-//            尚未决定等待日志处理或本处处理
-        }
     }
 
-    public void deleteFiles(){
-        try{
-            deleter.deleteFilesInFolder(twspDestPath);
-            deleter.deleteFilesInFolder(briefingDestPath);
-            globalProperties.addCurrentCount(globalProperties.DUPLICATOR_DELETE_POINT);
-        }catch (Exception e){
-//            提示信息由日志处理，此处继续执行
-            e.printStackTrace();
-        }
+    public void deleteFiles() throws Exception {
+        deleter.deleteFilesInFolder(twspDestPath);
+        deleter.deleteFilesInFolder(briefingDestPath);
+        globalProperties.addCurrentCount(globalProperties.DUPLICATOR_DELETE_POINT);
     }
 
 
-    public void copyFiles() {
+    public void copyFiles() throws Exception{
         /**
          * @Author: wsy
          * @MethodName: copyFiles
@@ -140,7 +127,7 @@ public class Duplicator {
 
             processCalendar.add(Calendar.DATE, 1);
         }
-        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
+        for (Iterator<String> it = cmdCommandArr.iterator(); it.hasNext(); ) {
             try {
                 Thread.sleep(1100);
             } catch (InterruptedException e) {
@@ -150,9 +137,4 @@ public class Duplicator {
             globalProperties.addCurrentCount(globalProperties.DUPLICATOR_COPY_POINT);
         }
     }
-
-//    public void startCopy(){
-//        this.deleteFiles();
-//        this.copyFiles();
-//    }
 }

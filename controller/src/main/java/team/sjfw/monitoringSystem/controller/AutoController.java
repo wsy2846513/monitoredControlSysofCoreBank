@@ -68,6 +68,8 @@ public class AutoController implements Runnable {
     public void run() {
         while (true) {
             try {
+//                AutoController t = getThis();
+//                getThis获取的不是本对象?
                 getThis().startScheduledThread();
                 refreshProperties.acquire();
             } catch (Exception exception) {
@@ -99,4 +101,10 @@ public class AutoController implements Runnable {
     private AutoController getThis(){
         return Main.applicationContext.getBean(this.getClass());
     }
+
+//    @Autowired
+//    private AutoController getT(AutoController a){
+//
+//        return a;
+//    }
 }

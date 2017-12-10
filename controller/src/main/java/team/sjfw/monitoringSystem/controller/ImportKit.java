@@ -27,12 +27,9 @@ public class ImportKit implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println("Import kit thread (id = " + Thread.currentThread().getId() + ")\tget started!!!!!!!!!!!!!!!!!!");
-            System.out.println("Try to get allowImport!");
             allowImport.acquire();
             closeMainForm.release();
             openProgressForm.release();
-            System.out.println("MasterController is starting import.");
             masterController.startImport();
             allowImport.release();
         } catch (Exception exception) {

@@ -18,12 +18,14 @@ public class Deleter {
     public boolean deleteFilesInFolder(String folderPath) throws Exception {
         File folder = new File(folderPath);
         if (!folder.isDirectory()) {
-            throw new Exception("It is not a folder:" + folderPath);
-        }
-        String[] fileList = folder.list();
-        for (int i = 0; i < fileList.length; i++) {
-            File toDelete = new File(folderPath + "\\" + fileList[i]);
-            toDelete.delete();
+            throw new Exception("It is not an available folder: " + folderPath);
+
+        }else{
+            String[] fileList = folder.list();
+            for (int i = 0; i < fileList.length; i++) {
+                File toDelete = new File(folderPath + "\\" + fileList[i]);
+                toDelete.delete();
+            }
         }
         return true;
     }

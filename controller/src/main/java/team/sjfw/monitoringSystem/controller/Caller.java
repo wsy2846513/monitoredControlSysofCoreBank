@@ -84,7 +84,7 @@ public class Caller {
         }
     }
 
-    public void startAnalyseTwsp() {
+    public void startAnalyseTwsp() throws Exception{
         /**
          * @Author: wsy
          * @MethodName: startAnalyseTwsp
@@ -118,7 +118,7 @@ public class Caller {
         }
     }
 
-    public void startAnalyseBriefing() {
+    public void startAnalyseBriefing() throws Exception{
         /**
          * @Author: wsy
          * @MethodName: startAnalyseBriefing
@@ -146,7 +146,7 @@ public class Caller {
         globalProperties.addCurrentCount(globalProperties.CALLER_ANALYSE_BRIEFING);
     }
 
-    public void startImportSql() {
+    public void startImportSql() throws Exception{
         /**
          * @Author: wsy
          * @MethodName: startImportSql

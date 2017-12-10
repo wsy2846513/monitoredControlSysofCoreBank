@@ -6,6 +6,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass=true)
+//@EnableAspectJAutoProxy
 @ComponentScan(basePackages = "team.sjfw.monitoringSystem.log")
 public class AutoControllerLogConfig {
 }

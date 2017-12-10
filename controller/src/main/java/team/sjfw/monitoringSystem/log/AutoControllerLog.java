@@ -10,8 +10,9 @@ import org.springframework.stereotype.Component;
 public class AutoControllerLog {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @AfterReturning(returning = "autoTime",pointcut = "execution(* team.sjfw.monitoringSystem.controller.AutoController.setAutoTime(..))")
+    @AfterReturning(returning = "autoTime",
+            pointcut = "execution(* team.sjfw.monitoringSystem.controller.AutoController.setAutoTime(..))")
     public void beforeStartLog(Object autoTime){
-        logger.info("AFTER----Auto import time is set to {}",autoTime);
+        logger.info("Auto import time is set to {}",autoTime);
     }
 }
