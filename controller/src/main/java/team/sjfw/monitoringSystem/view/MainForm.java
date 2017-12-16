@@ -59,7 +59,6 @@ public class MainForm{
         });
         buttonStartImport.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("push button startImport!");
                 try {
 //                    Load the properties
                     SafeProperties properties = new SafeProperties();

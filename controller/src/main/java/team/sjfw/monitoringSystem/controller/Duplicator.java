@@ -51,10 +51,6 @@ public class Duplicator {
     @Autowired
     private GlobalProperties globalProperties;
 
-//    public Duplicator() {
-//        initializeAll();
-//    }
-
     public void initializeAll() throws Exception{
             this.propertiesFilePath = globalProperties.getPropertiesFilePath();
             Properties properties = new Properties();
@@ -94,6 +90,7 @@ public class Duplicator {
 
         while (!processCalendar.after(endDate)) {
             handleCalendarString = CalendarTools.calendarToString(processCalendar, "yyyy-MM-dd");
+            String exitCode;
 
 //            copy twsp files
             fullCmdCommand.setLength(0);
@@ -108,7 +105,9 @@ public class Duplicator {
             fullCmdCommand.append(twspDestPath);
             fullCmdCommand.append("\\ ");
             fullCmdCommand.append(cmdEnd);
-            cmdCommandArr.add(fullCmdCommand.toString());
+
+            exitCode = callCMD.executeCmd(fullCmdCommand.toString()).get(0);
+            globalProperties.addCurrentCount(globalProperties.DUPLICATOR_COPY_POINT);
 
 //            copy briefing files
             fullCmdCommand.setLength(0);
@@ -123,18 +122,22 @@ public class Duplicator {
             fullCmdCommand.append(briefingDestPath);
             fullCmdCommand.append("\\ ");
             fullCmdCommand.append(cmdEnd);
-            cmdCommandArr.add(fullCmdCommand.toString());
+
+            exitCode = callCMD.executeCmd(fullCmdCommand.toString()).get(0);
+            globalProperties.addCurrentCount(globalProperties.DUPLICATOR_COPY_POINT);
+
+//            When copy both twsp and briefing files successfully in one day, it is seemed to import the data successfully
+            if (Integer.parseInt(exitCode) == 0){
+                updateLatestDate(processCalendar);
+            }
 
             processCalendar.add(Calendar.DATE, 1);
         }
-        for (Iterator<String> it = cmdCommandArr.iterator(); it.hasNext(); ) {
-            try {
-                Thread.sleep(1100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            callCMD.executeCmd(it.next());
-            globalProperties.addCurrentCount(globalProperties.DUPLICATOR_COPY_POINT);
+    }
+
+    private void updateLatestDate(Calendar date) {
+        if (date.after(latestDate)) {
+            globalProperties.setLatestDate(CalendarTools.calendarToString(date,"yyyy-MM-dd"));
         }
     }
 }

@@ -13,6 +13,6 @@ public class AutoControllerLog {
     @AfterReturning(returning = "autoTime",
             pointcut = "execution(* team.sjfw.monitoringSystem.controller.AutoController.setAutoTime(..))")
     public void beforeStartLog(Object autoTime){
-        logger.info("Auto import time is set to {}",autoTime);
+        logger.info("Auto import time is set to {}.",autoTime);
     }
 }

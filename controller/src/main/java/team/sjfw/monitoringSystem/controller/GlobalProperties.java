@@ -51,9 +51,9 @@ public class GlobalProperties {
 // one thread will read it.
     private static int targetCount;
     private static int currentCount;
-
+    private static String latestDate;
     private static int numofDaystoProcessed;
-        private static boolean errorOccured;
+    private static boolean errorOccured;
     private static String errorMessage;
     public static final int DUPLICATOR_DELETE_POINT = 1;
     public static final int DUPLICATOR_COPY_POINT = 1;
@@ -133,7 +133,7 @@ public class GlobalProperties {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage) {
+    public void setErrorMessage(String errorMessage,Exception exception) {
         GlobalProperties.errorMessage = errorMessage;
     }
 
@@ -141,5 +141,11 @@ public class GlobalProperties {
         return PROGRESS_FORM_REFRESH_MILLISECOND;
     }
 
+    public static String getLatestDate() {
+        return latestDate;
+    }
 
+    public static void setLatestDate(String latestDate) {
+        GlobalProperties.latestDate = latestDate;
+    }
 }

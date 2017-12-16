@@ -28,7 +28,7 @@ public class SettingFormLog {
             pjp.proceed();
             logger.info("initialize complete!");
         } catch (Throwable t) {
-            logger.error("Catch exception in method:{},parameters:{}", pjp.getSignature(), pjp.getArgs(), t);
+            logger.error("Catch exception in method:{},parameters:{}.", pjp.getSignature(), pjp.getArgs(), t);
 
         }
     }
@@ -40,7 +40,7 @@ public class SettingFormLog {
             pjp.proceed();
             logger.info("save complete!");
         } catch (Throwable t) {
-            logger.error("Catch exception in method:{},parameters:{}", pjp.getSignature(), pjp.getArgs(), t);
+            logger.error("Catch exception in method:{},parameters:{}.", pjp.getSignature(), pjp.getArgs(), t);
 
         }
     }

@@ -26,7 +26,6 @@ public class ManualController implements Runnable {
                 Thread importKitThread = new Thread(importKit);
                 importKitThread.start();
                 importKitThread.join();
-                System.out.println("ManualController finished");
 //                getThis().waitForImport();
 //                getThis().startImport();
             } catch (Exception exception) {

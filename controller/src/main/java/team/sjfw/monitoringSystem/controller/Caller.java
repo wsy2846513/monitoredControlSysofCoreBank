@@ -30,7 +30,7 @@ public class Caller {
     private String twspAnalysisProgram;
     private String twspSqlPath;
     private String briefingSrcPath;
-    private String briefingAnalysisPath;
+    private String briefingAnalysisProgram;
     private String briefingSqlPath;
     private String mysqlHost;
     private String mysqlUser;
@@ -39,6 +39,8 @@ public class Caller {
     private String mysqlDatabase;
     private String cmdHead = "PYTHON ";
     private String propertiesFilePath;
+    private String reportImportAssistantProgram;
+    private String criticalPathProgram;
 
     private Calendar startDate;
     private Calendar endDate;
@@ -49,19 +51,13 @@ public class Caller {
     @Autowired
     private GlobalProperties globalProperties;
 
-    //    @Autowired
-//    public Caller(GlobalProperties tempProperties) {
-//
+//    public Caller() {
+//        this.initializeAll();
 //    }
-    public Caller() {
-        this.initializeAll();
-    }
 
     public void initializeAll() {
         try {
             this.propertiesFilePath = globalProperties.getPropertiesFilePath();
-//            this.propertiesFilePath = tempProperties.getPropertiesFilePath();
-//            this.globalProperties = tempProperties;
             Properties properties = new Properties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
@@ -70,7 +66,7 @@ public class Caller {
             this.twspAnalysisProgram = properties.getProperty("program.twsp.analysePath");
             this.twspSqlPath = properties.getProperty("program.twsp.sqlPath");
             this.briefingSrcPath = properties.getProperty("copy.briefing.destPath");
-            this.briefingAnalysisPath = properties.getProperty("program.briefing.analysePath");
+            this.briefingAnalysisProgram = properties.getProperty("program.briefing.analysePath");
             this.briefingSqlPath = properties.getProperty("program.briefing.sqlPath");
             this.startDate = CalendarTools.StringToCalendar(properties.getProperty("start.date"), "yyyy-MM-dd");
             this.endDate = CalendarTools.StringToCalendar(properties.getProperty("end.date"), "yyyy-MM-dd");
@@ -79,12 +75,14 @@ public class Caller {
             this.mysqlPassword = properties.getProperty("MySQL.password");
             this.mysqlPort = properties.getProperty("MySQL.port");
             this.mysqlDatabase = properties.getProperty("MySQL.database");
+            this.reportImportAssistantProgram = properties.getProperty("program.reportImportAssistant.path");
+            this.criticalPathProgram = properties.getProperty("program.critical.path");
         } catch (Exception exception) {
 //            尚未决定等待日志处理或本处处理
         }
     }
 
-    public void startAnalyseTwsp() throws Exception{
+    public void startAnalyseTwsp() throws Exception {
         /**
          * @Author: wsy
          * @MethodName: startAnalyseTwsp
@@ -114,11 +112,12 @@ public class Caller {
         }
         for (Iterator<String> it = cmdCommandArr.iterator(); it.hasNext(); ) {
             callCMD.executeCmd(it.next());
-            globalProperties.addCurrentCount(globalProperties.CALLER_ANALYSE_TWSP);
         }
+//        Because analyse twsp count 1 point, addCurrentCount out of the for-loop
+        globalProperties.addCurrentCount(globalProperties.CALLER_ANALYSE_TWSP);
     }
 
-    public void startAnalyseBriefing() throws Exception{
+    public void startAnalyseBriefing() throws Exception {
         /**
          * @Author: wsy
          * @MethodName: startAnalyseBriefing
@@ -128,25 +127,21 @@ public class Caller {
          * @Date: 2017/11/13 21:33
          **/
 
-        ArrayList<String> cmdCommandArr = new ArrayList<String>();
         StringBuffer fullCMDCommand = new StringBuffer();
         fullCMDCommand.setLength(0);
         fullCMDCommand.append(cmdHead);
-        fullCMDCommand.append(briefingAnalysisPath);
+        fullCMDCommand.append(briefingAnalysisProgram);
         fullCMDCommand.append(" -s \"");
         fullCMDCommand.append(briefingSrcPath);
         fullCMDCommand.append("\" -d \"");
         fullCMDCommand.append(briefingSqlPath);
         fullCMDCommand.append("\"");
-        cmdCommandArr.add(fullCMDCommand.toString());
-//        for(Iterator<String> it = cmdCommandArr.iterator(); it.hasNext();){
-//            callCMD.executeCmd(it.next());
-//        }
+
         callCMD.executeCmd(fullCMDCommand.toString());
         globalProperties.addCurrentCount(globalProperties.CALLER_ANALYSE_BRIEFING);
     }
 
-    public void startImportSql() throws Exception{
+    public void startImportSql() throws Exception {
         /**
          * @Author: wsy
          * @MethodName: startImportSql
@@ -196,18 +191,50 @@ public class Caller {
         DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
         fullCMDCommand.append(dateFormat.format(new Date()));
         fullCMDCommand.append(cmdTail);
+
         callCMD.executeCmd(fullCMDCommand.toString());
         globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
     }
 
-    public void startReportImportAssistant() {
-        System.out.println("还未开发");
+    public void startReportImportAssistant() throws Exception{
+        StringBuffer fullCMDCommand = new StringBuffer();
+        fullCMDCommand.append(reportImportAssistantProgram);
+        fullCMDCommand.append(" -s ");
+        fullCMDCommand.append(briefingSrcPath);
+        fullCMDCommand.append(" -dI ");
+        fullCMDCommand.append(mysqlHost);
+        fullCMDCommand.append(" -dN ");
+        fullCMDCommand.append(mysqlDatabase);
+        fullCMDCommand.append(" -dU ");
+        fullCMDCommand.append(mysqlUser);
+        fullCMDCommand.append(" -dP ");
+        fullCMDCommand.append(mysqlPassword);
+
+        callCMD.executeCmd(fullCMDCommand.toString());
         globalProperties.addCurrentCount(globalProperties.getNumofDaystoProcessed()
                 * globalProperties.CALLER_REPORT_IMPORT_ASSISTANT);
     }
 
-    public void startAnalyseCriticalPath() {
-        System.out.println("还未开发");
+    public void startAnalyseCriticalPath() throws Exception{
+        StringBuffer fullCMDCommand = new StringBuffer();
+        fullCMDCommand.append("PYTHON ");
+        fullCMDCommand.append(criticalPathProgram);
+        fullCMDCommand.append(" -s ");
+        fullCMDCommand.append(CalendarTools.calendarToString(startDate,"yyyy-MM-dd"));
+        fullCMDCommand.append(" -e ");
+        fullCMDCommand.append(CalendarTools.calendarToString(endDate,"yyyy-MM-dd"));
+        fullCMDCommand.append(" -i ");
+        fullCMDCommand.append(mysqlHost);
+        fullCMDCommand.append(" -n ");
+        fullCMDCommand.append(mysqlDatabase);
+        fullCMDCommand.append(" -u ");
+        fullCMDCommand.append(mysqlUser);
+        fullCMDCommand.append(" -k ");
+        fullCMDCommand.append(mysqlPassword);
+        fullCMDCommand.append(" -p ");
+        fullCMDCommand.append(mysqlPort);
+
+        callCMD.executeCmd(fullCMDCommand.toString());
         globalProperties.addCurrentCount(globalProperties.getNumofDaystoProcessed()
                 * globalProperties.CALLER_ANALYSE_CRITICAL_PATHT);
     }

@@ -15,7 +15,8 @@ import java.io.File;
  */
 @Controller
 public class Deleter {
-    public boolean deleteFilesInFolder(String folderPath) throws Exception {
+//    public boolean deleteFilesInFolder(String folderPath) throws Exception {
+    public void deleteFilesInFolder(String folderPath) throws Exception {
         File folder = new File(folderPath);
         if (!folder.isDirectory()) {
             throw new Exception("It is not an available folder: " + folderPath);
@@ -27,6 +28,6 @@ public class Deleter {
                 toDelete.delete();
             }
         }
-        return true;
+//        return true;
     }
 }
