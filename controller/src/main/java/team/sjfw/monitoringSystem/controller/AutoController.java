@@ -27,41 +27,34 @@ public class AutoController implements Runnable {
     public String autoTime;
 
     @Autowired
-    private ImportKit importKit;
+    private AutoImport autoImport;
 
     @Autowired
-    public AutoController(GlobalProperties globalProperties) {
+    private GlobalProperties globalProperties;
+
+    public AutoController() {
         this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.refreshProperties = globalProperties.getRefreshProperties();
     }
 
-    public void startScheduledThread() {
-        try {
-            getThis().setAutoTime();
-            long initDelay = getMillisecond(new Date(), autoTime) - System.currentTimeMillis();
-            if (initDelay <= 0) {
-                initDelay += ONEDAY_MILLISECONDS;
-            }
-            scheduledExecutorService.scheduleAtFixedRate(importKit, initDelay, ONEDAY_MILLISECONDS, TimeUnit.MILLISECONDS);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+    public void startScheduledThread() throws Exception {
+        getThis().setAutoTime();
+        long initDelay = getMillisecond(new Date(), autoTime) - System.currentTimeMillis();
+        if (initDelay <= 0) {
+            initDelay += ONEDAY_MILLISECONDS;
         }
+        scheduledExecutorService.scheduleAtFixedRate(autoImport, initDelay, ONEDAY_MILLISECONDS, TimeUnit.MILLISECONDS);
     }
 
-    public String setAutoTime() {
-        try {
-            SafeProperties properties = new SafeProperties();
-            InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
-            properties.load(inputStream);
-            inputStream.close();
-            String s = properties.getProperty("autoImport.time");
-            autoTime = s;
-            return s;
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
-        return null;
+    public String setAutoTime() throws Exception {
+        SafeProperties properties = new SafeProperties();
+        InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
+        properties.load(inputStream);
+        inputStream.close();
+        String s = properties.getProperty("autoImport.time");
+        autoTime = s;
+        return s;
     }
 
     @Override
@@ -70,10 +63,12 @@ public class AutoController implements Runnable {
             try {
 //                AutoController t = getThis();
 //                getThis获取的不是本对象?
-                getThis().startScheduledThread();
+//                getThis().startScheduledThread();
+                startScheduledThread();
                 refreshProperties.acquire();
             } catch (Exception exception) {
-                exception.printStackTrace();
+                globalProperties.setErrorOccured(true);
+                globalProperties.setErrorMessage(exception.toString(), exception);
             }
         }
     }
@@ -98,13 +93,9 @@ public class AutoController implements Runnable {
         }
         return 0;
     }
+
     private AutoController getThis(){
         return Main.applicationContext.getBean(this.getClass());
     }
 
-//    @Autowired
-//    private AutoController getT(AutoController a){
-//
-//        return a;
-//    }
 }

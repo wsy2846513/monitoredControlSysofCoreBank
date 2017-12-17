@@ -69,7 +69,6 @@ public class MainForm{
 //                    Set new properties values
                     properties.setProperty("start.date", textFieldStartDate.getText());
                     properties.setProperty("end.date", textFieldEndDate.getText());
-                    properties.setProperty("copy.briefing.fileName", textFieldEndDate.getText());
 
 //                    Write the properties
                     FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);

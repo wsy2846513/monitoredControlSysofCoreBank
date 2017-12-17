@@ -24,7 +24,8 @@ public class CallCMD {
         ArrayList<String> cmdLog = new ArrayList<String>();
 
 //        process = Runtime.getRuntime().exec(parameter);
-        process = Runtime.getRuntime().exec("cp /home/wsy/A/AAA /home/wsy/B/");
+        process = Runtime.getRuntime().exec("javac -version");
+//        process = Runtime.getRuntime().exec("cp /home/wsy/A/AAA /home/wsy/B/");
 //        process = Runtime.getRuntime().exec("ifconfig wlp3s0");
 
         String lineData = String.valueOf(process.waitFor());

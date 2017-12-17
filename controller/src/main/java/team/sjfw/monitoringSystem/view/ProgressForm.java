@@ -15,7 +15,7 @@ public class ProgressForm implements Runnable {
     private JProgressBar progressBar;
     private JPanel mainPanel;
     private JFrame frame;
-    private Semaphore openProgressForm;
+//    private Semaphore openProgressForm;
     private boolean exit;
     private int REFRESH_MILLISECOND;
 
@@ -34,7 +34,7 @@ public class ProgressForm implements Runnable {
     private void stopShowProgress() {
         exit = true;
         JOptionPane.showMessageDialog(null, "已完成!");
-        frame.setVisible(false);
+//        frame.setVisible(false);
     }
 
     public void initializeAll() {
@@ -45,7 +45,7 @@ public class ProgressForm implements Runnable {
 
     private void initializePanel() {
         exit = false;
-        openProgressForm = globalProperties.getOpenProgressForm();
+//        openProgressForm = globalProperties.getOpenProgressForm();
         REFRESH_MILLISECOND = globalProperties.getProgressFormRefreshMillisecond();
         progressBar.setStringPainted(true);
         progressBar.setBorderPainted(true);
@@ -83,6 +83,8 @@ public class ProgressForm implements Runnable {
                 Thread.sleep(REFRESH_MILLISECOND);
                 refresh();
             }
+//            System.out.println("progressform quit");
+            frame.setVisible(false);
         } catch (Exception exception) {
 //            是否需要日志？
             exception.printStackTrace();

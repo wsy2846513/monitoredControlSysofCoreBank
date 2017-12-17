@@ -11,11 +11,11 @@ import team.sjfw.monitoringSystem.view.config.SettingFormConfig;
 
 @Configuration
 @Import({DuplicatorConfig.class, CallerConfig.class,
-        CallCmdLogConfig.class, SettingFormLogConfig.class,
+        SettingFormLogConfig.class,
         MainFormConfig.class, SettingFormConfig.class,
         AutoControllerConfig.class, ProgressMonitorConfig.class,
         MainFormConfig.class, AutoControllerLogConfig.class,
-        ManualControllerConfig.class, MainLogConfig.class,GlobalPropertiesLogConfig.class})
+        ManualControllerConfig.class, MainLogConfig.class})
 @ComponentScan(basePackages = {"team.sjfw.monitoringSystem.controller"})
 public class MainConfig {
 }

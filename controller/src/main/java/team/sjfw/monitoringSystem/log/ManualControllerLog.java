@@ -12,13 +12,8 @@ import org.springframework.stereotype.Component;
 public class ManualControllerLog {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Before("execution(* team.sjfw.monitoringSystem.controller.ManualController.waitForImport(..))")
+    @Before("execution(* team.sjfw.monitoringSystem.controller.ManualController.run(..))")
     public void waitForImportLog() {
-        logger.info("Wait for manual import ...");
-    }
-
-    @After("execution(* team.sjfw.monitoringSystem.controller.ManualController.startImport(..))")
-    public void startImportLog() {
-        logger.info("Manual import has finished.");
+        logger.info("Manual controller start ...");
     }
 }

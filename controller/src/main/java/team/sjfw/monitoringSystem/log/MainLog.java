@@ -13,6 +13,6 @@ public class MainLog {
 
     @After("execution(* team.sjfw.monitoringSystem.controller.Main.start(..))")
     public void beforeStartLog(){
-        logger.info("System is started !");
+        logger.info("System start ...");
     }
 }

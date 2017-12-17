@@ -23,7 +23,7 @@ public class CalendarTools {
          * @Return: java.lang.String
          * @Param: [calendar, format]
          * @Description: convert [calendar] to string with [format] format.
-         *              需要用"yyyy-MM-dd"格式，大小写不同代表的含义不同.
+         *              Format could be like "yyyy-MM-dd".
          * @Date: 17-11-14 上午11:10
          */
         SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -37,7 +37,7 @@ public class CalendarTools {
          * @Return: java.util.Calendar
          * @Param: [dateString, format]
          * @Description: convert [dateString] to calendar with [format] format.
-         *              需要用"yyyy-MM-dd"格式，大小写不同代表的含义不同.
+         *              Format could be like "yyyy-MM-dd".
          * @Date: 17-11-14 上午11:15
          */
         SimpleDateFormat sdf = new SimpleDateFormat(format);

@@ -14,7 +14,6 @@ import java.util.concurrent.Semaphore;
 @Controller
 public class MasterController {
 
-//    private SafeProperties properties;
     private String propertiesFilePath;
 
     @Autowired
@@ -52,7 +51,7 @@ public class MasterController {
         globalProperties.setTargetCount(globalProperties.getNumofDaystoProcessed() * 9 + 4);
         globalProperties.setCurrentCount(0);
 
-//        Set current latest date, in case of latest date in environment.properties is null
+//        Set current latest date in object globalProperties, in case of latest date in the object globalProperties is null
         globalProperties.setLatestDate(properties.getProperty("latest.date"));
     }
 
@@ -77,7 +76,7 @@ public class MasterController {
 
     private void updateLatestDate(String date) throws Exception{
         SafeProperties properties = new SafeProperties();
-//            If properties don't load again here, it will discard annotation when it stores,
+//            If properties don't load again here, it will discard annotation in properties files when it stores,
 //            But I don't know why...
         InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
         properties.load(inputStream);

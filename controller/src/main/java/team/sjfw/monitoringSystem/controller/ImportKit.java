@@ -18,7 +18,15 @@ public class ImportKit implements Runnable {
     private Semaphore closeMainForm;
 
     @Autowired
-    public ImportKit(GlobalProperties globalProperties) {
+    private GlobalProperties globalProperties;
+
+//    public ImportKit(GlobalProperties globalProperties) {
+//        this.allowImport = globalProperties.getAllowImport();
+//        this.openProgressForm = globalProperties.getOpenProgressForm();
+//        this.closeMainForm = globalProperties.getCloseMainForm();
+//    }
+
+    private void initializeAll(){
         this.allowImport = globalProperties.getAllowImport();
         this.openProgressForm = globalProperties.getOpenProgressForm();
         this.closeMainForm = globalProperties.getCloseMainForm();
@@ -27,13 +35,15 @@ public class ImportKit implements Runnable {
     @Override
     public void run() {
         try {
+            initializeAll();
             allowImport.acquire();
             closeMainForm.release();
             openProgressForm.release();
             masterController.startImport();
             allowImport.release();
         } catch (Exception exception) {
-            exception.printStackTrace();
+            globalProperties.setErrorOccured(true);
+            globalProperties.setErrorMessage(exception.toString(),exception);
         }
     }
 }

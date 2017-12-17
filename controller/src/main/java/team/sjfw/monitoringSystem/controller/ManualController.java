@@ -12,7 +12,9 @@ public class ManualController implements Runnable {
     private ImportKit importKit;
 
     @Autowired
-    public ManualController(GlobalProperties globalProperties) {
+    private GlobalProperties globalProperties;
+
+    public ManualController() {
         startManualImport = globalProperties.getStartManualImport();
     }
 
@@ -20,33 +22,14 @@ public class ManualController implements Runnable {
     public void run() {
         while (true) {
             try {
-//                ManualController t = getThis();
-                System.out.println("ManualController waiting ...");
                 startManualImport.acquire();
                 Thread importKitThread = new Thread(importKit);
                 importKitThread.start();
                 importKitThread.join();
-//                getThis().waitForImport();
-//                getThis().startImport();
             } catch (Exception exception) {
-                exception.printStackTrace();
+                globalProperties.setErrorOccured(true);
+                globalProperties.setErrorMessage(exception.toString(),exception);
             }
         }
-    }
-
-    private ManualController getThis() {
-        return Main.applicationContext.getBean(this.getClass());
-    }
-
-    private void waitForImport() throws Exception {
-        System.out.println("ManualController waiting ...");
-        startManualImport.acquire();
-    }
-
-    private void startImport() throws Exception {
-        Thread importKitThread = new Thread(importKit);
-        importKitThread.start();
-        importKitThread.join();
-        System.out.println("ManualController finished");
     }
 }
