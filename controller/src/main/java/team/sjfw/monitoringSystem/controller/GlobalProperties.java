@@ -18,9 +18,7 @@ import java.util.concurrent.Semaphore;
 @Controller
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class GlobalProperties {
-    //    Properties file path in linux.
-//    private String propertiesFilePath = "./src/main/resources/environment.properties";
-//    Properties file path in windows.
+//    The path of properties file.
     private static String propertiesFilePath = "./src/main/resources/environment.properties";
 
     //    Only one ImportKit thread can run at a time.
@@ -42,9 +40,6 @@ public class GlobalProperties {
     //    When StartImport button was clicked, the MainForm will release one and
 // the ManualController will require one.
     private static Semaphore startManualImport = new Semaphore(0);
-
-    //    When any error occurs, the semaphore will be released.
-//    private static Semaphore errorOccured = new Semaphore(0);
 
     //    The targetCount and currentCount are used to get completion percent of one ImportKit task.
 // There is no need to use "synchronized" because only one thread will write and only another
@@ -92,10 +87,6 @@ public class GlobalProperties {
     public static Semaphore getCloseMainForm() {
         return closeMainForm;
     }
-
-//    public static Semaphore getErrorOccured() {
-//        return errorOccured;
-//    }
 
     public static int getPercentage() {
         return (int) (currentCount * 100.0 / targetCount);

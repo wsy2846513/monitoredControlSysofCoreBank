@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pers.wsy.tools.SafeProperties;
 import team.sjfw.monitoringSystem.controller.GlobalProperties;
-
+import team.sjfw.monitoringSystem.controller.Inspector;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -37,34 +37,42 @@ public class SettingForm {
     private JTextField textFieldProgramBriefingAnalyse;
     private JTextField textFieldProgramBriefingSQLPath;
     private JTextField textFieldProgramCritical;
-
     private String propertiesFilePath;
     private Semaphore refreshProperties;
     private MainForm mainForm;
 
     @Autowired
-    public SettingForm(GlobalProperties globalProperties) {
+    private Inspector inspector;
+
+    @Autowired
+    private GlobalProperties globalProperties;
+
+    public SettingForm() {
         frame = new JFrame("SettingForm");
         propertiesFilePath = globalProperties.getPropertiesFilePath();
         refreshProperties = globalProperties.getRefreshProperties();
-        refresh();
+
+//        This method is used to replace the frame.setDefaultCloseOperation method,
+//        so that when click the exit button, it will show the main form and hide the
+//        setting form.
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+//                frame.dispose();
+                frame.setVisible(false);
+                mainForm.setFrameVisible(true);
+            }
+        });
 
         buttonRecover.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (refresh()) {
-                    JOptionPane.showMessageDialog(null, "已恢复为上次保存的参数！");
-                }
+                pushButtonRefresh();
             }
         });
 
         buttonSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (checkInput()) {
-                    if (saveSettings()) {
-                        JOptionPane.showMessageDialog(null, "保存成功！");
-                        refreshProperties.release();
-                    }
-                }
+                pushButtonSave();
             }
         });
     }
@@ -73,57 +81,95 @@ public class SettingForm {
         this.mainForm = mainForm;
     }
 
-    private boolean checkInput() {
-        return true;
-    }
+    private void pushButtonSave() {
+        /**
+         * @Author: wsy
+         * @MethodName: pushButtonSave
+         * @Return: void
+         * @Param: []
+         * @Description: Because the inspector only inspect properties in files,
+         *              execute saveSettings method before inspectAll method in inspector.
+         *              If there is no error during checking, show message dialog.
+         * @Date: 17-12-20 上午10:43
+         */
 
-    private boolean saveSettings() {
         try {
-//            Load the properties.
-            SafeProperties properties = new SafeProperties();
-            InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
-            properties.load(inputStream);
-            inputStream.close();
-
-//            Set new properties values.
-            if (radioButtonAutoImportOn.isSelected()) {
-                properties.setProperty("autoImport.swtich", "on");
-            } else {
-                properties.setProperty("autoImport.swtich", "off");
-            }
-            properties.setProperty("autoImport.time", textFieldAutoImportTime.getText());
-            properties.setProperty("MySQL.host", textFieldMySQLIp.getText());
-            properties.setProperty("MySQL.port", textFieldMySQLPort.getText());
-            properties.setProperty("MySQL.database", textFieldMySQLDatabase.getText());
-            properties.setProperty("MySQL.user", textFieldMySQLUser.getText());
-            properties.setProperty("MySQL.password", textFieldMySQLPassword.getText());
-            properties.setProperty("copy.twsp.srcPath", textFieldCopyTwspSrcPath.getText());
-            properties.setProperty("copy.twsp.destPath", textFieldCopyTwspDestPath.getText());
-            properties.setProperty("copy.twsp.fileName", textFieldCopyTwspFileName.getText());
-            properties.setProperty("copy.briefing.srcPath", textFieldCopyBriefingSrcPath.getText());
-            properties.setProperty("copy.briefing.destPath", textFieldCopyBriefingDestPath.getText());
-            properties.setProperty("copy.briefing.fileName", textFieldCopyBriefingFileNaem.getText());
-            properties.setProperty("program.twsp.analysePath", textFieldProgramTwspAnalyse.getText());
-            properties.setProperty("program.twsp.sqlPath", textFieldProgramTwspSQLPath.getText());
-            properties.setProperty("program.briefing.analysePath", textFieldProgramBriefingAnalyse.getText());
-            properties.setProperty("program.briefing.sqlPath", textFieldProgramBriefingSQLPath.getText());
-            properties.setProperty("program.critical.path", textFieldProgramCritical.getText());
-            properties.setProperty("program.reportImportAssistant.path", textFieldProgramReportImportAssistant.getText());
-
-//            Write the properties.
-            FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);
-            properties.store(fileOutputStream, null);
-            fileOutputStream.close();
-//            throw new Exception();
-            return true;
-        } catch (Exception exception) {
-//            是否需要日志处理?
-            exception.printStackTrace();
-            return false;
+            saveSettings();
+            inspector.inspectAll();
+            JOptionPane.showMessageDialog(null, "保存成功！");
+            refreshProperties.release();
+        }catch (Exception exception) {
+            globalProperties.setErrorMessage(exception.toString(), exception);
+            globalProperties.setErrorOccured(true);
+            JOptionPane.showMessageDialog(null, globalProperties.getErrorMessage());
         }
     }
+    private void pushButtonRefresh() {
+        /**
+         * @Author: wsy
+         * @MethodName: pushButtonRefresh
+         * @Return: void
+         * @Param: []
+         * @Description: Refresh the properties and show message dialog.
+         * @Date: 17-12-20 上午10:53
+         */
 
-    public boolean refresh() {
+        try {
+            refresh();
+            JOptionPane.showMessageDialog(null, "已恢复为上次保存的参数！");
+        }catch (Exception exception) {
+            globalProperties.setErrorMessage(exception.toString(), exception);
+            globalProperties.setErrorOccured(true);
+        }
+    }
+    private void saveSettings() throws Exception {
+        /**
+         * @Author: wsy
+         * @MethodName: saveSettings
+         * @Return: void
+         * @Param: []
+         * @Description: Save all String in textFields into properties file.
+         * @Date: 17-12-20 上午10:59
+         */
+
+//        Load the properties.
+        SafeProperties properties = new SafeProperties();
+        InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
+        properties.load(inputStream);
+        inputStream.close();
+
+//        Set new properties values.
+        if (radioButtonAutoImportOn.isSelected()) {
+            properties.setProperty("autoImport.swtich", "on");
+        } else {
+            properties.setProperty("autoImport.swtich", "off");
+        }
+        properties.setProperty("autoImport.time", textFieldAutoImportTime.getText());
+        properties.setProperty("MySQL.host", textFieldMySQLIp.getText());
+        properties.setProperty("MySQL.port", textFieldMySQLPort.getText());
+        properties.setProperty("MySQL.database", textFieldMySQLDatabase.getText());
+        properties.setProperty("MySQL.user", textFieldMySQLUser.getText());
+        properties.setProperty("MySQL.password", textFieldMySQLPassword.getText());
+        properties.setProperty("copy.twsp.srcPath", textFieldCopyTwspSrcPath.getText());
+        properties.setProperty("copy.twsp.destPath", textFieldCopyTwspDestPath.getText());
+        properties.setProperty("copy.twsp.fileName", textFieldCopyTwspFileName.getText());
+        properties.setProperty("copy.briefing.srcPath", textFieldCopyBriefingSrcPath.getText());
+        properties.setProperty("copy.briefing.destPath", textFieldCopyBriefingDestPath.getText());
+        properties.setProperty("copy.briefing.fileName", textFieldCopyBriefingFileNaem.getText());
+        properties.setProperty("program.twsp.analysePath", textFieldProgramTwspAnalyse.getText());
+        properties.setProperty("program.twsp.sqlPath", textFieldProgramTwspSQLPath.getText());
+        properties.setProperty("program.briefing.analysePath", textFieldProgramBriefingAnalyse.getText());
+        properties.setProperty("program.briefing.sqlPath", textFieldProgramBriefingSQLPath.getText());
+        properties.setProperty("program.critical.path", textFieldProgramCritical.getText());
+        properties.setProperty("program.reportImportAssistant.path", textFieldProgramReportImportAssistant.getText());
+
+//        Write the properties.
+        FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);
+        properties.store(fileOutputStream, null);
+        fileOutputStream.close();
+    }
+
+    public void refresh()throws Exception {
         /**
          * @Author: wsy
          * @MethodName: refresh
@@ -132,83 +178,91 @@ public class SettingForm {
          * @Description: Set initial values from environment.properties.
          * @Date: 2017/11/19 14:38
          */
-        try {
-//            Load the properties.
-            SafeProperties properties = new SafeProperties();
-            InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
-            properties.load(new InputStreamReader(inputStream, "utf-8"));
-//            properties.load(new InputStreamReader(inputStream, "8859_1"));
-            inputStream.close();
-            if (properties.getProperty("autoImport.swtich").equals("on")) {
-                radioButtonAutoImportOn.setSelected(true);
-            } else if (properties.getProperty("autoImport.swtich").equals("off")) {
-                radioButtonAutoImportOff.setSelected(true);
-            }
-            textFieldAutoImportTime.setText(properties.getProperty("autoImport.time"));
-            textFieldMySQLIp.setText(properties.getProperty("MySQL.host"));
-            textFieldMySQLPort.setText(properties.getProperty("MySQL.port"));
-            textFieldMySQLDatabase.setText(properties.getProperty("MySQL.database"));
-            textFieldMySQLUser.setText(properties.getProperty("MySQL.user"));
-            textFieldMySQLPassword.setText(properties.getProperty("MySQL.password"));
-            textFieldCopyTwspSrcPath.setText(properties.getProperty("copy.twsp.srcPath"));
-            textFieldCopyTwspDestPath.setText(properties.getProperty("copy.twsp.destPath"));
-            textFieldCopyTwspFileName.setText(properties.getProperty("copy.twsp.fileName"));
-            textFieldCopyBriefingSrcPath.setText(properties.getProperty("copy.briefing.srcPath"));
-            textFieldCopyBriefingDestPath.setText(properties.getProperty("copy.briefing.destPath"));
-            textFieldCopyBriefingFileNaem.setText(properties.getProperty("copy.briefing.fileName"));
-            textFieldProgramTwspAnalyse.setText(properties.getProperty("program.twsp.analysePath"));
-            textFieldProgramTwspSQLPath.setText(properties.getProperty("program.twsp.sqlPath"));
-            textFieldProgramBriefingAnalyse.setText(properties.getProperty("program.briefing.analysePath"));
-            textFieldProgramBriefingSQLPath.setText(properties.getProperty("program.briefing.sqlPath"));
-            textFieldProgramCritical.setText(properties.getProperty("program.critical.path"));
-            textFieldProgramReportImportAssistant.setText(properties.getProperty("program.reportImportAssistant.path"));
-            return true;
-        } catch (Exception exception) {
-//            是否需要日志处理？
-            exception.printStackTrace();
-            return false;
+
+//        Load the properties.
+        SafeProperties properties = new SafeProperties();
+        InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
+        properties.load(new InputStreamReader(inputStream, "utf-8"));
+
+//        properties.load(new InputStreamReader(inputStream, "8859_1"));
+        inputStream.close();
+        if (properties.getProperty("autoImport.swtich").equals("on")) {
+            radioButtonAutoImportOn.setSelected(true);
+        } else if (properties.getProperty("autoImport.swtich").equals("off")) {
+            radioButtonAutoImportOff.setSelected(true);
         }
-
-
+        textFieldAutoImportTime.setText(properties.getProperty("autoImport.time"));
+        textFieldMySQLIp.setText(properties.getProperty("MySQL.host"));
+        textFieldMySQLPort.setText(properties.getProperty("MySQL.port"));
+        textFieldMySQLDatabase.setText(properties.getProperty("MySQL.database"));
+        textFieldMySQLUser.setText(properties.getProperty("MySQL.user"));
+        textFieldMySQLPassword.setText(properties.getProperty("MySQL.password"));
+        textFieldCopyTwspSrcPath.setText(properties.getProperty("copy.twsp.srcPath"));
+        textFieldCopyTwspDestPath.setText(properties.getProperty("copy.twsp.destPath"));
+        textFieldCopyTwspFileName.setText(properties.getProperty("copy.twsp.fileName"));
+        textFieldCopyBriefingSrcPath.setText(properties.getProperty("copy.briefing.srcPath"));
+        textFieldCopyBriefingDestPath.setText(properties.getProperty("copy.briefing.destPath"));
+        textFieldCopyBriefingFileNaem.setText(properties.getProperty("copy.briefing.fileName"));
+        textFieldProgramTwspAnalyse.setText(properties.getProperty("program.twsp.analysePath"));
+        textFieldProgramTwspSQLPath.setText(properties.getProperty("program.twsp.sqlPath"));
+        textFieldProgramBriefingAnalyse.setText(properties.getProperty("program.briefing.analysePath"));
+        textFieldProgramBriefingSQLPath.setText(properties.getProperty("program.briefing.sqlPath"));
+        textFieldProgramCritical.setText(properties.getProperty("program.critical.path"));
+        textFieldProgramReportImportAssistant.setText(properties.getProperty("program.reportImportAssistant.path"));
     }
 
     public void initializeAll() {
-        this.refresh();
-        this.initializeFrame();
+        /**
+         * @Author: wsy
+         * @MethodName: initializeAll
+         * @Return: void
+         * @Param: []
+         * @Description: Initialize all factors.
+         * @Date: 17-12-20 上午10:57
+         */
+
+        try {
+            this.refresh();
+            this.initializeFrame();
+        } catch (Exception exception) {
+            globalProperties.setErrorMessage(exception.toString(), exception);
+            globalProperties.setErrorOccured(true);
+        }
     }
 
     private void initializeFrame() {
+        /**
+         * @Author: wsy
+         * @MethodName: initializeFrame
+         * @Return: void
+         * @Param: []
+         * @Description: Initialize frame.
+         * @Date: 17-12-21 上午11:19
+         */
+
         frame.setContentPane(this.mainPanel);
-
-        Dimension frameSize = frame.getSize();
-//        Dimension frameSize = mainForm.mainPanel.getSize();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-        int screenWidth = (int) screenSize.getWidth();
-        int screenHeight = (int) screenSize.getHeight();
-//        int frameWidth = (int) frameSize.getWidth();
-//        int frameHeight = (int) frameSize.getHeight();
-
-//        System.out.println("SW=" + screenWidth);
-//        System.out.println("SH=" + screenHeight);
-//        System.out.println("FW=" + frameWidth);
-//        System.out.println("FH=" + frameHeight);
-//        frame.setLocation((screenWidth - frameWidth) / 3,
-//                (screenHeight - frameHeight) / 4);
-        frame.setLocation(screenWidth / 3, screenHeight / 4);
-        frame.setResizable(false);
-//        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        编写替代setDefaultCloseOperation的方法,从而实现关闭配置窗口时显示主窗口
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                frame.dispose();
-                mainForm.refresh();
-                mainForm.setFrameVisible(true);
-            }
-        });
+        reLocation();
         frame.pack();
         frame.setVisible(true);
+    }
 
+    public void reLocation() {
+        /**
+         * @Author: wsy
+         * @MethodName: reLocation
+         * @Return: void
+         * @Param: []
+         * @Description: Set the frame location.
+         * @Date: 17-12-21 上午11:18
+         */
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
+        int frameWidth = 403;
+        int frameHeight = 489;
+
+        frame.setLocation((screenWidth - frameWidth) / 2,
+                (screenHeight - frameHeight) / 2);
     }
 }

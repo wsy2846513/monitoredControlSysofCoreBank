@@ -14,7 +14,7 @@ import java.io.*;
 import java.util.concurrent.Semaphore;
 
 @Component
-public class MainForm{
+public class MainForm {
     private JFrame frame;
 
     private JPanel mainPanel;
@@ -28,31 +28,35 @@ public class MainForm{
     private String propertiesFilePath;
     private MainForm thisObject;
 
+
     private Semaphore startManualImport;
-    private Semaphore closeMainForm;
-//    private Semaphore openProgressForm;
-//    private Semaphore closeProgressForm;
 
     @Autowired
     private SettingForm settingForm;
 
     @Autowired
-    public MainForm(GlobalProperties globalProperties) {
+    private GlobalProperties globalProperties;
 
-//        this.environment = e;
+    public MainForm() {
         frame = new JFrame("MainForm");
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.startManualImport = globalProperties.getStartManualImport();
-        this.closeMainForm = globalProperties.getCloseMainForm();
-//        this.openProgressForm = globalProperties.getOpenProgressForm();
-//        this.closeProgressForm = globalProperties.getOpenMainForm();
 
         this.refresh();
+        this.initializeAll();
 
         buttonSet.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                setFrameVisible(false);
-//                frame.setVisible(false);
+                /**
+                 * @Author: wsy
+                 * @MethodName: actionPerformed
+                 * @Return: void
+                 * @Param: [e]
+                 * @Description: When click setting button, open the setting form.
+                 * @Date: 17-12-19 下午7:15
+                 */
+
+                frame.setVisible(false);
                 settingForm.setMainForm(thisObject);
                 settingForm.initializeAll();
             }
@@ -60,6 +64,15 @@ public class MainForm{
         buttonStartImport.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    /**
+                     * @Author: wsy
+                     * @MethodName: actionPerformed
+                     * @Return: void
+                     * @Param: [e]
+                     * @Description: When click start button, save properties and release semaphore.
+                     * @Date: 17-12-19 下午7:14
+                     */
+
 //                    Load the properties
                     SafeProperties properties = new SafeProperties();
                     InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
@@ -74,26 +87,38 @@ public class MainForm{
                     FileOutputStream fileOutputStream = new FileOutputStream(propertiesFilePath);
                     properties.store(fileOutputStream, null);
                     fileOutputStream.close();
-//                    Close frame and start manual import
-//                    closeMainForm.release();
+
+//                    Start manual import
                     startManualImport.release();
                 } catch (Exception exception) {
-//            是否需要日志处理？
-                    exception.printStackTrace();
+                    globalProperties.setErrorMessage(exception.toString(), exception);
+                    globalProperties.setErrorOccured(true);
                 }
             }
         });
     }
 
-    public boolean refresh() {
+    private void refresh() {
+        /**
+         * @Author: wsy
+         * @MethodName: refresh
+         * @Return: boolean
+         * @Param: []
+         * @Description: Refresh the factors in the main form
+         * @Date: 17-12-19 下午7:16
+         */
+
         try {
+//            Load properties
             SafeProperties properties = new SafeProperties();
             InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
             properties.load(new InputStreamReader(inputStream, "utf-8"));
             inputStream.close();
+
+//            Show properties
             this.labelLatestDate.setText(properties.getProperty("latest.date"));
             if (properties.getProperty("autoImport.swtich").equals("on")) {
-                this.labelAutoSwitch.setForeground(Color.green);
+                this.labelAutoSwitch.setForeground(new Color(41,139, 63));
                 this.labelAutoSwitch.setText("已开启");
             } else if (properties.getProperty("autoImport.swtich").equals("off")) {
                 this.labelAutoSwitch.setForeground(Color.red);
@@ -102,43 +127,60 @@ public class MainForm{
             this.labelAutoImportTime.setText(properties.getProperty("autoImport.time"));
             this.textFieldStartDate.setText(properties.getProperty("start.date"));
             this.textFieldEndDate.setText(properties.getProperty("end.date"));
-            return true;
-
         } catch (Exception exception) {
-//            是否需要日志处理？
-            exception.printStackTrace();
-            return false;
+            globalProperties.setErrorMessage(exception.toString(), exception);
+            globalProperties.setErrorOccured(true);
         }
     }
 
     public void initializeAll() {
+        /**
+         * @Author: wsy
+         * @MethodName: initializeAll
+         * @Return: void
+         * @Param: []
+         * @Description: Initialize all factors.
+         * @Date: 17-12-19 下午7:22
+         */
+
         this.setThisObject(this);
         this.initializeFrame();
     }
 
     private void initializeFrame() {
-        frame.setContentPane(this.mainPanel);
+        /**
+         * @Author: wsy
+         * @MethodName: initializeFrame
+         * @Return: void
+         * @Param: []
+         * @Description: Initialize frame.
+         * @Date: 17-12-21 上午11:23
+         */
 
-//        Dimension frameSize = frame.getSize();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//
-        int screenWidth = (int) screenSize.getWidth();
-        int screenHeight = (int) screenSize.getHeight();
-//        int frameWidth = (int) frameSize.getWidth();
-//        int frameHeight = (int) frameSize.getHeight();
-//
-//        System.out.println("SW=" + screenWidth);
-//        System.out.println("SH=" + screenHeight);
-//        System.out.println("FW=" + frameWidth);
-//        System.out.println("FH=" + frameHeight);
-//        frame.setLocation((screenWidth - frameWidth) / 3,
-//                (screenHeight - frameHeight) / 3);
-        frame.setLocation(screenWidth / 3, screenHeight / 3);
+        frame.setContentPane(this.mainPanel);
+        reLocation();
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        this.setFrameVisible(true);
-//        System.out.println("main form initialise");
+        frame.setVisible(true);
+    }
+    private void reLocation() {
+        /**
+         * @Author: wsy
+         * @MethodName: reLocation
+         * @Return: void
+         * @Param: []
+         * @Description: Set the frame location
+         * @Date: 17-12-19 下午7:47
+         */
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
+        int frameWidth = 560;
+        int frameHeight = 286;
+        frame.setLocation((screenWidth - frameWidth) / 2,
+                (screenHeight - frameHeight) / 2);
     }
 
     public void setFrameVisible(boolean flag) {
@@ -150,10 +192,24 @@ public class MainForm{
          * @Description: Show the frame.
          * @Date: 17-11-24 上午12:35
          */
+
+        refresh();
+//        The frame will move if do not relocation here.
+        reLocation();
         frame.setVisible(flag);
     }
 
     private void setThisObject(MainForm thisObject) {
+        /**
+         * @Author: wsy
+         * @MethodName: setThisObject
+         * @Return: void
+         * @Param: [thisObject]
+         * @Description: Assign this object to field thisObject to show main form
+         *              when setting form closed.
+         * @Date: 17-12-19 下午7:22
+         */
+
         this.thisObject = thisObject;
     }
 }

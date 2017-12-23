@@ -24,7 +24,8 @@ public class AutoController implements Runnable {
     private String propertiesFilePath;
     private Semaphore refreshProperties;
     private static final long ONEDAY_MILLISECONDS = 24 * 60 * 60 * 1000;
-    public String autoTime;
+    private String autoTime;
+    private String autoSwitch;
 
     @Autowired
     private AutoImport autoImport;
@@ -39,12 +40,15 @@ public class AutoController implements Runnable {
     }
 
     public void startScheduledThread() throws Exception {
+//        Use getThis method to realize AOP log system.
         getThis().setAutoTime();
-        long initDelay = getMillisecond(new Date(), autoTime) - System.currentTimeMillis();
-        if (initDelay <= 0) {
-            initDelay += ONEDAY_MILLISECONDS;
+        if (autoSwitch.equals("on")) {
+            long initDelay = getMillisecond(new Date(), autoTime) - System.currentTimeMillis();
+            if (initDelay <= 0) {
+                initDelay += ONEDAY_MILLISECONDS;
+            }
+            scheduledExecutorService.scheduleAtFixedRate(autoImport, initDelay, ONEDAY_MILLISECONDS, TimeUnit.MILLISECONDS);
         }
-        scheduledExecutorService.scheduleAtFixedRate(autoImport, initDelay, ONEDAY_MILLISECONDS, TimeUnit.MILLISECONDS);
     }
 
     public String setAutoTime() throws Exception {
@@ -52,9 +56,13 @@ public class AutoController implements Runnable {
         InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
         properties.load(inputStream);
         inputStream.close();
-        String s = properties.getProperty("autoImport.time");
-        autoTime = s;
-        return s;
+
+        autoTime = properties.getProperty("autoImport.time");
+        autoSwitch = properties.getProperty("autoImport.swtich");
+
+//        This message is used to print log.
+        String message = "Auto import is " + autoSwitch + ", time is set to " + autoTime;
+        return message;
     }
 
     @Override
@@ -94,7 +102,7 @@ public class AutoController implements Runnable {
         return 0;
     }
 
-    private AutoController getThis(){
+    private AutoController getThis() {
         return Main.applicationContext.getBean(this.getClass());
     }
 

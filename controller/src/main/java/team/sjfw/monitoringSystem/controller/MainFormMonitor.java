@@ -3,7 +3,6 @@ package team.sjfw.monitoringSystem.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import team.sjfw.monitoringSystem.view.MainForm;
-
 import java.util.concurrent.Semaphore;
 
 @Controller
@@ -25,18 +24,25 @@ public class MainFormMonitor implements Runnable{
 
     @Override
     public void run() {
+        /**
+         * @Author: wsy
+         * @MethodName: run
+         * @Return: void
+         * @Param: []
+         * @Description: Show the main form.
+         * @Date: 17-12-19 下午7:07
+         */
         try{
             openMainForm.acquire();
-            mainForm.initializeAll();
             while (true){
                 closeMainForm.acquire();
                 mainForm.setFrameVisible(false);
                 openMainForm.acquire();
-                mainForm.refresh();
                 mainForm.setFrameVisible(true);
             }
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (Exception exception){
+            globalProperties.setErrorMessage(exception.toString(), exception);
+            globalProperties.setErrorOccured(true);
         }
     }
 }

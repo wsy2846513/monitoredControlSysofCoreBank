@@ -11,7 +11,6 @@ import team.sjfw.monitoringSystem.view.config.SettingFormConfig;
 
 @Configuration
 @Import({DuplicatorConfig.class, CallerConfig.class,
-        SettingFormLogConfig.class,
         MainFormConfig.class, SettingFormConfig.class,
         AutoControllerConfig.class, ProgressMonitorConfig.class,
         MainFormConfig.class, AutoControllerLogConfig.class,

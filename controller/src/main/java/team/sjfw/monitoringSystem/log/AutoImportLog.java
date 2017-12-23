@@ -9,12 +9,15 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class ManualControllerLog {
+public class AutoImportLog {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Before("execution(* team.sjfw.monitoringSystem.controller.ManualController.run(..))")
-    public void waitForImportLog() {
-        logger.info("Manual controller start ...");
+    @Before("execution(* team.sjfw.monitoringSystem.controller.AutoImport.run(..))")
+    public void beforeRun() {
+        logger.info("Auto import start ...");
     }
-
+    @After("execution(* team.sjfw.monitoringSystem.controller.AutoImport.run(..))")
+    public void afterRun() {
+        logger.info("Auto import is finished.");
+    }
 }

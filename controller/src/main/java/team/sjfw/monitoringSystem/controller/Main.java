@@ -40,8 +40,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(team.sjfw.monitoringSystem.controller.config.MainConfig.class);
-//        System.out.println(Main.class);
         Main main = applicationContext.getBean(Main.class);
         main.start();
     }

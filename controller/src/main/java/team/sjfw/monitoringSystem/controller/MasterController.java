@@ -23,6 +23,9 @@ public class MasterController {
     private Caller caller;
 
     @Autowired
+    private Inspector inspector;
+
+    @Autowired
     private GlobalProperties globalProperties;
 
     private void initializeAll() throws Exception {
@@ -59,6 +62,7 @@ public class MasterController {
         try {
             globalProperties.setErrorOccured(false);
             this.initializeAll();
+            inspector.inspectAll();
             duplicator.deleteFiles();
             duplicator.copyFiles();
             caller.startAnalyseTwsp();
