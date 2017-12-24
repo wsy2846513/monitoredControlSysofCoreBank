@@ -23,10 +23,7 @@ public class CallCMD {
 //        CmdLog contains the exist code of process at first, and the stdout strings are stored following.
         ArrayList<String> cmdLog = new ArrayList<String>();
 
-//        process = Runtime.getRuntime().exec(parameter);
-        process = Runtime.getRuntime().exec("javac -version");
-//        process = Runtime.getRuntime().exec("cp /home/wsy/A/AAA /home/wsy/B/");
-//        process = Runtime.getRuntime().exec("ifconfig wlp3s0");
+        process = Runtime.getRuntime().exec(parameter);
 
         String lineData = String.valueOf(process.waitFor());
         cmdLog.add(lineData);
@@ -38,7 +35,7 @@ public class CallCMD {
         return cmdLog;
     }
 
-    public ArrayList<String> executeCmdArr(ArrayList<String> cmdCommandArr) {
+    public ArrayList<String> executeCmdArr(ArrayList<String> cmdCommandArr) throws Exception{
         /**
          * @Author: wsy
          * @MethodName: executeCmdArr
@@ -49,20 +46,15 @@ public class CallCMD {
          */
         ArrayList<String> cmdLog = new ArrayList<String>();
         String lineData;
-        try {
-            for (String parameter : cmdCommandArr) {
-                process = Runtime.getRuntime().exec(parameter);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "GBK"));
+        for (String parameter : cmdCommandArr) {
+            process = Runtime.getRuntime().exec(parameter);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "GBK"));
 
-                while ((lineData = reader.readLine()) != null) {
-                    System.out.println("cmdarr: \t" + lineData);
-                    cmdLog.add(lineData);
-                }
+            while ((lineData = reader.readLine()) != null) {
+                System.out.println("cmdarr: \t" + lineData);
+                cmdLog.add(lineData);
             }
-            return cmdLog;
-        } catch (Exception e) {
-            //异常处理的信息部分，由日志负责，此处只处理逻辑部分、
-            return null;
         }
+        return cmdLog;
     }
 }

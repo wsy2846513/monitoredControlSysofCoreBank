@@ -18,9 +18,15 @@ public class ProgressForm implements Runnable {
     private int REFRESH_MILLISECOND;
     private int percentage;
     private boolean initializeFinishFlag = false;
+    private String iconPath;
 
     @Autowired
     private GlobalProperties globalProperties;
+
+    public ProgressForm() {
+        iconPath = globalProperties.getIconPath();
+        initializeAll();
+    }
 
     private void refresh() {
         /**
@@ -88,15 +94,16 @@ public class ProgressForm implements Runnable {
     }
 
     private void initializeForm() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = (int) screenSize.getWidth();
-        int screenHeight = (int) screenSize.getHeight();
-        frame = new JFrame("ProgressForm");
-        frame.setLocation(screenWidth / 3, screenHeight / 3);
+        frame = new JFrame("");
+        Image image = Toolkit.getDefaultToolkit().getImage(iconPath + "\\progressForm.png");
+        frame.setIconImage(image);
+        reLocation();
         frame.setContentPane(this.mainPanel);
         frame.setResizable(false);
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(false);
+
+//        When push the exit button, it will not exit and show a message dialog.
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -104,11 +111,29 @@ public class ProgressForm implements Runnable {
                 JOptionPane.showMessageDialog(null, "请等待数据处理结束！");
             }
         });
-
     }
 
     public synchronized void setExit(boolean exit) {
         this.exit = exit;
+    }
+
+    private void reLocation() {
+        /**
+         * @Author: wsy
+         * @MethodName: reLocation
+         * @Return: void
+         * @Param: []
+         * @Description:  Set the frame location
+         * @Date: 2017/12/23 21:15
+         */
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
+        int frameWidth = 328;
+        int frameHeight = 267;
+        frame.setLocation((screenWidth - frameWidth) / 2,
+                (screenHeight - frameHeight) / 2);
     }
 
     @Override
@@ -122,7 +147,10 @@ public class ProgressForm implements Runnable {
          * @Date: 17-12-19 下午7:03
          */
         try {
-            initializeAll();
+            frame.setVisible(true);
+            setExit(false);
+            reLocation();
+            this.initializeFinishFlag = true;
             while (!exit) {
                 Thread.sleep(REFRESH_MILLISECOND);
                 refresh();

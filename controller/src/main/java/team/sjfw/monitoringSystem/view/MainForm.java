@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pers.wsy.tools.SafeProperties;
 import team.sjfw.monitoringSystem.controller.GlobalProperties;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,6 +25,7 @@ public class MainForm {
     private JLabel labelAutoSwitch;
     private JLabel labelAutoImportTime;
     private String propertiesFilePath;
+    private String iconPath;
     private MainForm thisObject;
 
 
@@ -38,12 +38,13 @@ public class MainForm {
     private GlobalProperties globalProperties;
 
     public MainForm() {
-        frame = new JFrame("MainForm");
-        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
-        this.startManualImport = globalProperties.getStartManualImport();
-
-        this.refresh();
-        this.initializeAll();
+//        frame = new JFrame("");
+//        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+//        this.iconPath = globalProperties.getIconPath();
+//        this.startManualImport = globalProperties.getStartManualImport();
+//
+//        this.refresh();
+//        this.initializeAll();
 
         buttonSet.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -56,9 +57,14 @@ public class MainForm {
                  * @Date: 17-12-19 下午7:15
                  */
 
-                frame.setVisible(false);
-                settingForm.setMainForm(thisObject);
-                settingForm.initializeAll();
+                try {
+                    frame.setVisible(false);
+                    settingForm.setMainForm(thisObject);
+                    settingForm.show();
+                } catch (Exception exception) {
+                    globalProperties.setErrorMessage(exception.toString(), exception);
+                    globalProperties.setErrorOccured(true);
+                }
             }
         });
         buttonStartImport.addActionListener(new ActionListener() {
@@ -118,7 +124,7 @@ public class MainForm {
 //            Show properties
             this.labelLatestDate.setText(properties.getProperty("latest.date"));
             if (properties.getProperty("autoImport.swtich").equals("on")) {
-                this.labelAutoSwitch.setForeground(new Color(41,139, 63));
+                this.labelAutoSwitch.setForeground(new Color(41, 139, 63));
                 this.labelAutoSwitch.setText("已开启");
             } else if (properties.getProperty("autoImport.swtich").equals("off")) {
                 this.labelAutoSwitch.setForeground(Color.red);
@@ -143,6 +149,12 @@ public class MainForm {
          * @Date: 17-12-19 下午7:22
          */
 
+        frame = new JFrame("");
+        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+        this.iconPath = globalProperties.getIconPath();
+        this.startManualImport = globalProperties.getStartManualImport();
+        this.refresh();
+
         this.setThisObject(this);
         this.initializeFrame();
     }
@@ -156,14 +168,21 @@ public class MainForm {
          * @Description: Initialize frame.
          * @Date: 17-12-21 上午11:23
          */
-
-        frame.setContentPane(this.mainPanel);
-        reLocation();
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        try {
+            Image image = Toolkit.getDefaultToolkit().getImage(iconPath + "\\mainForm.png");
+            frame.setIconImage(image);
+            frame.setContentPane(this.mainPanel);
+            reLocation();
+            frame.setResizable(false);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+        } catch (Exception exception) {
+            globalProperties.setErrorMessage(exception.toString(), exception);
+            globalProperties.setErrorOccured(true);
+        }
     }
+
     private void reLocation() {
         /**
          * @Author: wsy
@@ -178,7 +197,7 @@ public class MainForm {
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
         int frameWidth = 560;
-        int frameHeight = 286;
+        int frameHeight = 386;
         frame.setLocation((screenWidth - frameWidth) / 2,
                 (screenHeight - frameHeight) / 2);
     }

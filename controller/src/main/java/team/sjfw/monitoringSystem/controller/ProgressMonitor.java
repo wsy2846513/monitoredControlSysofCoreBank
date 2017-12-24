@@ -57,8 +57,8 @@ public class ProgressMonitor implements Runnable {
 //                    Error occurs during MasterController runtime
                     if (globalProperties.isErrorOccured()) {
 //                        Close progress bar and show error message.
-                        progressForm.setExit(true);
                         JOptionPane.showMessageDialog(null, globalProperties.getErrorMessage());
+                        progressForm.setExit(true);
                         break;
                     }
                 }

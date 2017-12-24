@@ -1,14 +1,8 @@
 package team.sjfw.monitoringSystem.controller;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.wsy.tools.CalendarTools;
 import pers.wsy.tools.SafeProperties;
-import team.sjfw.monitoringSystem.controller.config.InspectorConfig;
-
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -25,8 +19,7 @@ import java.util.regex.Pattern;
  * @Version: V1.0
  * @Date: 2017/12/17 16:21
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = InspectorConfig.class)
+
 @Controller
 public class Inspector {
 
@@ -54,14 +47,9 @@ public class Inspector {
     private String MySQLPort;
     private String MySQLDatabase;
 
-//    public Inspector(GlobalProperties globalProperties) {
-//        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
-//    }
-    public Inspector() {
-        this.propertiesFilePath = "./src/main/resources/environment.properties";
+    public Inspector(GlobalProperties globalProperties) {
+        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
     }
-
-    @Test
     public void inspectAll() throws Exception {
         /**
          * @Author: wsy
@@ -134,15 +122,16 @@ public class Inspector {
          * @Description: Inspect whether MySQL config is correct.
          * @Date: 17-12-18 下午7:11
          */
-
-//        if (!Pattern.matches("([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])" +
-//                ".([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])" +
-//                ".([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])" +
-//                ".([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])", MySQLHost)) {
-//            throw new Exception("\"MySQL数据库IP\"配置不正确，");
-//        }
-        if (!Pattern.matches("([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(.[1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]){3}", MySQLHost)) {
-            throw new Exception("\"MySQL数据库IP\"配置不正确，");
+//        Inspect MySQL IP
+        if (!Pattern.matches("^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])" +
+                "\\.([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])" +
+                "\\.([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])" +
+                "\\.([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$", MySQLHost)) {
+            throw new Exception("\"MySQL数据库IP\"配置不正确。");
+        }
+//        Inspect MySQL port
+        if (!Pattern.matches("\\d+", MySQLPort)) {
+            throw new Exception("\"MySQL数据库端口\"配置不正确。");
         }
     }
     private void inspetAutoConfig() throws Exception {
@@ -174,46 +163,46 @@ public class Inspector {
          */
 
         String regex = "^.*(?<!(\\\\)|(/))$";
-        String messageTail = "不要以'\\'或'/'结尾。";
+        String messageTail = "不要以'\\'或'/'结尾";
 
         if (!Pattern.matches(regex, twspSrcPath)) {
-            throw new Exception("\"twsp文件复制输入路径\"配置不正确，" + messageTail);
+            throw new Exception("\"twsp文件复制输入路径\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, twspDestPath)) {
-            throw new Exception("\"twsp文件复制输入路径\"配置不正确，" + messageTail);
+            throw new Exception("\"twsp文件复制输入路径\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, briefingSrcPath)) {
-            throw new Exception("\"简报文件复制输入路径\"配置不正确，" + messageTail);
+            throw new Exception("\"简报文件复制输入路径\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, briefingDestPath)) {
-            throw new Exception("\"简报文件复制输出路径\"配置不正确，" + messageTail);
+            throw new Exception("\"简报文件复制输出路径\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, twspAnalysePath)) {
-            throw new Exception("\"twsp解析程序(Python)路径及名称\"配置不正确，" + messageTail);
+            throw new Exception("\"twsp解析程序(Python)路径及名称\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, twspSQLPath)) {
-            throw new Exception("\"twsp解析程序(Python)生成的文件路径\"配置不正确，" + messageTail);
+            throw new Exception("\"twsp解析程序(Python)生成的文件路径\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, briefingAnalysePath)) {
-            throw new Exception("\"简报解析程序(Python)路径及名称\"配置不正确，" + messageTail);
+            throw new Exception("\"简报解析程序(Python)路径及名称\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, briefingSQLPath)) {
-            throw new Exception("\"简报解析程序(Python)生成的文件路径\"配置不正确，" + messageTail);
+            throw new Exception("\"简报解析程序(Python)生成的文件路径\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, criticalPath)) {
-            throw new Exception("\"关键路径计算程序(Python)路径及名称\"配置不正确，" + messageTail);
+            throw new Exception("\"关键路径计算程序(Python)路径及名称\"配置不正确。" + messageTail);
         }
 
         if (!Pattern.matches(regex, reportImportAssistantPath)) {
-            throw new Exception("\"日报导入助手(exe)路径\"配置不正确，" + messageTail);
+            throw new Exception("\"日报导入助手(exe)路径\"配置不正确。" + messageTail);
         }
     }
 

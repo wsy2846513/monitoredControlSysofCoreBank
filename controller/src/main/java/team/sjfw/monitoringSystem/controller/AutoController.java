@@ -20,10 +20,10 @@ import java.util.concurrent.TimeUnit;
 @Controller
 public class AutoController implements Runnable {
 
+    private static final long ONEDAY_MILLISECONDS = 24 * 60 * 60 * 1000;
     private ScheduledExecutorService scheduledExecutorService;
     private String propertiesFilePath;
     private Semaphore refreshProperties;
-    private static final long ONEDAY_MILLISECONDS = 24 * 60 * 60 * 1000;
     private String autoTime;
     private String autoSwitch;
 
@@ -34,7 +34,6 @@ public class AutoController implements Runnable {
     private GlobalProperties globalProperties;
 
     public AutoController() {
-        this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.refreshProperties = globalProperties.getRefreshProperties();
     }
@@ -47,7 +46,12 @@ public class AutoController implements Runnable {
             if (initDelay <= 0) {
                 initDelay += ONEDAY_MILLISECONDS;
             }
+            scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
             scheduledExecutorService.scheduleAtFixedRate(autoImport, initDelay, ONEDAY_MILLISECONDS, TimeUnit.MILLISECONDS);
+        } else {
+            if (scheduledExecutorService != null) {
+                scheduledExecutorService.shutdown();
+            }
         }
     }
 

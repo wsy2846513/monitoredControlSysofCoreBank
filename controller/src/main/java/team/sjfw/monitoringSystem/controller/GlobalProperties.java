@@ -18,9 +18,10 @@ import java.util.concurrent.Semaphore;
 @Controller
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class GlobalProperties {
-//    The path of properties file.
-    private static String propertiesFilePath = "./src/main/resources/environment.properties";
+    //    The path of properties file.
+    private static String propertiesFilePath = "./src/main/resources/properties/environment.properties";
 
+    private static String iconPath =  "./src/main/resources/icon";
     //    Only one ImportKit thread can run at a time.
     private static Semaphore allowImport = new Semaphore(1);
 
@@ -138,5 +139,9 @@ public class GlobalProperties {
 
     public static void setLatestDate(String latestDate) {
         GlobalProperties.latestDate = latestDate;
+    }
+
+    public static String getIconPath() {
+        return iconPath;
     }
 }

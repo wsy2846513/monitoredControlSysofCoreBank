@@ -15,9 +15,9 @@ public class ImportKitLog {
     @Around("execution(* team.sjfw.monitoringSystem.controller.ImportKit.run(..))")
     public void beforeStartLog(ProceedingJoinPoint pjp){
         try {
-            logger.info("Start a new thread of ImportKit and try to acquire semaphore named allowImport.");
+            logger.info("Start a new thread of ImportKit and try to acquire a semaphore named allowImport.");
             pjp.proceed();
-            logger.info("Thread of ImportKit is finished and release semaphore named allowImport.");
+            logger.info("Thread of ImportKit is finished and release a semaphore named allowImport.");
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }

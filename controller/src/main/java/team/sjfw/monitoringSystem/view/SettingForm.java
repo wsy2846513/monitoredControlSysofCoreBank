@@ -38,6 +38,7 @@ public class SettingForm {
     private JTextField textFieldProgramBriefingSQLPath;
     private JTextField textFieldProgramCritical;
     private String propertiesFilePath;
+    private String iconPath;
     private Semaphore refreshProperties;
     private MainForm mainForm;
 
@@ -48,9 +49,11 @@ public class SettingForm {
     private GlobalProperties globalProperties;
 
     public SettingForm() {
-        frame = new JFrame("SettingForm");
         propertiesFilePath = globalProperties.getPropertiesFilePath();
         refreshProperties = globalProperties.getRefreshProperties();
+        iconPath = globalProperties.getIconPath();
+        frame = new JFrame("");
+        initializeAll();
 
 //        This method is used to replace the frame.setDefaultCloseOperation method,
 //        so that when click the exit button, it will show the main form and hide the
@@ -240,10 +243,12 @@ public class SettingForm {
          * @Date: 17-12-21 上午11:19
          */
 
+        Image image = Toolkit.getDefaultToolkit().getImage(iconPath + "\\settingForm.png");
+        frame.setIconImage(image);
         frame.setContentPane(this.mainPanel);
         reLocation();
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(false);
     }
 
     public void reLocation() {
@@ -260,9 +265,15 @@ public class SettingForm {
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
         int frameWidth = 403;
-        int frameHeight = 489;
+        int frameHeight = 589;
 
         frame.setLocation((screenWidth - frameWidth) / 2,
                 (screenHeight - frameHeight) / 2);
+    }
+
+    public void show() throws Exception{
+        this.refresh();
+        this.reLocation();
+        this.frame.setVisible(true);
     }
 }
