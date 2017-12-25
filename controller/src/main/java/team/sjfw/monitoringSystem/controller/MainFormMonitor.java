@@ -33,7 +33,7 @@ public class MainFormMonitor implements Runnable{
          * @Date: 17-12-19 下午7:07
          */
         try{
-            mainForm.initializeAll();
+//            mainForm.initializeAll();
             openMainForm.acquire();
             while (true){
                 closeMainForm.acquire();

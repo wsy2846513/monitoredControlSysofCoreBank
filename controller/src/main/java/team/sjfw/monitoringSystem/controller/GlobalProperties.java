@@ -19,7 +19,9 @@ import java.util.concurrent.Semaphore;
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class GlobalProperties {
     //    The path of properties file.
-    private static String propertiesFilePath = "./src/main/resources/properties/environment.properties";
+//    private static String propertiesFilePath = "./src/main/resources/properties/environment.properties";
+//    private String propertiesFilePath = getClass().getResource("/properties/environment.properties").toString();
+    private static String propertiesFilePath = "./properties/environment.properties";
 
     private static String iconPath =  "./src/main/resources/icon";
     //    Only one ImportKit thread can run at a time.
@@ -64,6 +66,10 @@ public class GlobalProperties {
     public static String getPropertiesFilePath() {
         return propertiesFilePath;
     }
+
+//    public String getPropertiesFilePath() {
+//        return propertiesFilePath;
+//    }
 
     public static Semaphore getAllowImport() {
         return allowImport;

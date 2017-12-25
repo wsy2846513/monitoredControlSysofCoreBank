@@ -17,13 +17,14 @@ import java.util.Date;
 public class AutoImport implements Runnable {
     private String propertiesFilePath;
 
-    @Autowired
     private GlobalProperties globalProperties;
 
-    @Autowired
     private ImportKit importKit;
 
-    public AutoImport() {
+    @Autowired
+    public AutoImport(GlobalProperties inputGlobalProperties,ImportKit inputImportKit) {
+        this.globalProperties = inputGlobalProperties;
+        this.importKit = inputImportKit;
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
     }
 

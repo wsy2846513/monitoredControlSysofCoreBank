@@ -48,7 +48,11 @@ public class SettingForm {
     @Autowired
     private GlobalProperties globalProperties;
 
+//    @Autowired
+//    public SettingForm(GlobalProperties inputGlobalProperties,Inspector inputInspector) {
     public SettingForm() {
+//        globalProperties = inputGlobalProperties;
+//        inspector = inputInspector;
         propertiesFilePath = globalProperties.getPropertiesFilePath();
         refreshProperties = globalProperties.getRefreshProperties();
         iconPath = globalProperties.getIconPath();
@@ -61,7 +65,6 @@ public class SettingForm {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-//                frame.dispose();
                 frame.setVisible(false);
                 mainForm.setFrameVisible(true);
             }

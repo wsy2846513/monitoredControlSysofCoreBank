@@ -28,7 +28,6 @@ public class MainForm {
     private String iconPath;
     private MainForm thisObject;
 
-
     private Semaphore startManualImport;
 
     @Autowired
@@ -37,14 +36,18 @@ public class MainForm {
     @Autowired
     private GlobalProperties globalProperties;
 
+//    @Autowired
+//    public MainForm(GlobalProperties inputGlobalProperties,SettingForm inputSettingForm) {
     public MainForm() {
-//        frame = new JFrame("");
-//        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
-//        this.iconPath = globalProperties.getIconPath();
-//        this.startManualImport = globalProperties.getStartManualImport();
-//
-//        this.refresh();
-//        this.initializeAll();
+//        globalProperties = inputGlobalProperties;
+//        settingForm = inputSettingForm;
+        frame = new JFrame("");
+        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+        this.iconPath = globalProperties.getIconPath();
+        this.startManualImport = globalProperties.getStartManualImport();
+
+        this.refresh();
+        this.initializeAll();
 
         buttonSet.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -148,12 +151,6 @@ public class MainForm {
          * @Description: Initialize all factors.
          * @Date: 17-12-19 下午7:22
          */
-
-        frame = new JFrame("");
-        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
-        this.iconPath = globalProperties.getIconPath();
-        this.startManualImport = globalProperties.getStartManualImport();
-        this.refresh();
 
         this.setThisObject(this);
         this.initializeFrame();

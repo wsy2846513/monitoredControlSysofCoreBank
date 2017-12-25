@@ -10,7 +10,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- 定义日志文件名称 -->
     <property name="LOG_FILE" value="system_log"/>
     <!--定义日志格式-->
-    <property name="ENCODER_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}] [%-16thread] %5p [%-27logger{10}:%L] -> %m%n"/>
+    <property name="ENCODER_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}] [%-16thread] %5p [%-27logger{10}:%L] --> %m%n"/>
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">

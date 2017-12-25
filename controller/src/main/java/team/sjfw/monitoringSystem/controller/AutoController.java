@@ -33,7 +33,11 @@ public class AutoController implements Runnable {
     @Autowired
     private GlobalProperties globalProperties;
 
+//    @Autowired
+//    public AutoController(GlobalProperties inputGlobalProperties,AutoImport inputAutoImport) {
     public AutoController() {
+//        globalProperties = inputGlobalProperties;
+//        autoImport = inputAutoImport;
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.refreshProperties = globalProperties.getRefreshProperties();
     }
