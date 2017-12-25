@@ -1,6 +1,5 @@
 package team.sjfw.monitoringSystem.view;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pers.wsy.tools.SafeProperties;
@@ -12,10 +11,19 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.concurrent.Semaphore;
 
+/**
+ * @Tittle: MainForm.java
+ * @Author: wsy
+ * @Class_name: MainForm
+ * @Package: team.sjfw.monitoringSystem.view
+ * @Description: The mainForm show the main operations for users.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:26
+ */
+
 @Component
 public class MainForm {
     private JFrame frame;
-
     private JPanel mainPanel;
     private JButton buttonStartImport;
     private JButton buttonSet;
@@ -30,17 +38,14 @@ public class MainForm {
 
     private Semaphore startManualImport;
 
-    @Autowired
     private SettingForm settingForm;
 
-    @Autowired
     private GlobalProperties globalProperties;
 
-//    @Autowired
-//    public MainForm(GlobalProperties inputGlobalProperties,SettingForm inputSettingForm) {
-    public MainForm() {
-//        globalProperties = inputGlobalProperties;
-//        settingForm = inputSettingForm;
+    @Autowired
+    public MainForm(GlobalProperties inputGlobalProperties,SettingForm inputSettingForm) {
+        globalProperties = inputGlobalProperties;
+        settingForm = inputSettingForm;
         frame = new JFrame("");
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.iconPath = globalProperties.getIconPath();

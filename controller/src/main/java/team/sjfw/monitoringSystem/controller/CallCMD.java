@@ -1,10 +1,19 @@
 package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.stereotype.Controller;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+/**
+ * @Tittle: CallCMD.java
+ * @Author: wsy
+ * @Class_name: CallCMD
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: Call cmd to execute program according to parameters.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:14
+ */
 
 @Controller
 public class CallCMD {

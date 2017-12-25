@@ -1,7 +1,6 @@
 package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.stereotype.Controller;
-
 import java.io.File;
 
 /**
@@ -15,7 +14,6 @@ import java.io.File;
  */
 @Controller
 public class Deleter {
-//    public boolean deleteFilesInFolder(String folderPath) throws Exception {
     public void deleteFilesInFolder(String folderPath) throws Exception {
         File folder = new File(folderPath);
         if (!folder.isDirectory()) {
@@ -28,6 +26,5 @@ public class Deleter {
                 toDelete.delete();
             }
         }
-//        return true;
     }
 }

@@ -3,11 +3,20 @@ package team.sjfw.monitoringSystem.view;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import team.sjfw.monitoringSystem.controller.GlobalProperties;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+/**
+ * @Tittle: ProgressForm.java
+ * @Author: wsy
+ * @Class_name: ProgressForm
+ * @Package: team.sjfw.monitoringSystem.view
+ * @Description: This form show the progress bar during importing.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:27
+ */
 
 @Controller
 public class ProgressForm implements Runnable {
@@ -20,10 +29,11 @@ public class ProgressForm implements Runnable {
     private boolean initializeFinishFlag = false;
     private String iconPath;
 
-    @Autowired
     private GlobalProperties globalProperties;
 
-    public ProgressForm() {
+    @Autowired
+    public ProgressForm(GlobalProperties inputGlobalProperties) {
+        globalProperties = inputGlobalProperties;
         iconPath = globalProperties.getIconPath();
         initializeAll();
     }

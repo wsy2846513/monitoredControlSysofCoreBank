@@ -3,7 +3,6 @@ package team.sjfw.monitoringSystem.controller;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import java.util.concurrent.Semaphore;
 
 /**
@@ -11,19 +10,21 @@ import java.util.concurrent.Semaphore;
  * @Author: wsy
  * @Class_name: GlobalProperties
  * @Package: team.sjfw.monitoringSystem.controller
- * @Description: Store global properties
+ * @Description: Store global properties and pass exception messages.
  * @Version: V1.0
  * @Date: 17-11-20 下午7:25
  */
 @Controller
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class GlobalProperties {
-    //    The path of properties file.
+    //    The path of properties file when run in IDE.
 //    private static String propertiesFilePath = "./src/main/resources/properties/environment.properties";
-//    private String propertiesFilePath = getClass().getResource("/properties/environment.properties").toString();
-    private static String propertiesFilePath = "./properties/environment.properties";
+//    private static String iconPath =  "./src/main/resources/icon";
 
-    private static String iconPath =  "./src/main/resources/icon";
+//    Need to copy properties manually when run as jar.
+    private static String propertiesFilePath = "./properties/environment.properties";
+    private static String iconPath =  "./icon";
+
     //    Only one ImportKit thread can run at a time.
     private static Semaphore allowImport = new Semaphore(1);
 
@@ -63,13 +64,13 @@ public class GlobalProperties {
     public static final int PROGRESS_FORM_REFRESH_MILLISECOND = 1000;
 
 
-    public static String getPropertiesFilePath() {
-        return propertiesFilePath;
-    }
-
-//    public String getPropertiesFilePath() {
+//    public static String getPropertiesFilePath() {
 //        return propertiesFilePath;
 //    }
+
+    public String getPropertiesFilePath() {
+        return propertiesFilePath;
+    }
 
     public static Semaphore getAllowImport() {
         return allowImport;

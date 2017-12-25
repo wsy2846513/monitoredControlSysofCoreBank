@@ -5,6 +5,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 
+/**
+ * @Tittle: Main.java
+ * @Author: wsy
+ * @Class_name: Main
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: Main is the program entry.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:18
+ */
+
 @Controller
 public class Main {
 //    Global variable

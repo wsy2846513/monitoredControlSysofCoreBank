@@ -3,23 +3,20 @@ package team.sjfw.monitoringSystem.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
-
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.Properties;
-import java.util.concurrent.Semaphore;
 
 /**
  * @Tittle: Duplicator.java
  * @Author: wsy
  * @Class_name: Duplicator
  * @Package: team.sjfw.monitoringSystem.controller
- * @Description: copy twsp files and briefing files to specified destination
+ * @Description: Copy twsp files and briefing files to specified destination
  * @Version: V1.0
  * @Date: 17-11-14 下午7:13
  */

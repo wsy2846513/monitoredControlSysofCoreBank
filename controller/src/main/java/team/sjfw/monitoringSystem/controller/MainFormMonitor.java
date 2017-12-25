@@ -5,6 +5,16 @@ import org.springframework.stereotype.Controller;
 import team.sjfw.monitoringSystem.view.MainForm;
 import java.util.concurrent.Semaphore;
 
+/**
+ * @Tittle: MainFormMonitor.java
+ * @Author: wsy
+ * @Class_name: MainFormMonitor
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: Control the mainForm.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:18
+ */
+
 @Controller
 public class MainFormMonitor implements Runnable{
 

@@ -4,7 +4,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import team.sjfw.monitoringSystem.controller.GlobalProperties;
-import team.sjfw.monitoringSystem.log.config.AutoControllerLogConfig;
 import team.sjfw.monitoringSystem.log.config.InspectorLogConfig;
 
 @Configuration

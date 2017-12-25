@@ -2,10 +2,7 @@ package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import pers.wsy.tools.SafeProperties;
-
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -17,6 +14,17 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @Tittle: AutoController.java
+ * @Author: wsy
+ * @Class_name: AutoController
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: Start or stop the schedule according to autoSwitch in properties,
+ *              and set the newest time for schedule.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:10
+ */
+
 @Controller
 public class AutoController implements Runnable {
 
@@ -27,17 +35,14 @@ public class AutoController implements Runnable {
     private String autoTime;
     private String autoSwitch;
 
-    @Autowired
     private AutoImport autoImport;
 
-    @Autowired
     private GlobalProperties globalProperties;
 
-//    @Autowired
-//    public AutoController(GlobalProperties inputGlobalProperties,AutoImport inputAutoImport) {
-    public AutoController() {
-//        globalProperties = inputGlobalProperties;
-//        autoImport = inputAutoImport;
+    @Autowired
+    public AutoController(GlobalProperties inputGlobalProperties,AutoImport inputAutoImport) {
+        globalProperties = inputGlobalProperties;
+        autoImport = inputAutoImport;
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
         this.refreshProperties = globalProperties.getRefreshProperties();
     }

@@ -4,9 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import team.sjfw.monitoringSystem.controller.GlobalProperties;
-import team.sjfw.monitoringSystem.view.MainForm;
 import team.sjfw.monitoringSystem.view.config.MainFormConfig;
-import team.sjfw.monitoringSystem.view.config.ProgressFormConfig;
 
 @Configuration
 @Import({GlobalProperties.class, MainFormConfig.class})

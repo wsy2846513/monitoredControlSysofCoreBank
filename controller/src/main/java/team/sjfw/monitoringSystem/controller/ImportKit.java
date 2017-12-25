@@ -1,11 +1,18 @@
 package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
-
 import java.util.concurrent.Semaphore;
+
+/**
+ * @Tittle: ImportKit.java
+ * @Author: wsy
+ * @Class_name: ImportKit
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: Judge if it is ready for import whether auto or manual.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:17
+ */
 
 @Controller
 public class ImportKit implements Runnable {
@@ -19,12 +26,6 @@ public class ImportKit implements Runnable {
 
     @Autowired
     private GlobalProperties globalProperties;
-
-//    public ImportKit(GlobalProperties globalProperties) {
-//        this.allowImport = globalProperties.getAllowImport();
-//        this.openProgressForm = globalProperties.getOpenProgressForm();
-//        this.closeMainForm = globalProperties.getCloseMainForm();
-//    }
 
     private void initializeAll(){
         this.allowImport = globalProperties.getAllowImport();

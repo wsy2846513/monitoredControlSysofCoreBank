@@ -5,13 +5,24 @@ import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
 import pers.wsy.tools.DateTools;
 import pers.wsy.tools.SafeProperties;
-
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Date;
+
+/**
+ * @Tittle: AutoImport.java
+ * @Author: wsy
+ * @Class_name: AutoImport
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: Set the start and end date for auto import and start the importKit.
+ *              Start date = latest date + 1.
+ *              End date = system date.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:12
+ */
 
 @Controller
 public class AutoImport implements Runnable {

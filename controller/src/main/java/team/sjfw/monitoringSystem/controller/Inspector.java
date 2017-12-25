@@ -1,5 +1,6 @@
 package team.sjfw.monitoringSystem.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
 import pers.wsy.tools.SafeProperties;
@@ -47,9 +48,11 @@ public class Inspector {
     private String MySQLPort;
     private String MySQLDatabase;
 
+    @Autowired
     public Inspector(GlobalProperties globalProperties) {
         this.propertiesFilePath = globalProperties.getPropertiesFilePath();
     }
+
     public void inspectAll() throws Exception {
         /**
          * @Author: wsy

@@ -11,6 +11,16 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.concurrent.Semaphore;
 
+/**
+ * @Tittle: SettingForm.java
+ * @Author: wsy
+ * @Class_name: SettingForm
+ * @Package: team.sjfw.monitoringSystem.view
+ * @Description: This form show the setting operations.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:28
+ */
+
 @Component
 public class SettingForm {
     private JFrame frame;
@@ -42,17 +52,14 @@ public class SettingForm {
     private Semaphore refreshProperties;
     private MainForm mainForm;
 
-    @Autowired
     private Inspector inspector;
 
-    @Autowired
     private GlobalProperties globalProperties;
 
-//    @Autowired
-//    public SettingForm(GlobalProperties inputGlobalProperties,Inspector inputInspector) {
-    public SettingForm() {
-//        globalProperties = inputGlobalProperties;
-//        inspector = inputInspector;
+    @Autowired
+    public SettingForm(GlobalProperties inputGlobalProperties,Inspector inputInspector) {
+        globalProperties = inputGlobalProperties;
+        inspector = inputInspector;
         propertiesFilePath = globalProperties.getPropertiesFilePath();
         refreshProperties = globalProperties.getRefreshProperties();
         iconPath = globalProperties.getIconPath();
@@ -82,6 +89,8 @@ public class SettingForm {
             }
         });
     }
+
+
 
     public void setMainForm(MainForm mainForm) {
         this.mainForm = mainForm;

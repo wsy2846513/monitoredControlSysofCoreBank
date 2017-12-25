@@ -3,9 +3,18 @@ package team.sjfw.monitoringSystem.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import team.sjfw.monitoringSystem.view.ProgressForm;
-
 import javax.swing.*;
 import java.util.concurrent.Semaphore;
+
+/**
+ * @Tittle: ProgressMonitor.java
+ * @Author: wsy
+ * @Class_name: ProgressMonitor
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: Control the progressForm.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:21
+ */
 
 @Controller
 public class ProgressMonitor implements Runnable {

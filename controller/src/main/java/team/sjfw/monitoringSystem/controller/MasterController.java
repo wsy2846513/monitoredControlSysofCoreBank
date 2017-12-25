@@ -4,12 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
 import pers.wsy.tools.SafeProperties;
-
 import java.io.*;
 import java.util.Calendar;
-import java.util.Properties;
-import java.util.concurrent.Semaphore;
 
+/**
+ * @Tittle: MasterController.java
+ * @Author: wsy
+ * @Class_name: MasterController
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: A series of operations for importing.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:20
+ */
 
 @Controller
 public class MasterController {

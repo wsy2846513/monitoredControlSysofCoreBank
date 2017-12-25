@@ -1,19 +1,8 @@
-/**
- * @Tittle: Caller.java
- * @Author: wsy
- * @Class_name: Caller
- * @Package: team.sjfw.monitoringSystem.controller
- * @Description:
- * @Version: V1.0
- * @Date: 2017/11/13 21:24
- **/
-
 package team.sjfw.monitoringSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
-
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -22,6 +11,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * @Tittle: Caller.java
+ * @Author: wsy
+ * @Class_name: Caller
+ * @Package: team.sjfw.monitoringSystem.controller
+ * @Description: Analyse twsp and briefing files and import them to MySQL database.
+ * @Version: V1.0
+ * @Date: 2017/12/25 22:14
+ */
 
 @Controller
 public class Caller {
@@ -41,7 +39,6 @@ public class Caller {
     private String propertiesFilePath;
     private String reportImportAssistantProgram;
     private String criticalPathProgram;
-
     private Calendar startDate;
     private Calendar endDate;
 
@@ -51,35 +48,27 @@ public class Caller {
     @Autowired
     private GlobalProperties globalProperties;
 
-//    public Caller() {
-//        this.initializeAll();
-//    }
-
-    public void initializeAll() {
-        try {
-            this.propertiesFilePath = globalProperties.getPropertiesFilePath();
-            Properties properties = new Properties();
-            InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
-            properties.load(new InputStreamReader(inputStream, "utf-8"));
-            inputStream.close();
-            this.twspSrcPath = properties.getProperty("copy.twsp.destPath");
-            this.twspAnalysisProgram = properties.getProperty("program.twsp.analysePath");
-            this.twspSqlPath = properties.getProperty("program.twsp.sqlPath");
-            this.briefingSrcPath = properties.getProperty("copy.briefing.destPath");
-            this.briefingAnalysisProgram = properties.getProperty("program.briefing.analysePath");
-            this.briefingSqlPath = properties.getProperty("program.briefing.sqlPath");
-            this.startDate = CalendarTools.StringToCalendar(properties.getProperty("start.date"), "yyyy-MM-dd");
-            this.endDate = CalendarTools.StringToCalendar(properties.getProperty("end.date"), "yyyy-MM-dd");
-            this.mysqlHost = properties.getProperty("MySQL.host");
-            this.mysqlUser = properties.getProperty("MySQL.user");
-            this.mysqlPassword = properties.getProperty("MySQL.password");
-            this.mysqlPort = properties.getProperty("MySQL.port");
-            this.mysqlDatabase = properties.getProperty("MySQL.database");
-            this.reportImportAssistantProgram = properties.getProperty("program.reportImportAssistant.path");
-            this.criticalPathProgram = properties.getProperty("program.critical.path");
-        } catch (Exception exception) {
-//            尚未决定等待日志处理或本处处理
-        }
+    public void initializeAll() throws Exception {
+        this.propertiesFilePath = globalProperties.getPropertiesFilePath();
+        Properties properties = new Properties();
+        InputStream inputStream = new BufferedInputStream(new FileInputStream(propertiesFilePath));
+        properties.load(new InputStreamReader(inputStream, "utf-8"));
+        inputStream.close();
+        this.twspSrcPath = properties.getProperty("copy.twsp.destPath");
+        this.twspAnalysisProgram = properties.getProperty("program.twsp.analysePath");
+        this.twspSqlPath = properties.getProperty("program.twsp.sqlPath");
+        this.briefingSrcPath = properties.getProperty("copy.briefing.destPath");
+        this.briefingAnalysisProgram = properties.getProperty("program.briefing.analysePath");
+        this.briefingSqlPath = properties.getProperty("program.briefing.sqlPath");
+        this.startDate = CalendarTools.StringToCalendar(properties.getProperty("start.date"), "yyyy-MM-dd");
+        this.endDate = CalendarTools.StringToCalendar(properties.getProperty("end.date"), "yyyy-MM-dd");
+        this.mysqlHost = properties.getProperty("MySQL.host");
+        this.mysqlUser = properties.getProperty("MySQL.user");
+        this.mysqlPassword = properties.getProperty("MySQL.password");
+        this.mysqlPort = properties.getProperty("MySQL.port");
+        this.mysqlDatabase = properties.getProperty("MySQL.database");
+        this.reportImportAssistantProgram = properties.getProperty("program.reportImportAssistant.path");
+        this.criticalPathProgram = properties.getProperty("program.critical.path");
     }
 
     public void startAnalyseTwsp() throws Exception {
@@ -167,6 +156,7 @@ public class Caller {
         cmdHead.append(" --password=");
         cmdHead.append(mysqlPassword);
         cmdHead.append(" < \"");
+
 //        import TWSP sql files to database
         while (!processCalendar.after(endDate)) {
             fullCMDCommand.setLength(0);
@@ -182,6 +172,7 @@ public class Caller {
             callCMD.executeCmd(it.next());
             globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
         }
+
 //        import briefing sql files to database
         cmdCommandArr.clear();
         fullCMDCommand.setLength(0);
@@ -197,6 +188,15 @@ public class Caller {
     }
 
     public void startReportImportAssistant() throws Exception{
+        /**
+         * @Author: wsy
+         * @MethodName: startReportImportAssistant
+         * @Return: void
+         * @Param: []
+         * @Description:  Start reportImportAssistant program.
+         * @Date: 2017/12/25 22:05
+         */
+
         StringBuffer fullCMDCommand = new StringBuffer();
         fullCMDCommand.append(reportImportAssistantProgram);
         fullCMDCommand.append(" -s ");
@@ -216,6 +216,15 @@ public class Caller {
     }
 
     public void startAnalyseCriticalPath() throws Exception{
+        /**
+         * @Author: wsy
+         * @MethodName: startAnalyseCriticalPath
+         * @Return: void
+         * @Param: []
+         * @Description:  Start analyse critical path.
+         * @Date: 2017/12/25 22:05
+         */
+
         StringBuffer fullCMDCommand = new StringBuffer();
         fullCMDCommand.append("PYTHON ");
         fullCMDCommand.append(criticalPathProgram);
