@@ -64,11 +64,7 @@ public class GlobalProperties {
     public static final int PROGRESS_FORM_REFRESH_MILLISECOND = 1000;
 
 
-//    public static String getPropertiesFilePath() {
-//        return propertiesFilePath;
-//    }
-
-    public String getPropertiesFilePath() {
+    public static String getPropertiesFilePath() {
         return propertiesFilePath;
     }
 

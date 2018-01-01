@@ -64,7 +64,7 @@
             </constraints>
             <properties>
               <font name="YouYuan" style="1"/>
-              <text value="MySQL数据库IP:"/>
+              <text value="(重起程序生效)MySQL数据库IP:"/>
             </properties>
           </component>
           <component id="88bb1" class="javax.swing.JLabel">
@@ -118,7 +118,7 @@
             </constraints>
             <properties>
               <font name="YouYuan" style="1"/>
-              <text value="MySQL数据库名称:"/>
+              <text value="(重起程序生效)MySQL数据库名称:"/>
             </properties>
           </component>
           <component id="b7122" class="javax.swing.JLabel">
@@ -127,7 +127,7 @@
             </constraints>
             <properties>
               <font name="YouYuan" style="1"/>
-              <text value="MySQL数据库用户名:"/>
+              <text value="(重起程序生效)MySQL数据库用户名:"/>
             </properties>
           </component>
           <component id="6b5b8" class="javax.swing.JLabel">
@@ -136,7 +136,7 @@
             </constraints>
             <properties>
               <font name="YouYuan" style="1"/>
-              <text value="MySQL数据库端口:"/>
+              <text value="(重起程序生效)MySQL数据库端口:"/>
             </properties>
           </component>
           <component id="5ae95" class="javax.swing.JLabel">
@@ -145,7 +145,7 @@
             </constraints>
             <properties>
               <font name="YouYuan" style="1"/>
-              <text value="MySQL数据库密码:"/>
+              <text value="(重起程序生效)MySQL数据库密码:"/>
             </properties>
           </component>
           <component id="276e6" class="javax.swing.JLabel">

@@ -46,6 +46,9 @@ public class Caller {
     private CallCMD callCMD;
 
     @Autowired
+    private ExecuteSqlFile executeSqlFile;
+
+    @Autowired
     private GlobalProperties globalProperties;
 
     public void initializeAll() throws Exception {
@@ -159,32 +162,48 @@ public class Caller {
 
 //        import TWSP sql files to database
         while (!processCalendar.after(endDate)) {
+//            fullCMDCommand.setLength(0);
+//            fullCMDCommand.append(cmdHead);
+//            fullCMDCommand.append(twspSqlPath);
+//            fullCMDCommand.append("\\report_");
+//            fullCMDCommand.append(CalendarTools.calendarToString(processCalendar, "yyyyMMdd"));
+//            fullCMDCommand.append(cmdTail);
+//            cmdCommandArr.add(fullCMDCommand.toString());
+
             fullCMDCommand.setLength(0);
-            fullCMDCommand.append(cmdHead);
             fullCMDCommand.append(twspSqlPath);
             fullCMDCommand.append("\\report_");
             fullCMDCommand.append(CalendarTools.calendarToString(processCalendar, "yyyyMMdd"));
-            fullCMDCommand.append(cmdTail);
+            fullCMDCommand.append(".sql");
             cmdCommandArr.add(fullCMDCommand.toString());
             processCalendar.add(Calendar.DATE, 1);
         }
-        for (Iterator<String> it = cmdCommandArr.iterator(); it.hasNext(); ) {
-            callCMD.executeCmd(it.next());
-            globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
-        }
+//        for (Iterator<String> it = cmdCommandArr.iterator(); it.hasNext(); ) {
+//            callCMD.executeCmd(it.next());
+//            globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
+//        }
 
 //        import briefing sql files to database
-        cmdCommandArr.clear();
+//        cmdCommandArr.clear();
+//        fullCMDCommand.setLength(0);
+//        fullCMDCommand.append(cmdHead);
+//        fullCMDCommand.append(briefingSqlPath);
+//        fullCMDCommand.append("\\summary_");
+//        DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
+//        fullCMDCommand.append(dateFormat.format(new Date()));
+//        fullCMDCommand.append(cmdTail);
+
         fullCMDCommand.setLength(0);
-        fullCMDCommand.append(cmdHead);
         fullCMDCommand.append(briefingSqlPath);
         fullCMDCommand.append("\\summary_");
-        DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         fullCMDCommand.append(dateFormat.format(new Date()));
-        fullCMDCommand.append(cmdTail);
+        fullCMDCommand.append(".sql");
+        cmdCommandArr.add(fullCMDCommand.toString());
 
-        callCMD.executeCmd(fullCMDCommand.toString());
-        globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
+        executeSqlFile.initializeAll();
+        executeSqlFile.execute(cmdCommandArr);
+//        globalProperties.addCurrentCount(globalProperties.CALLER_IMPORT_SQL);
     }
 
     public void startReportImportAssistant() throws Exception{

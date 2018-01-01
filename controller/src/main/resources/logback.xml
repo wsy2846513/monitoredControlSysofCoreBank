@@ -8,8 +8,9 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- 定义日志的根目录 -->
     <property name="LOG_PATH" value="./log"/>
     <!-- 定义日志文件名称 -->
-    <property name="LOG_FILE" value="system_log"/>
-    <!--定义日志格式-->
+    <property name="LOG_FILE_SYSTEM" value="system"/>
+    <property name="LOG_FILE_SCRIPT_RUNNER" value="runner-sql"/>
+    <!--定义日志输出格式-->
     <property name="ENCODER_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}] [%-16thread] %5p [%-27logger{10}:%L] --> %m%n"/>
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
@@ -22,10 +23,10 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         </filter>
     </appender>
 
-    <appender name="rollingLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="rollingLog_system" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--按照日期、文件大小拆分-->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/${LOG_FILE}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-%i-${LOG_FILE_SYSTEM}.log</fileNamePattern>
             <maxHistory>500</maxHistory>
             <maxFileSize>100MB</maxFileSize>
             <totalSizeCap>20GB</totalSizeCap>
@@ -35,6 +36,20 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
             <pattern>${ENCODER_PATTERN}</pattern>
         </encoder>
     </appender>
+
+    <!--<appender name="rollingLog_ScriptRunner" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--&lt;!&ndash;按照日期、文件大小拆分&ndash;&gt;-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${LOG_PATH}/${LOG_FILE_SCRIPT_RUNNER}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>-->
+            <!--<maxHistory>500</maxHistory>-->
+            <!--<maxFileSize>100MB</maxFileSize>-->
+            <!--<totalSizeCap>20GB</totalSizeCap>-->
+        <!--</rollingPolicy>-->
+
+        <!--<encoder>-->
+            <!--<pattern>${ENCODER_PATTERN}</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
 
     <!--
     logger主要用于存放日志对象，也可以定义日志类型、级别
@@ -46,10 +61,22 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- Spring framework logger -->
     <logger name="org.springframework" level="error" additivity="false"/>
 
+    <!--&lt;!&ndash; Script Runner logger &ndash;&gt;-->
+    <!--<logger name="org.apache.ibatis.jdbc.ScriptRunner" level="info" additivity="false">-->
+        <!--<appender-ref ref="stdout"/>-->
+        <!--<appender-ref ref="rollingLog_ScriptRunner"/>-->
+    <!--</logger>-->
+
+    <!-- Script Runner logger -->
+    <!--<logger name="org.apache.ibatis.logging.slf4j" level="info" additivity="false">-->
+        <!--<appender-ref ref="stdout"/>-->
+        <!--<appender-ref ref="rollingLog_ScriptRunner"/>-->
+    <!--</logger>-->
+
     <!--systemLog-->
     <logger name="team.sjfw.monitoringSystem.log" level="info" additivity="false">
         <appender-ref ref="stdout"/>
-        <appender-ref ref="rollingLog"/>
+        <appender-ref ref="rollingLog_system"/>
     </logger>
 
     <!--

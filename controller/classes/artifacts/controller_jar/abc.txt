@@ -1,0 +1,92 @@
+14:12:00,070 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+14:12:00,070 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.groovy]
+14:12:00,070 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [jar:file:/F:/IdeaProjects-Java/monitoredControlSysofCoreBank/controller/classes/artifacts/controller_jar/controller.jar!/logback.xml]
+14:12:00,079 |-INFO in ch.qos.logback.core.joran.spi.ConfigurationWatchList@3419866c - URL [jar:file:/F:/IdeaProjects-Java/monitoredControlSysofCoreBank/controller/classes/artifacts/controller_jar/controller.jar!/logback.xml] is not of type file
+14:12:00,141 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+14:12:00,143 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [stdout]
+14:12:00,147 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+14:12:00,166 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+14:12:00,168 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [rollingLog_system]
+14:12:00,172 |-INFO in c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@99347477 - setting totalSizeCap to 20 GB
+14:12:00,173 |-INFO in c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@99347477 - Archive files will be limited to [100 MB] each.
+14:12:00,176 |-INFO in c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@99347477 - No compression will be used
+14:12:00,177 |-INFO in c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@99347477 - Will use the pattern ./log/%d{yyyy-MM-dd}-%i-system.log for the active file
+14:12:00,179 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@4cb2c100 - The date pattern is 'yyyy-MM-dd' from file name pattern './log/%d{yyyy-MM-dd}-%i-system.log'.
+14:12:00,179 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@4cb2c100 - Roll-over at midnight.
+14:12:00,181 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@4cb2c100 - Setting initial period to Mon Jan 01 14:12:00 CST 2018
+14:12:00,184 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+14:12:00,185 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[rollingLog_system] - Active log file name: ./log/2018-01-01-0-system.log
+14:12:00,185 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[rollingLog_system] - File property is set to [null]
+14:12:00,186 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.springframework] to ERROR
+14:12:00,186 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [org.springframework] to false
+14:12:00,186 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [team.sjfw.monitoringSystem.log] to INFO
+14:12:00,186 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [team.sjfw.monitoringSystem.log] to false
+14:12:00,186 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [stdout] to Logger[team.sjfw.monitoringSystem.log]
+14:12:00,187 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [rollingLog_system] to Logger[team.sjfw.monitoringSystem.log]
+14:12:00,187 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to INFO
+14:12:00,187 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+14:12:00,187 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@4909b8da - Registering current configuration as safe fallback point
+java.lang.ExceptionInInitializerError
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'main': Unsatisfied dependency expressed through field 'progressMonitor'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'progressMonitor': Unsatisfied dependency expressed through field 'progressForm'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'progressForm' defined in URL [jar:file:/F:/IdeaProjects-Java/monitoredControlSysofCoreBank/controller/classes/artifacts/controller_jar/controller.jar!/team/sjfw/monitoringSystem/view/ProgressForm.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [team.sjfw.monitoringSystem.view.ProgressForm]: Constructor threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.context.annotation.AnnotationConfigApplicationContext.<init>(AnnotationConfigApplicationContext.java:84)
+	at team.sjfw.monitoringSystem.controller.Main.<clinit>(Main.java:21)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'progressMonitor': Unsatisfied dependency expressed through field 'progressForm'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'progressForm' defined in URL [jar:file:/F:/IdeaProjects-Java/monitoredControlSysofCoreBank/controller/classes/artifacts/controller_jar/controller.jar!/team/sjfw/monitoringSystem/view/ProgressForm.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [team.sjfw.monitoringSystem.view.ProgressForm]: Constructor threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 14 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'progressForm' defined in URL [jar:file:/F:/IdeaProjects-Java/monitoredControlSysofCoreBank/controller/classes/artifacts/controller_jar/controller.jar!/team/sjfw/monitoringSystem/view/ProgressForm.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [team.sjfw.monitoringSystem.view.ProgressForm]: Constructor threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:279)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1193)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1095)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 27 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [team.sjfw.monitoringSystem.view.ProgressForm]: Constructor threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:154)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:122)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:271)
+	... 39 more
+Caused by: java.lang.NullPointerException
+	at team.sjfw.monitoringSystem.view.ProgressForm.initializePanel(ProgressForm.java:102)
+	at team.sjfw.monitoringSystem.view.ProgressForm.initializeAll(ProgressForm.java:93)
+	at team.sjfw.monitoringSystem.view.ProgressForm.<init>(ProgressForm.java:38)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:142)
+	... 41 more
+Exception in thread "main" 
