@@ -45,8 +45,7 @@ public class ProgressMonitor implements Runnable {
          * @Date: 17-12-18 下午8:13
          */
         try{
-            this.initializeAll();
-            progressForm.initializeAll();
+            initializeAll();
             while (true){
 //                Judge whether import kit has started.
                 openProgressForm.acquire();

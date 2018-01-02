@@ -34,7 +34,7 @@
             <properties>
               <font name="YouYuan" size="16" style="1"/>
               <foreground color="-11355318"/>
-              <text value="三个字"/>
+              <text value="开或关"/>
             </properties>
           </component>
           <component id="379ff" class="javax.swing.JLabel">
