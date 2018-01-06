@@ -18,12 +18,12 @@ import java.util.concurrent.Semaphore;
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class GlobalProperties {
     //    The path of properties file when run in IDE.
-//    private static String propertiesFilePath = "./src/main/resources/properties/environment.properties";
-//    private static String iconPath =  "./src/main/resources/icon";
+    private static String propertiesFilePath = "./src/main/resources/properties/environment.properties";
+    private static String iconPath =  "./src/main/resources/icon";
 
 //    Need to copy properties manually when run as jar.
-    private static String propertiesFilePath = "./properties/environment.properties";
-    private static String iconPath =  "./icon";
+//    private static String propertiesFilePath = "./properties/environment.properties";
+//    private static String iconPath =  "./icon";
 
     //    Only one ImportKit thread can run at a time.
     private static Semaphore allowImport = new Semaphore(1);

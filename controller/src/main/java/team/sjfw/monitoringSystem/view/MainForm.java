@@ -268,7 +268,7 @@ public class MainForm {
         Font labelAutoSwitchFont = this.$$$getFont$$$("YouYuan", Font.BOLD, 16, labelAutoSwitch.getFont());
         if (labelAutoSwitchFont != null) labelAutoSwitch.setFont(labelAutoSwitchFont);
         labelAutoSwitch.setForeground(new Color(-11355318));
-        labelAutoSwitch.setText("三个字");
+        labelAutoSwitch.setText("开或关");
         panel1.add(labelAutoSwitch, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         Font label2Font = this.$$$getFont$$$("YouYuan", Font.BOLD, 16, label2.getFont());
