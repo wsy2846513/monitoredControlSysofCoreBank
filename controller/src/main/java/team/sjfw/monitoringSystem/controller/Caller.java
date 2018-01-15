@@ -247,20 +247,21 @@ public class Caller {
         StringBuffer fullCMDCommand = new StringBuffer();
         fullCMDCommand.append("PYTHON ");
         fullCMDCommand.append(criticalPathProgram);
-        fullCMDCommand.append(" -s ");
+        fullCMDCommand.append(" -s \"");
         fullCMDCommand.append(CalendarTools.calendarToString(startDate,"yyyy-MM-dd"));
-        fullCMDCommand.append(" -e ");
+        fullCMDCommand.append("\" -e \"");
         fullCMDCommand.append(CalendarTools.calendarToString(endDate,"yyyy-MM-dd"));
-        fullCMDCommand.append(" -i ");
+        fullCMDCommand.append("\" -i \"");
         fullCMDCommand.append(mysqlHost);
-        fullCMDCommand.append(" -n ");
+        fullCMDCommand.append("\" -n \"");
         fullCMDCommand.append(mysqlDatabase);
-        fullCMDCommand.append(" -u ");
+        fullCMDCommand.append("\" -u \"");
         fullCMDCommand.append(mysqlUser);
-        fullCMDCommand.append(" -k ");
+        fullCMDCommand.append("\" -k \"");
         fullCMDCommand.append(mysqlPassword);
-        fullCMDCommand.append(" -p ");
+        fullCMDCommand.append("\" -p \"");
         fullCMDCommand.append(mysqlPort);
+        fullCMDCommand.append("\"");
 
         callCMD.executeCmd(fullCMDCommand.toString());
         globalProperties.addCurrentCount(globalProperties.getNumofDaystoProcessed()
