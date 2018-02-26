@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pers.wsy.tools.CalendarTools;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -78,53 +79,68 @@ public class Duplicator {
          * @MethodName: copyFiles
          * @Return: void
          * @Param: []
-         * @Description: copy twsp files and briefing files to specified destination
+         * @Description: Copy twsp files and briefing files to specified destination.
+         * 				Skip the files which size is less then 100Bytes.
          * @Date: 17-11-14 下午7:12
          */
         StringBuffer fullCmdCommand = new StringBuffer();
         ArrayList<String> cmdCommandArr = new ArrayList<String>();
         Calendar processCalendar = (Calendar) startDate.clone();
+        
+        File file = null;
 
         while (!processCalendar.after(endDate)) {
             handleCalendarString = CalendarTools.calendarToString(processCalendar, "yyyy-MM-dd");
-            String exitCode;
+            String twspExitCode = "1";
+            String briefingExitCode = "1";
 
-//            copy twsp files
-            fullCmdCommand.setLength(0);
-            fullCmdCommand.append(cmdHead);
-            fullCmdCommand.append(" ");
-            fullCmdCommand.append(twspSrcPath);
-            fullCmdCommand.append("\\");
-            fullCmdCommand.append(handleCalendarString);
-            fullCmdCommand.append("\\");
-            fullCmdCommand.append(twspFileName);
-            fullCmdCommand.append(" ");
-            fullCmdCommand.append(twspDestPath);
-            fullCmdCommand.append("\\ ");
-            fullCmdCommand.append(cmdEnd);
-
-            exitCode = callCMD.executeCmd(fullCmdCommand.toString()).get(0);
+//            Judge whether TWSP file exists and file size larger then 100Bytes
+//            file = new File(twspSrcPath + "\\" + handleCalendarString + "\\" + twspFileName);   
+//            System.out.println("TWSP LENGTH = " + file.length());
+//            if(file.exists() && file.length() > 100){            	
+				// copy twsp files
+				fullCmdCommand.setLength(0);
+				fullCmdCommand.append(cmdHead);
+				fullCmdCommand.append(" ");
+				fullCmdCommand.append(twspSrcPath);
+				fullCmdCommand.append("\\");
+				fullCmdCommand.append(handleCalendarString);
+				fullCmdCommand.append("\\");
+				fullCmdCommand.append(twspFileName);
+				fullCmdCommand.append(" ");
+				fullCmdCommand.append(twspDestPath);
+				fullCmdCommand.append("\\ ");
+				fullCmdCommand.append(cmdEnd);
+            	twspExitCode = callCMD.executeCmd(fullCmdCommand.toString()).get(0);
+//            }else{
+//            	System.out.println("File size less then 100Bytes. File path : " + file.getPath());
+//            }
             globalProperties.addCurrentCount(globalProperties.DUPLICATOR_COPY_POINT);
-
-//            copy briefing files
-            fullCmdCommand.setLength(0);
-            fullCmdCommand.append(cmdHead);
-            fullCmdCommand.append(" ");
-            fullCmdCommand.append(briefingSrcPath);
-            fullCmdCommand.append("\\");
-            fullCmdCommand.append(handleCalendarString);
-            fullCmdCommand.append("\\");
-            fullCmdCommand.append(briefingFileName);
-            fullCmdCommand.append(" ");
-            fullCmdCommand.append(briefingDestPath);
-            fullCmdCommand.append("\\ ");
-            fullCmdCommand.append(cmdEnd);
-
-            exitCode = callCMD.executeCmd(fullCmdCommand.toString()).get(0);
+            
+//          Judge whether briefing file exists and file size larger then 100Bytes
+//            file = new File(briefingSrcPath + "\\" + handleCalendarString + "\\" + briefingFileName);            
+//            if(file.exists() && file.length() > 100){
+//              copy briefing files
+                fullCmdCommand.setLength(0);
+                fullCmdCommand.append(cmdHead);
+                fullCmdCommand.append(" ");
+                fullCmdCommand.append(briefingSrcPath);
+                fullCmdCommand.append("\\");
+                fullCmdCommand.append(handleCalendarString);
+                fullCmdCommand.append("\\");
+                fullCmdCommand.append(briefingFileName);
+                fullCmdCommand.append(" ");
+                fullCmdCommand.append(briefingDestPath);
+                fullCmdCommand.append("\\ ");
+                fullCmdCommand.append(cmdEnd);
+                briefingExitCode = callCMD.executeCmd(fullCmdCommand.toString()).get(0);
+//            }else{
+//            	System.out.println("File size less then 100Bytes. File path : " + file.getPath());
+//            }
             globalProperties.addCurrentCount(globalProperties.DUPLICATOR_COPY_POINT);
 
 //            When copy both twsp and briefing files successfully in one day, it is seemed to import the data successfully
-            if (Integer.parseInt(exitCode) == 0){
+            if (Integer.parseInt(twspExitCode) == 0 && Integer.parseInt(briefingExitCode) == 0){
                 updateLatestDate(processCalendar);
             }
 
