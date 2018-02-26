@@ -21,10 +21,14 @@ public class GlobalProperties {
     private static String propertiesFilePath = "./src/main/resources/properties/environment.properties";
     private static String iconPath =  "./src/main/resources/icon";
 
-//    Need to copy properties manually when run as jar.
+//  The path of properties file when run in Eclipse.
+//	private static String propertiesFilePath = "./resources/properties/environment.properties";
+//	private static String iconPath =  "./resources/icon";
+
+//  Need to copy properties manually when run as jar.
 //    private static String propertiesFilePath = "./properties/environment.properties";
 //    private static String iconPath =  "./icon";
-
+    
     //    Only one ImportKit thread can run at a time.
     private static Semaphore allowImport = new Semaphore(1);
 
